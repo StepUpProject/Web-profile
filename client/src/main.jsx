@@ -7,6 +7,7 @@ import Tentang from './pages/tentang'
 import Layanan from './pages/layanan'
 import Portfolio from './pages/portfolio'
 import Artikel from './pages/artikel'
+import Konsultasi from './pages/konsultasi'
 
 
 const router = createBrowserRouter([
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
   {
     path:"/artikel",
     element: <Artikel/>,
+  },
+  {
+    path:"/konsultasi",
+    element: <Konsultasi/>,
   },
 
 ])
