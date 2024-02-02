@@ -8,6 +8,7 @@ const Konsultasi = () => {
         <h2>Konsultasi</h2>
       </div>
       <div></div>
+      <div></div>
     </>
   );
 };
