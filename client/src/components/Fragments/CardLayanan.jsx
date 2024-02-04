@@ -1,4 +1,4 @@
-const Card = ({ image, title, content }) => {
+const CardLayanan = ({ image, title, content }) => {
   return (
     <div className="max-w-[300px] mx-auto mt-[43px] rounded-xl font-body overflow-hidden shadow-cardShadow">
       <img src={image} alt="Cards" className="w-full h-auto" />
@@ -9,4 +9,4 @@ const Card = ({ image, title, content }) => {
 };
 
 
-export default Card;
+export default CardLayanan;

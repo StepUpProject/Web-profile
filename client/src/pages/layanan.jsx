@@ -1,6 +1,6 @@
 import NavBar from "../components/Fragments/Navbar";
 import Footer from "../components/Fragments/Footer";
-import Card from "../components/Fragments/Card";
+import CardLayanan from "../components/Fragments/CardLayanan";
 
 const Layanan = () => {
   // object card layanan
@@ -35,7 +35,7 @@ const Layanan = () => {
       </p> 
       {/* memanggil object services */}
       {services.map((service)=>(
-        <Card key={service.id} {...service}/>
+        <CardLayanan key={service.id} {...service}/>
       ))}
       <Footer />
     </div>
