@@ -1,8 +1,11 @@
+import { useEffect, useState } from "react";
 import NavBar from "../components/Fragments/Navbar";
 import Footer from "../components/Fragments/Footer";
+import SectionHead from "../components/Elements/SectionHead";
+import TeamCard from "../components/Fragments/TeamCard";
+import { getTeams } from "../services/team.service";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import SectionHead from "../components/Elements/SectionHead";
 
 AOS.init();
 
@@ -10,17 +13,17 @@ const Beranda = () => {
   const services = [
     {
       title: "Aplikasi Web",
-      images: "./images/layanan-1.png",
+      images: "./images/layanan-appweb.png",
       classname: "ps-5",
     },
     {
       title: "Artikel",
-      images: "./images/layanan-1.png",
+      images: "./images/layanan-artikel.png",
       classname: "ps-20",
     },
     {
       title: "Konten Digital",
-      images: "/images/layanan-1.png",
+      images: "/images/layanan-sosmed.png",
       classname: "ps-5",
     },
   ];
@@ -74,44 +77,12 @@ const Beranda = () => {
       image: "./images/pelanggan-1.png",
     },
   ];
-  const teams = [
-    {
-      id: 1,
-      image: "./images/team-profile1.jpg",
-      name: "Al Ikhsan Akbar Fatahillah",
-      role: "Project Manager",
-    },
-    {
-      id: 2,
-      image: "./images/team-profile1.jpg",
-      name: "Muhammad Abdanul Ikhlas",
-      role: "Frontend Developer",
-    },
-    {
-      id: 3,
-      image: "./images/team-profile1.jpg",
-      name: "Yoga Agatha Pasaribu",
-      role: "Fullstack Developer",
-    },
-    {
-      id: 4,
-      image: "./images/team-profile1.jpg",
-      name: "Muhammad Riyadhi",
-      role: "Backend Developer",
-    },
-    {
-      id: 5,
-      image: "./images/team-profile1.jpg",
-      name: "Hadi Hasan Lubis",
-      role: "UI/UX Designer",
-    },
-    {
-      id: 6,
-      image: "./images/team-profile1.jpg",
-      name: "Muh Aditya Dwijaya",
-      role: "Creative",
-    },
-  ]
+  const [teams, setTeams] = useState([]);
+  useEffect(() => {
+    getTeams((data) => {
+      setTeams(data);
+    });
+  });
 
   return (
     <div className="py-24">
@@ -169,12 +140,10 @@ const Beranda = () => {
       <section className="h-auto">
         <div className="w-full ps-4 pt-8 bg-slate-100">
           <SectionHead>Pelanggan Kami</SectionHead>
-          <div className="overflow-x-scroll w-[300px] flex ">
-            <div className="h-[100px] w-[100px] bg-slate-600"></div>
-            <div className="h-[100px] w-[100px] bg-slate-600"></div>
-            <div className="h-[100px] w-[100px] bg-slate-600"></div>
-            <div className="h-[100px] w-[100px] bg-slate-600"></div>
-            <div className="h-[100px] w-[100px] bg-slate-600"></div>
+          <div className="w-[564px] flex gap-4 overflow-x-auto no-scrollbar">
+            {customers.map((item) =>(
+              <img key={item.id} src={item.image} alt="" />
+            ))}
           </div>
         </div>
       </section>
@@ -266,17 +235,5 @@ const ReviewCard = () => {
   );
 };
 
-const TeamCard = (props) => {
-  const { image, name, role } = props;
-  return (
-    <div className="flex flex-col justify-center items-center w-[150px] h-[211px]
-    shadow-[0_5px_10px_rgba(0,0,0,0.4)]">
-      <img src={image} alt="" className="w-[150px] h-[122px]"/>
-      <div className="flex flex-col items-center justify-center text-center px-4 py-3">
-      <p className="font-bold text-xs">{name.toUpperCase()}</p>
-      <p className="font-medium text-xs mt-3">{role}</p>
-      </div>
-    </div>
-  )
-}
+
 export default Beranda;
