@@ -55,6 +55,11 @@ app.get('/',(req,res) =>{
 app.get('/api/teams',(req,res) =>{
     res.json(teams)
 })
+
+app.get('/api/portfolio',(req,res)=>{
+    res.json(portfolio)
+})
+
 app.post('/api/konsultasi',async (req,res) =>{
     const data = await req.body
     res.status(200).json({ data, message: 'Data received successfully' });
