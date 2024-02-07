@@ -37,7 +37,7 @@ const router = createBrowserRouter([
     element: <Konsultasi/>,
   },
   {
-    path:"/portfolioDetail/:id",
+    path:"/portfolio/:id",
     element: <PortfolioDetail/>,
   },
 

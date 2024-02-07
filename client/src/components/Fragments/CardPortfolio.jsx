@@ -9,7 +9,7 @@ const CardPortfolio = ({id, image, title, subtitle, description}) => {
         <h2 className="text-xs ">{subtitle}</h2>
         <h1 className="text-[16px] font-bold text-left my-[11px]">{title}</h1>
         <p className="word-wrap my-4 text-left text-xs ">{description}</p>
-        <Link to={`/portfolioDetail/${id}`} className=" text-xs text-primary">Lihat Selengkapnya</Link>
+        <Link to={`/portfolio/${id}`} className=" text-xs text-primary">Lihat Selengkapnya</Link>
       </div>
     </div>
   );
