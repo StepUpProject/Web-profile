@@ -1,27 +1,17 @@
+import { useEffect, useState } from "react";
 import NavBar from "../components/Fragments/Navbar";
 import Footer from "../components/Fragments/Footer";
 import CardPortfolio from "../components/Fragments/CardPortfolio";
-
+import { getPortfolios } from "../services/portfolio.service";
 
 const Portfolio = () => {
   // object card portfolio
-  const portfolios = [
-    {
-      id:1,
-      image:"./images/portfolio-card-1.png",
-      title:"Website Arsitek Rumah",
-      subtitle:"Bank Central Indonesia",
-      description:"Terinspirasi oleh estetika dan fungsionalitas, portofolio arsitektur kami mencerminkan keahlian dalam merancang rumah impian"
-    },
-    {
-      id:2,
-      image:"./images/portfolio-card-2.png",
-      title:"Website Catering",
-      subtitle:"Warung Makan Kokoh",
-      description:"Terinspirasi oleh estetika dan fungsionalitas, portofolio arsitektur kami mencerminkan keahlian dalam merancang rumah impian"
-    }
-  ]
-
+  const [portfolios, setPortfolios] = useState([]);
+  useEffect(() => {
+    getPortfolios((data) => {
+      setPortfolios(data);
+    });
+  })
     return (
         <>
           <NavBar />
