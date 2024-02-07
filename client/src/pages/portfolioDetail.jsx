@@ -6,7 +6,65 @@ import { useParams } from 'react-router-dom';
 
 const PortfolioDetail = () => {
     let { id } = useParams(); 
-
+    // object card portfolio
+    const portfolios = [
+    {
+      id:1,
+      imageCard:"./images/portfolio-card-1.png",
+      imageDetail:"./images/portfolio-detail-1.png",
+      title:"Website Arsitek Rumah",
+      subtitle:"Bank Central Indonesia",
+      color:"#D7F0FF",
+      description:"Terinspirasi oleh estetika dan fungsionalitas, portofolio arsitektur kami mencerminkan keahlian dalam merancang rumah impian",
+      descriptionDetail:"Terinspirasi oleh estetika dan fungsionalitas, portofolio arsitektur kami mencerminkan keahlian dalam merancang rumah impian. Setiap proyek kami adalah perwujudan kreativitas dan keunggulan teknis, menghasilkan ruang yang tidak hanya memukau secara visual tetapi juga memenuhi kebutuhan fungsional sehari-hari. Dari desain eksterior yang elegan hingga tata letak interior yang cerdas, setiap detail dipikirkan dengan seksama. Jelajahi portofolio kami untuk menemukan harmoni antara keindahan dan fungsionalitas dalam setiap proyek arsitektur kami.",
+      teknologi:[
+        {
+          title:"react",
+          image:"./images/react.png",
+        },
+        {
+          title:"mysql",
+          image:"./images/mysql.png",
+        },
+        {
+          title:"nodejs",
+          image:"./images/nodejs.png",
+        },
+        {
+          title:"expressjs",
+          image:"./images/expressjs.png",
+        },
+      ]
+    },
+    {
+      id:2,
+      imageCard:"./images/portfolio-card-2.png",
+      imageDetail:"./images/portfolio-detail-2.png",
+      title:"Website Catering",
+      subtitle:"Warung Makan Kokoh",
+      color:"#D7FFEE",
+      description:"Terinspirasi oleh estetika dan fungsionalitas, portofolio arsitektur kami mencerminkan keahlian dalam merancang rumah impian",
+      descriptionDetail:"Terinspirasi oleh estetika dan fungsionalitas, portofolio arsitektur kami mencerminkan keahlian dalam merancang rumah impian. Setiap proyek kami adalah perwujudan kreativitas dan keunggulan teknis, menghasilkan ruang yang tidak hanya memukau secara visual tetapi juga memenuhi kebutuhan fungsional sehari-hari. Dari desain eksterior yang elegan hingga tata letak interior yang cerdas, setiap detail dipikirkan dengan seksama. Jelajahi portofolio kami untuk menemukan harmoni antara keindahan dan fungsionalitas dalam setiap proyek arsitektur kami.",
+      teknologi:[
+        {
+          title:"react",
+          image:"./images/react.png",
+        },
+        {
+          title:"mysql",
+          image:"./images/mysql.png",
+        },
+        {
+          title:"nodejs",
+          image:"./images/nodejs.png",
+        },
+        {
+          title:"expressjs",
+          image:"./images/expressjs.png",
+        },
+      ]
+    }
+  ]
     return (
         <>
           <NavBar />

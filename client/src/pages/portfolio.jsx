@@ -4,7 +4,7 @@ import CardPortfolio from "../components/Fragments/CardPortfolio";
 
 
 const Portfolio = () => {
-  // object card layanan
+  // object card portfolio
   const portfolios = [
     {
       id:1,
