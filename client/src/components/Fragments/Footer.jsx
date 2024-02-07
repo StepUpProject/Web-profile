@@ -6,6 +6,11 @@ const Footer = () => {
       image: "./svg/email.svg",
     },
     {
+      title: "instagram",
+      content: "stepup.project",
+      image: "./svg/instagram.svg",
+    },
+    {
       title: "whatsapp",
       content: "082262191159",
       image: "./svg/whatsapp.svg",
@@ -17,7 +22,7 @@ const Footer = () => {
     },
   ];
   return (
-    <div className="flex flex-col justify-center items-center py-12">
+    <div className="flex flex-col justify-center items-center pt-12 pb-16">
       <div className="w-full h-[112px] ps-4 pt-4 pe-11 bg-primary text-white">
         <h3 className="text-base font-bold">
           Ayo bangun website anda sekarang
@@ -40,23 +45,13 @@ const Footer = () => {
             </h4>
           </div>
           {contacts.map((item) => (
-            <div className="flex flex-row gap-2 items-center mb-2">
+            <div key={item.title} className="flex flex-row gap-2 items-center mb-2">
+              <div className="flex w-6 h-4 justify-center items-center">
               <img src={item.image} alt={item.title} />
-              <p className="text-xs">{item.content}</p>
+              </div>
+              <p className="text-xs text-start">{item.content}</p>
             </div>
           ))}
-        </div>
-      </div>
-      <div className="mt-9">
-        <div className="flex flex-col">
-          <div className="flex flex-col justify-center items-center">
-            <h4 className="text-sm font-bold mb-3">Hubungi Kami</h4>
-            <div className="flex flex-row gap-3 justify-center items-center">
-              <img src="./svg/instagram.svg" alt="instagram" />
-              <img src="./svg/linkedin.svg" alt="linkedin" />
-              <img src="./svg/twitter.svg" alt="twitter" />
-            </div>
-          </div>
         </div>
       </div>
     </div>

@@ -61,11 +61,8 @@ const Navbar = () => {
   return (
     <nav className="top-0">
       <div
-        className={`h-[60px] flex justify-between w-full fixed ${
-          scrolling
-            ? "bg-transparent backdrop-blur shadow-[inset_0_-1px_0_0_rgba(0,0,0,0.2)]"
-            : "bg-white"
-        } top-0 z-50 text-dark lg:py-5 px-5 py-4 flex-1 shadow-md shadow-primary/50`}
+        className={`h-[60px] flex justify-between w-full fixed bg-white
+        -top-1 z-50 text-dark lg:py-5 px-5 py-4 flex-1 shadow-md shadow-black/50`}
       >
         <div className="flex items-center gap-1 flex-1">
           <img src="images/logo.png" alt="" className="h-[25px]"/>
@@ -116,7 +113,7 @@ const SmallContent = () => {
       <div className="lg:hidden block absolute top-[60px] w-full left-0 right-0 bg-white transition">
         <ul className="text-center text-xl mb-2 px-3">
           {menus.map((menu) => (
-            <Link key={menu.link} spy={true} smooth={true} to={menu.link}>
+            <Link key={menu.link} spy="true" smooth="true" to={menu.link}>
               <li
                 className={`my-4 py-3 hover:bg-primary hover:text-white rounded-md cursor-pointer ${
                   location.pathname === menu.link
