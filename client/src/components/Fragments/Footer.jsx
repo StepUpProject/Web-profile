@@ -3,22 +3,22 @@ const Footer = () => {
     {
       title: "email",
       content: "stepup.project6@gmail.com",
-      image: "./svg/email.svg",
+      image: "../svg/email.svg",
     },
     {
       title: "instagram",
       content: "stepup.project",
-      image: "./svg/instagram.svg",
+      image: "../svg/instagram.svg",
     },
     {
       title: "whatsapp",
       content: "082262191159",
-      image: "./svg/whatsapp.svg",
+      image: "../svg/whatsapp.svg",
     },
     {
       title: "location",
       content: "Sleman, Yogyakarta 55282",
-      image: "./svg/location-pin.svg",
+      image: "../svg/location-pin.svg",
     },
   ];
   return (
