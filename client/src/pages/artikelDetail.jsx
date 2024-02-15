@@ -103,6 +103,16 @@ const ArtikelDetail = () => {
                     )}
                   </div>
               ))}
+              {/* container artikel lainnya */}
+              <section>
+                <h2 className="mt-[50px] px-[12px] font-bold text-xl text-transparent bg-clip-text bg-gradient-to-b from-primary from-40% to-black/80">Artikel Lainnya</h2>
+                {/* Memanggil object semua artikel, kecuali yang sedang ditampilkan */}
+                {articles
+                  .filter(otherArticle => otherArticle.id !== article.id)
+                  .map(otherArticle => (
+                    <CardArtikel key={otherArticle.id} {...otherArticle} />
+                  ))}
+              </section>
             </main>
             ))}
         <Footer />
