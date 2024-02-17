@@ -10,6 +10,7 @@ import Artikel from './pages/artikel'
 import Konsultasi from './pages/konsultasi'
 import PortfolioDetail from './pages/portfolioDetail';
 import ArtikelDetail from './pages/artikelDetail';
+import DashboardDev from './pages/dashbordDev';
 
 
 const router = createBrowserRouter([
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
   {
     path:"/artikel/:id",
     element: <ArtikelDetail/>,
+  },
+  {
+    path:"/dashboardDev/:id",
+    element: <DashboardDev/>,
   },
 
 ])
