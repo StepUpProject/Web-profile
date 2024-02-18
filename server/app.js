@@ -2,6 +2,14 @@ const express = require('express')
 const app = express();
 const cors = require('cors')
 const bodyParser = require('body-parser')
+const mongoose = require('mongoose') // import mongoose
+const Konsul = require('./models/konsultasi')
+//connect to mongodb
+mongoose.connect('mongodb://127.0.0.1/stepup_db').then((result)=>{
+    console.log('connection to mongodb')
+}).catch((err)=>{
+    console.log(err)
+})
 
 const teams = [{
     id: 1,
@@ -115,12 +123,28 @@ app.get('/api/portfolio', (req, res) => {
 })
 
 app.post('/api/konsultasi', async (req, res) => {
-  const data = await req.body
-  res.status(200).json({
-    data,
-    message: 'Data received successfully'
-  });
-  console.log(data)
+  try {
+    const { fullname, email, pertanyaan } = req.body;
+    // Create a new Konsultasi instance
+    const newkonsul = new Konsul({
+      fullname,
+      email,
+      pertanyaan,
+    });
+    // Save to MongoDB
+    await newkonsul.save();
+
+    res.status(201).json({ success: true, message: "Data berhasil disimpan" });
+    console.log(newkonsul)
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
+  }
+})
+
+
+app.post('/login_dev', (req,res)=>{
+
 })
 
 app.listen(3000, () => {
