@@ -1,4 +1,5 @@
-import NavBar from "../components/Fragments/Navbar";
+import Navbar from "../components/Fragments/Navbar";
+import NavbarDev from "../components/Fragments/NavbarDev";
 import Footer from "../components/Fragments/Footer";
 import { useParams } from 'react-router-dom';
 import { getTeams } from "../services/team.service";
@@ -23,19 +24,19 @@ const DashboardDev = () => {
       {
         title: "Artikel",
         image: "../images/dashboardDev-layanan-artikel.png",
-        link:"../pages/artikelDev",
+        link:"/artikelDev",
       },
       {
         title: "Konsultasi",
         image: "../images/dashboardDev-layanan-konsultasi.png",
-        link:"../pages/konsultasiDev",
+        link:"/konsultasiDev",
       },
     ];
 
   return (
     <div>
-      <NavBar />
-      <main className="mt-16">
+      <NavbarDev />
+      <main className="mt-16 font-body">
         <section className="relative text-center pt-10">
           <img src="../images/atribut-dev.png" 
               alt="atribut developer" 

@@ -11,6 +11,7 @@ import Konsultasi from './pages/konsultasi'
 import PortfolioDetail from './pages/portfolioDetail';
 import ArtikelDetail from './pages/artikelDetail';
 import DashboardDev from './pages/dashbordDev';
+import KonsultasiDev from './pages/konsultasiDev';
 
 
 const router = createBrowserRouter([
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
   {
     path:"/dashboardDev/:id",
     element: <DashboardDev/>,
+  },
+  {
+    path:"/konsultasiDev",
+    element: <KonsultasiDev/>,
   },
 
 ])
