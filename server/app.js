@@ -5,37 +5,37 @@ const bodyParser = require('body-parser')
 
 const teams = [{
     id: 1,
-    image: "./images/team-ikhsan.jpg",
+    image: "../images/team-ikhsan.jpg",
     name: "Al Ikhsan Akbar Fatahillah",
     role: "Project Manager",
   },
   {
     id: 2,
-    image: "./images/team-ikhlas.jpg",
+    image: "../images/team-ikhlas.jpg",
     name: "Muhammad Abdanul Ikhlas",
     role: "Frontend Developer",
   },
   {
     id: 3,
-    image: "./images/team-yoga.jpeg",
+    image: "../images/team-yoga.jpeg",
     name: "Yoga Agatha Pasaribu",
     role: "Fullstack Developer",
   },
   {
     id: 4,
-    image: "./images/team-riyadhi.jpg",
+    image: "../images/team-riyadhi.jpg",
     name: "Muhammad Riyadhi",
     role: "Backend Developer",
   },
   {
     id: 5,
-    image: "./images/team-hadi.jpg",
+    image: "../images/team-hadi.jpg",
     name: "Hadi Hasan Lubis",
     role: "UI/UX Designer",
   },
   {
     id: 6,
-    image: "./images/team-hadi.jpg",
+    image: "../images/team-hadi.jpg",
     name: "Muh Aditya Dwijaya",
     role: "Creative",
   },
