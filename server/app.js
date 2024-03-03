@@ -3,7 +3,8 @@ const app = express();
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose') // import mongoose
-const Konsul = require('./models/konsultasi')
+const Konsul = require('./models/konsultasi');
+const Users = require('./models/user');
 //connect to mongodb
 mongoose.connect('mongodb://127.0.0.1/stepup_db').then((result)=>{
     console.log('connection to mongodb')
@@ -143,8 +144,19 @@ app.post('/api/konsultasi', async (req, res) => {
 })
 
 
-app.post('/login_dev', (req,res)=>{
+app.post('/login_dev',async (req,res)=>{
+    try{
+      const check = await Users.findOne ({name : req.body.name})
 
+      if(check.password = req.body.password){
+        res.render("..")
+      }else{
+        res.send('Password yang anda masukkan Salah !!!')
+      }
+
+    }catch{
+      res.send("Detail kesalahan")
+    }
 })
 
 app.listen(3000, () => {
