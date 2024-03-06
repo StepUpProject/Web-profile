@@ -1,7 +1,13 @@
 const express = require('express')
 const app = express();
+const session = require('express-session')
+const flash = require('connect-flash')
 const cors = require('cors')
 const bodyParser = require('body-parser')
+const mongoose = require('mongoose');
+const passport = require('passport')
+const LocalStrategy = require('passport-local').Strategy
+const User = require('./models/user')
 
 const teams = [{
     id: 1,
@@ -46,7 +52,7 @@ const portfolios = [{
     mockup: "../images/portfolio-detail-1.png",
     title: "Website Arsitek Rumah",
     subtitle: "Bank Central Indonesia",
-    backgroundColor: "bg-[#D7F0FF]",
+    backgroundColor: "portfolioOne",
     description: "Terinspirasi oleh estetika dan fungsionalitas, portofolio arsitektur kami mencerminkan keahlian dalam merancang rumah impian",
     descriptionDetail: "Terinspirasi oleh estetika dan fungsionalitas, portofolio arsitektur kami mencerminkan keahlian dalam merancang rumah impian. Setiap proyek kami adalah perwujudan kreativitas dan keunggulan teknis, menghasilkan ruang yang tidak hanya memukau secara visual tetapi juga memenuhi kebutuhan fungsional sehari-hari. Dari desain eksterior yang elegan hingga tata letak interior yang cerdas, setiap detail dipikirkan dengan seksama. Jelajahi portofolio kami untuk menemukan harmoni antara keindahan dan fungsionalitas dalam setiap proyek arsitektur kami.",
     teknologi: [{
@@ -73,7 +79,7 @@ const portfolios = [{
     mockup: "../images/portfolio-detail-2.png",
     title: "Website Catering",
     subtitle: "Warung Makan Kokoh",
-    backgroundColor: "bg-[#D7FFEE]",
+    backgroundColor: "portfolioTwo",
     description: "Terinspirasi oleh estetika dan fungsionalitas, portofolio arsitektur kami mencerminkan keahlian dalam merancang rumah impian",
     descriptionDetail: "Terinspirasi oleh estetika dan fungsionalitas, portofolio arsitektur kami mencerminkan keahlian dalam merancang rumah impian. Setiap proyek kami adalah perwujudan kreativitas dan keunggulan teknis, menghasilkan ruang yang tidak hanya memukau secara visual tetapi juga memenuhi kebutuhan fungsional sehari-hari. Dari desain eksterior yang elegan hingga tata letak interior yang cerdas, setiap detail dipikirkan dengan seksama. Jelajahi portofolio kami untuk menemukan harmoni antara keindahan dan fungsionalitas dalam setiap proyek arsitektur kami.",
     teknologi: [{
@@ -96,15 +102,53 @@ const portfolios = [{
   }
 ]
 
+mongoose.connect('mongodb://127.0.0.1/stepup')
+    .then((result) => {
+        console.log('connected to mongodb')
+        // console.log(result)
+    }).catch((err) => {
+        console.log(err)
+    });
+
 app.use(bodyParser.json())
-const baseUrL = "http://localhost:5173"
+// const baseUrL = "http://localhost:5173"
 app.use(cors({
-  origin: `${baseUrL}`,
+  origin: "http://localhost:5173",
+  credentials: true,
 }))
+app.use(express.urlencoded({extended: true}));
+app.use(session({
+  secret: 'stepup',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+      httpOnly: true,
+      secure: false,
+      sameSite: 'none',
+      expires: Date.now() + 60 * 60 * 1000,
+      maxAge: 1000 * 60 * 60 * 24 * 7
+  }
+}))
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+app.use((req, res, next) => {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  next();
+});
 
 app.get('/', (req, res) => {
   console.log('Berhasil')
 })
+
+app.use('/',require('./routes/auth')) 
+app.use('/developer',require('./routes/developer')) 
+
 
 app.get('/api/teams', (req, res) => {
   res.json(teams)
@@ -114,6 +158,10 @@ app.get('/api/portfolio', (req, res) => {
   res.json(portfolios)
 })
 
+// app.get('/berandaDev', (req, res) => {
+//   return res.redirect('http://localhost:5173/berandaDev')
+// })
+
 app.post('/api/konsultasi', async (req, res) => {
   const data = await req.body
   res.status(200).json({
@@ -122,6 +170,7 @@ app.post('/api/konsultasi', async (req, res) => {
   });
   console.log(data)
 })
+
 
 app.listen(3000, () => {
   console.log('server is listening on http://localhost:3000')

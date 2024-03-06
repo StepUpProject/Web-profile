@@ -16,6 +16,8 @@ export default {
         pale: "#D9D9D9",
         secondary: "#10b981",
         dark: "#1f242d",
+        portfolioOne : "#6a10e0",
+        portfolioTwo : "#6a10e0",
       },
       boxShadow: {
         'cardShadow': '0px 1px 2px 0px rgba(0, 172, 193, 0.10), 0px 3px 3px 0px rgba(0, 172, 193, 0.09), 0px 7px 4px 0px rgba(0, 172, 193, 0.05), 0px 12px 5px 0px rgba(0, 172, 193, 0.01), 0px 19px 5px 0px rgba(0, 172, 193, 0.00)'

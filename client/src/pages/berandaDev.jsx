@@ -9,7 +9,9 @@ import "aos/dist/aos.css";
 
 AOS.init();
 
-const Beranda = () => {
+const BerandaDev = () => {
+  const [username, setUsername] = useState('');
+  
   const services = [
     {
       title: "Aplikasi Web",
@@ -82,7 +84,17 @@ const Beranda = () => {
     getTeams((data) => {
       setTeams(data);
     });
-  }, [teams]);
+  }, []);
+  
+  useEffect(() => {
+    const userId = localStorage.getItem("id");
+    const username = localStorage.getItem("username");
+    if(userId){
+      setUsername(username)
+    }else{
+      window.location.href = '/login';
+    }
+  })
 
   return (
     <div className="py-24">
@@ -93,7 +105,7 @@ const Beranda = () => {
           data-aos="fade-up"
           data-aos-duration="4000"
         >
-          <SectionHead>Step Up Project</SectionHead>
+          <SectionHead>Step Up Project {username}</SectionHead>
           <h3 className="text-2xl font-bold mt-5">Step Up, Code Up</h3>
           <p className="mt-6 pe-11">
             Step Up Project hadir sebagai digitalisasi bisnis, pengembangan dan
@@ -236,4 +248,4 @@ const ReviewCard = () => {
 };
 
 
-export default Beranda;
+export default BerandaDev;
