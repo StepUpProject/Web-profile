@@ -16,36 +16,48 @@ passport.use(new LocalStrategy(User.authenticate()));
 // use static serialize and deserialize of model for passport session support
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
-async function seedUser() {
+async function seedUsers(){
     const users = [
         {
-            name: 'Yoga Agatha Pasaribu',
-            email: 'yogapsb000@gmail.com',
-            password: 'lael0laeq12',
-            // role: 'admin'
+            "name"      : "Al Ikhsan Akbar Fatahillah",
+            "password"  : "stepupcode",
+            "email"     : "ikhsanngkalu@gmail.com"
         },
         {
-            name: 'Yoga Pasaribu',
-            email: 'yogapsb000@gmail.com',
-            password: 'lael0laeq12',
-            // role: 'admin'
+            "name"      : "Muhammad Abdanul Ikhlas",
+            "password"  : "stepupcode",
+            "email"     : "muhabdanulikhlas0983@gmail.com"
         },
         {
-            name: 'Al Ikhsan Akbar Fatahillah',
-            email: 'alikhsan@gmail.com',
-            password: 'ikhsan21',
-            // role: 'admin'
+            "name"      : "Yoga Agatha Pasaribu",
+            "password"  : "Lael0laeq12",
+            "email"     : "yogapasaribu000@gmail.com"
+        },
+        {
+            "name"      : "Muhammad Riyadhi",
+            "password"  : "stepupcode",
+            "email"     : "mriyadhi914@gmail.com"
+        },
+        {
+            "name"      : "Hadi Hasan Lubis",
+            "password"  : "Hadi29hasan",
+            "email"     : "hadihasan047@gmail.com"
+        },
+        {
+            "name"      : "MUH ADITYA DWIJAYA",
+            "password"  : "stepupcode",
+            "email"     : "dwi.aditya2603@gmail.com"
         }
     ]
     try {
-        await User.deleteMany({});
-        await User.insertMany(users);
-        console.log('Data berhasil disimpan');
-    } catch (err) {
-        console.log('Terjadi kesalahan saat menyimpan data:', err);
-    } finally {
-        mongoose.disconnect();
+       await Users.insertMany(users)
+        console.log(Users)
+    } catch (error) {
+        console.log(error)
+    } finally{
+        mongoose.disconnect()
     }
+   
 }
 
-seedUser();
+seedUsers()
