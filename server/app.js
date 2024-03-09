@@ -27,7 +27,7 @@ const teams = [
     role: "Project Manager",
   },
   {
-    id: 2,
+    id: "65ebeefdb9f8ec01da0e9395",
     image: "../images/team-ikhlas.jpg",
     name: "Muhammad Abdanul Ikhlas",
     role: "Frontend Developer",

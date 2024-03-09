@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
 import { IoIosMenu } from "react-icons/io";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 
 const menus = [
   {
@@ -15,31 +15,31 @@ const menus = [
     name: "Beranda",
     active: false,
   },
-  {
-    link: "/tentang",
-    name: "Tentang Kami",
-    active: false,
-  },
-  {
-    link: "/layanan",
-    name: "Layanan Kami",
-    active: false,
-  },
-  {
-    link: "/portfolio",
-    name: "Portfolio",
-    active: false,
-  },
-  {
-    link: "/artikel",
-    name: "Artikel",
-    active: false,
-  },
-  {
-    link: "/konsultasi",
-    name: "Konsultasi",
-    active: false,
-  },
+  // {
+  //   link: "/tentang",
+  //   name: "Tentang Kami",
+  //   active: false,
+  // },
+  // {
+  //   link: "/layanan",
+  //   name: "Layanan Kami",
+  //   active: false,
+  // },
+  // {
+  //   link: "/portfolio",
+  //   name: "Portfolio",
+  //   active: false,
+  // },
+  // {
+  //   link: "/artikel",
+  //   name: "Artikel",
+  //   active: false,
+  // },
+  // {
+  //   link: "/konsultasi",
+  //   name: "Konsultasi",
+  //   active: false,
+  // },
   // {
   //   link: "/dashboardDev/2",
   //   name: "DashboardDev",
@@ -58,8 +58,18 @@ const menus = [
 ];
 const devMenus = [
   {
-    link: "/dashboardDev",
-    name: "DashboardDev",
+    link: "/berandaDev",
+    name: "BerandaDev",
+    active: false,
+  },
+  {
+    link: "/konsultasiDev",
+    name: "KonsultasiDev",
+    active: false,
+  },
+  {
+    link: "/",
+    name: "Beranda",
     active: false,
   },
   // {
@@ -99,8 +109,10 @@ const Navbar = () => {
         -top-1 z-50 text-dark lg:py-5 px-5 py-4 flex-1 shadow-md shadow-black/50`}
       >
         <div className="flex items-center gap-1 flex-1">
-          <img src="images/logo.png" alt="" className="h-[25px]"/>
-          <span className="font-bold text-lg text-transparent bg-clip-text bg-gradient-to-b from-primary to-black/50">Step Up</span>
+          <img src="images/logo.png" alt="" className="h-[25px]" />
+          <span className="font-bold text-lg text-transparent bg-clip-text bg-gradient-to-b from-primary to-black/50">
+            Step Up
+          </span>
         </div>
         <WideContent />
         <div>{isMenuOpen && <SmallContent />}</div>
@@ -117,33 +129,39 @@ const Navbar = () => {
 
 const WideContent = () => {
   const location = useLocation();
-  let { id } = useParams(); 
+  let { id } = useParams();
   return (
     <div className="lg:flex md:flex lg:flex-1 items-center justify-end font-normal hidden">
       <div className="flex-10">
         <ul className="flex gap-4 mr-16 text-[18px]">
           {devMenus.map((devMenu) => (
             <li key={devMenu.link} className="my-4">
-              <Link spy="true" smooth="true" to={`${devMenu.link}/${id}`}
-                className=
-                {`block w-full py-3 hover:bg-primary hover:text-white rounded-md cursor-pointer ${
+              <Link
+                spy="true"
+                smooth="true"
+                to={`${devMenu.link}/${id}`}
+                className={`block w-full py-3 hover:bg-primary hover:text-white rounded-md cursor-pointer ${
                   location.pathname === devMenu.link
                     ? "text-primary border-b border-primary"
                     : "text-dark bg-white"
-                } transition cursor-pointer`}>
+                } transition cursor-pointer`}
+              >
                 {devMenu.name}
               </Link>
             </li>
           ))}
           {menus.map((menu) => (
             <li key={menu.link}>
-              <Link spy="true" smooth="true" to={menu.link}
-                className=
-                {`${
+              <Link
+                spy="true"
+                smooth="true"
+                to={menu.link}
+                className={`${
                   location.pathname === menu.link
                     ? "text-primary border-b border-primary"
                     : "text-dark bg-white"
-                } transition cursor-pointer`}>
+                } transition cursor-pointer`}
+              >
                 {menu.name}
               </Link>
             </li>
@@ -156,20 +174,23 @@ const WideContent = () => {
 
 const SmallContent = () => {
   const location = useLocation();
-  let { id } = useParams(); 
+  let { id } = useParams();
   return (
     <>
       <div className="lg:hidden block absolute top-[60px] w-full left-0 right-0 bg-white transition">
         <ul className="text-center text-xl mb-2 px-3">
           {devMenus.map((devMenu) => (
             <li key={devMenu.link} className="my-4">
-              <Link spy="true" smooth="true" to={`${devMenu.link}/${id}`}
-                className=
-                {`block w-full py-3 hover:bg-primary hover:text-white rounded-md cursor-pointer ${
+              <Link
+                spy="true"
+                smooth="true"
+                to={`${devMenu.link}/${id}`}
+                className={`block w-full py-3 hover:bg-primary hover:text-white rounded-md cursor-pointer ${
                   location.pathname === devMenu.link
                     ? "text-primary border-b border-primary"
                     : "text-dark bg-white"
-                } transition cursor-pointer`}>
+                } transition cursor-pointer`}
+              >
                 {devMenu.name}
               </Link>
             </li>
@@ -186,7 +207,7 @@ const SmallContent = () => {
                 {menu.name}
               </li>
             </Link>
-          ))}          
+          ))}
         </ul>
       </div>
     </>
