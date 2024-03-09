@@ -1,12 +1,20 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
+const passportLocalMongoose = require('passport-local-mongoose')
 
-//Membuat Scema untuk menentukan apa saja yang akan diperlukan pada data yang akan dibuat(nama dan tipe data)
-const userSchema = new mongoose.Schema({
-    name : String,
-    password : String,
-    email : String
+const Schema = mongoose.Schema
+
+const userSchema = new Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+    }
 })
 
-const Users = mongoose.model('Users',userSchema)
-module.exports = Users 
+userSchema.plugin(passportLocalMongoose)
 
+module.exports = mongoose.model('User', userSchema)

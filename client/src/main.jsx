@@ -9,6 +9,9 @@ import Portfolio from './pages/portfolio'
 import Artikel from './pages/artikel'
 import Konsultasi from './pages/konsultasi'
 import PortfolioDetail from './pages/portfolioDetail';
+import Login from './pages/login'
+import BerandaDev from './pages/berandaDev'
+import ArticleDev from './pages/artikelDev'
 import ArtikelDetail from './pages/artikelDetail';
 import DashboardDev from './pages/dashbordDev';
 import KonsultasiDev from './pages/konsultasiDev';
@@ -44,6 +47,17 @@ const router = createBrowserRouter([
     element: <PortfolioDetail/>,
   },
   {
+    path:"/login",
+    element: <Login/>,
+  },
+  {
+    path:"/berandaDev",
+    element: <BerandaDev/>,
+  },
+  {
+    path:"/articleDev",
+    element: <ArticleDev/>,
+  }
     path:"/artikel/:id",
     element: <ArtikelDetail/>,
   },

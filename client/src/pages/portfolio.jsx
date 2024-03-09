@@ -3,15 +3,18 @@ import NavBar from "../components/Fragments/Navbar";
 import Footer from "../components/Fragments/Footer";
 import CardPortfolio from "../components/Fragments/CardPortfolio";
 import { getPortfolios } from "../services/portfolio.service";
+import isEqual from "lodash.isequal";
 
 const Portfolio = () => {
   // object card portfolio
   const [portfolios, setPortfolios] = useState([]);
   useEffect(() => {
     getPortfolios((data) => {
-      setPortfolios(data);
+      if (!isEqual(data, portfolios)) {
+        setPortfolios(data);
+      }
     });
-  })
+  },[portfolios])
     return (
         <>
           <NavBar />
@@ -23,7 +26,9 @@ const Portfolio = () => {
             </p> 
             {/* memanggil object portfolios */}
             {portfolios.map((portfolio)=>(
-              <CardPortfolio key={portfolio.id} {...portfolio}/>
+              <div key={portfolio.id} className={`bg-[${portfolio.backgroundColor}] p-8`}>
+                <CardPortfolio {...portfolio}/>
+              </div>
             ))}
           </main>
           <Footer />

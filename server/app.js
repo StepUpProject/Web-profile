@@ -1,10 +1,19 @@
 const express = require("express");
 const app = express();
+const session = require('express-session')
+const flash = require('connect-flash')
+const cors = require('cors')
+const bodyParser = require('body-parser')
+const mongoose = require('mongoose');
+const passport = require('passport')
+const LocalStrategy = require('passport-local').Strategy
+const User = require('./models/user')
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose"); // import mongoose
 const Konsul = require("./models/konsultasi");
 const Users = require("./models/user");
+
 //connect to mongodb
 mongoose
   .connect("mongodb://127.0.0.1/stepup_db")
@@ -116,25 +125,75 @@ const portfolios = [
   },
 ];
 
-app.use(bodyParser.json());
-const baseUrL = "http://localhost:5173";
-app.use(
-  cors({
-    origin: `${baseUrL}`,
-  })
-);
+mongoose.connect('mongodb://127.0.0.1/stepup')
+    .then((result) => {
+        console.log('connected to mongodb')
+        // console.log(result)
+    }).catch((err) => {
+        console.log(err)
+    });
+
+app.use(bodyParser.json())
+// const baseUrL = "http://localhost:5173"
+app.use(cors({
+  origin: "http://localhost:5173",
+  credentials: true,
+}))
+app.use(express.urlencoded({extended: true}));
+app.use(session({
+  secret: 'stepup',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+      httpOnly: true,
+      secure: false,
+      sameSite: 'none',
+      expires: Date.now() + 60 * 60 * 1000,
+      maxAge: 1000 * 60 * 60 * 24 * 7
+  }
+}))
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+app.use((req, res, next) => {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  next();
+});
+
 
 app.get("/", (req, res) => {
   console.log("Berhasil");
 });
 
-app.get("/api/teams", (req, res) => {
-  res.json(teams);
-});
+app.use('/',require('./routes/auth')) 
+app.use('/developer',require('./routes/developer')) 
+
+
+app.get('/api/teams', (req, res) => {
+  res.json(teams)
+})
 
 app.get("/api/portfolio", (req, res) => {
   res.json(portfolios);
 });
+
+// app.get('/berandaDev', (req, res) => {
+//   return res.redirect('http://localhost:5173/berandaDev')
+// })
+
+app.post('/api/konsultasi', async (req, res) => {
+  const data = await req.body
+  res.status(200).json({
+    data,
+    message: 'Data received successfully'
+  });
+  console.log(data)
+})
 
 app.get("/api/konsultasi", async (req, res) => {
   try {

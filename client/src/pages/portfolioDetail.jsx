@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 // import CardPortfolio from "../components/Fragments/CardPortfolio";
 import { getPortfolios } from "../services/portfolio.service";
 import { useEffect, useState } from "react";
+import isEqual from "lodash.isequal"; 
 import CardPortfolio from "../components/Fragments/CardPortfolio";
 
 const PortfolioDetail = () => {
@@ -12,9 +13,11 @@ const PortfolioDetail = () => {
     const [portfolios, setPortfolios] = useState([]);
     useEffect(() => {
       getPortfolios((data) => {
-        setPortfolios(data);
+        if (!isEqual(data, portfolios)) {
+          setPortfolios(data);
+        }   
       });
-    })
+    }, [portfolios]);
     
     // Filter portofolio berdasarkan id yang sesuai
     const filteredPortfolios = portfolios.filter(portfolio => portfolio.id === parseInt(id));
@@ -26,8 +29,8 @@ const PortfolioDetail = () => {
             {filteredPortfolios.map(portfolio => (
             <main key={portfolio.id} className={`bg-white mt-14 pb-20 box-border border border-white font-body`}>
               {/* top background */}
-              <div className={portfolio.backgroundColor}>
-                <div className={` h-48 w-full`}></div>
+              <div className={`bg-${portfolio.backgroundColor}`}>
+                <div className={` h-48 w-full`}>{portfolio.backgroundColor}</div>
               </div>
               {/* bagian mockup */}
               <section className="absolute z-30 inset-x-0 top-[15%]">

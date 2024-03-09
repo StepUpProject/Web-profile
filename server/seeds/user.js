@@ -1,12 +1,21 @@
-const mongoose = require('mongoose') // import mongoose
-//Lokasi untuk product
-const Users = require('../models/user')
-//connect to mongodb
-mongoose.connect('mongodb://127.0.0.1/stepup_db').then((result)=>{
-    console.log('connection to mongodb')
-}).catch((err)=>{
-    console.log(err)
-})
+const User = require('../models/user')
+const mongoose = require('mongoose');
+const passport = require('passport')
+const LocalStrategy = require('passport-local').Strategy
+
+mongoose.connect('mongodb://127.0.0.1/stepup')
+    .then((result) => {
+        console.log('connected to mongodb')
+        // console.log(result)
+    }).catch((err) => {
+        console.log(err)
+    });
+
+passport.use(new LocalStrategy(User.authenticate()));
+
+// use static serialize and deserialize of model for passport session support
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 async function seedUsers(){
     const users = [
         {
@@ -50,4 +59,5 @@ async function seedUsers(){
     }
    
 }
- seedUsers()
+
+seedUsers()
