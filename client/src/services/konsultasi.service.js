@@ -7,6 +7,7 @@ export const konsultasi = async (data, callback) => {
     .post(URL_API, data)
     .then((res) => {
       callback(true, res.data);
+      console.log(res.data);
     })
     .catch((err) => {
       callback(false, err);
