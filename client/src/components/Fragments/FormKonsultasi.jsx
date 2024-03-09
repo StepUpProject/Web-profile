@@ -9,9 +9,9 @@ const FormKonsultasi = () => {
     const handleAddQuestion = (event)=>{
         event.preventDefault();
         const data = {
-            fullname: event.target.fullname.value,
+            name: event.target.fullname.value,
             email: event.target.email.value,
-            pertanyaan: event.target.pertanyaan.value
+            question: event.target.pertanyaan.value
         }
         konsultasi(data, (status, res)=>{
             if(status){
