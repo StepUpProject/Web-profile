@@ -1,6 +1,7 @@
 import NavBar from "../components/Fragments/Navbar";
 import Footer from "../components/Fragments/Footer";
 import CardArtikel from "../components/Fragments/CardArtikel";
+import { useEffect } from "react";
 
 const Artikel = () => {
 
@@ -90,6 +91,16 @@ const Artikel = () => {
           ]
         },
     ]
+
+    useEffect(() => {
+      const userId = localStorage.getItem("id");
+      
+      if(userId){
+        setUsername(username)
+      }else{
+        window.location.href = '/login';
+      }
+    },[])
 
     return (
       <>

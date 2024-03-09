@@ -10,5 +10,13 @@ export const article = async (data, callback) => {
     .catch((err) =>{
         callback(false, err)
     })
+}
 
+export const getArticles = async (callback) => {
+    await axios.get(apiUrl)
+        .then(res => {
+            callback(res.data)
+        }).catch(err => {
+            console.log(err)
+        })
 }

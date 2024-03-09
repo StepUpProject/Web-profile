@@ -8,9 +8,11 @@ import DateInput from "../Elements/Input/DatePicker";
 import Button from "../Elements/Button/Button";
 import Editor from "../Elements/Input/Editor";
 import { article } from "../../services/article.service";
-
+// import {writeFileSync} from 'fs'
 const FormArticle = () => {
   const [content, setContent] = useState("");
+  const [selectedImage, setSelectedImage] = useState("");
+
   const editorRef = useRef(null);
   const handleAddArticle = (event) => {
     event.preventDefault();
@@ -20,7 +22,12 @@ const FormArticle = () => {
       published_at: event.target.published_at.value,
       image: event.target.image.value,
     };
-    article(data, (status, res) => {
+    const formData = new FormData()
+    formData.append('title', data.title)
+    formData.append('content', data.content)
+    formData.append('published_at', data.published_at)
+    formData.append('image', selectedImage)
+    article(formData, (status, res) => {
       if (status) {
         console.log(res);
       }else {
@@ -31,9 +38,10 @@ const FormArticle = () => {
     console.log(data.image);
   };
   const handleImageSelection = (selectedImage) => {
-
     // Lakukan sesuatu dengan gambar yang dipilih, misalnya mengirimkannya ke server
-    console.log("Gambar yang dipilih:", selectedImage);
+    // writeFileSync('./test.png', selectedImage, 'base64')
+    setSelectedImage(selectedImage)
+    console.log("Gambar yang dipilih:", typeof selectedImage);
   };
 
   return (

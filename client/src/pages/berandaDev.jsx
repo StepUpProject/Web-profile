@@ -86,15 +86,7 @@ const BerandaDev = () => {
     });
   }, []);
   
-  useEffect(() => {
-    const userId = localStorage.getItem("id");
-    const username = localStorage.getItem("username");
-    if(userId){
-      setUsername(username)
-    }else{
-      window.location.href = '/login';
-    }
-  })
+  
 
   return (
     <div className="py-24">

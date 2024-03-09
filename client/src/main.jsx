@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider, useLocation } from 'react-router-dom'
 import Beranda from './pages/beranda'
 import Tentang from './pages/tentang'
 import Layanan from './pages/layanan'
@@ -73,8 +73,16 @@ const router = createBrowserRouter([
 
 ])
 
+const AuthChecking = () => {
+  const whiteListURL = ['/', '/articleDev']
+  const location = window.location.pathname
+
+  return localStorage.getItem("id")  || whiteListURL.includes(location)
+}
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    {!AuthChecking() ? (<Login/>) :     <RouterProvider router={router} />
+ }
   </React.StrictMode>,
 )
