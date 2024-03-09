@@ -8,11 +8,6 @@ const mongoose = require('mongoose');
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const User = require('./models/user')
-const cors = require("cors");
-const bodyParser = require("body-parser");
-const mongoose = require("mongoose"); // import mongoose
-const Konsul = require("./models/konsultasi");
-const Users = require("./models/user");
 
 //connect to mongodb
 mongoose
@@ -125,14 +120,6 @@ const portfolios = [
   },
 ];
 
-mongoose.connect('mongodb://127.0.0.1/stepup')
-    .then((result) => {
-        console.log('connected to mongodb')
-        // console.log(result)
-    }).catch((err) => {
-        console.log(err)
-    });
-
 app.use(bodyParser.json())
 // const baseUrL = "http://localhost:5173"
 app.use(cors({
@@ -172,6 +159,7 @@ app.get("/", (req, res) => {
 
 app.use('/',require('./routes/auth')) 
 app.use('/developer',require('./routes/developer')) 
+app.use('/api/konsultasi',require('./routes/konsultasi')) 
 
 
 app.get('/api/teams', (req, res) => {
@@ -186,43 +174,8 @@ app.get("/api/portfolio", (req, res) => {
 //   return res.redirect('http://localhost:5173/berandaDev')
 // })
 
-app.post('/api/konsultasi', async (req, res) => {
-  const data = await req.body
-  res.status(200).json({
-    data,
-    message: 'Data received successfully'
-  });
-  console.log(data)
-})
 
-app.get("/api/konsultasi", async (req, res) => {
-  try {
-    const konsul = await Konsul.find();
-    res.status(200).json(konsul);
-  } catch (error) {
-    res.status(500).send(error);
-  }
-});
 
-app.post("/api/konsultasi", async (req, res) => {
-  try {
-    const { name, email, question } = req.body;
-    // Create a new Konsultasi instance
-    const newkonsul = await new Konsul({
-      name,
-      email,
-      question,
-    });
-    // Save to MongoDB
-    await newkonsul.save();
-
-    res.status(201).json({ success: true, message: "Data berhasil disimpan" });
-    console.log(newkonsul);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ success: false, message: "Internal Server Error" });
-  }
-});
 
 app.post("/login_dev", async (req, res) => {
   try {

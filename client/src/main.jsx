@@ -57,7 +57,8 @@ const router = createBrowserRouter([
   {
     path:"/articleDev",
     element: <ArticleDev/>,
-  }
+  },
+  {
     path:"/artikel/:id",
     element: <ArtikelDetail/>,
   },
