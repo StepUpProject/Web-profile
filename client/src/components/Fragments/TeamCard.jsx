@@ -1,5 +1,14 @@
+import PropTypes from "prop-types";
+
 const TeamCard = (props) => {
   const { image, name, role } = props;
+
+  TeamCard.propTypes = {
+    image: PropTypes.string,
+    name: PropTypes.string,
+    role: PropTypes.string,
+  }
+
   return (
     <div
       className="flex flex-col justify-center items-center w-[150px] h-[211px]

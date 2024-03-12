@@ -13,7 +13,7 @@ import Login from './pages/login'
 import BerandaDev from './pages/berandaDev'
 import ArticleDev from './pages/artikelDev'
 import ArtikelDetail from './pages/artikelDetail';
-import DashboardDev from './pages/dashbordDev';
+import DashboardDev from './pages/berandaDev';
 import KonsultasiDev from './pages/konsultasiDev';
 
 

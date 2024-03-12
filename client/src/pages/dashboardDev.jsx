@@ -1,35 +1,31 @@
+// import Navbar from "../components/Fragments/Navbar";
+import NavbarDev from "../components/Fragments/NavbarDev";
+import Footer from "../components/Fragments/Footer";
+import { useParams } from "react-router-dom";
+import { getTeams } from "../services/team.service";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-// import TeamCard from "../components/Fragments/TeamCard";
-import Navbar from "../components/Fragments/Navbar";
-// import NavbarDev from "../components/Fragments/NavbarDev";
-import Footer from "../components/Fragments/Footer";
-import { getTeams } from "../services/team.service";
 
-const BerandaDev = () => {
-  const userId = localStorage.getItem("id");
-
+const DashboardDev = () => {
+  let { id } = useParams();
+  // object card team
   const [teams, setTeams] = useState([]);
   useEffect(() => {
-    const fetchTeamsData = async () => {
-      try {
-        const response = await getTeams();
-        const filteredTeams = response.filter((team) => team.id === userId);
-        setTeams(filteredTeams);
-      } catch (error) {
-        console.error("Error fetching teams data:", error);
-      }
-    };
-    fetchTeamsData();
-  }, [userId]);
+    getTeams((data) => {
+      setTeams(data);
+    });
+  });
+
+  // Filter portofolio berdasarkan id yang sesuai
+  const filteredTeams = teams.filter((team) => team.id === parseInt(id));
 
   // object layanan
   const services = [
     {
       title: "Artikel",
       image: "../images/dashboardDev-layanan-artikel.png",
-      link: "/articleDev",
+      link: "/artikelDev",
     },
     {
       title: "Konsultasi",
@@ -40,7 +36,7 @@ const BerandaDev = () => {
 
   return (
     <div>
-      <Navbar />
+      <NavbarDev />
       <main className="mt-16 font-body">
         <section className="relative text-center pt-10">
           <img
@@ -53,7 +49,7 @@ const BerandaDev = () => {
           </h1>
         </section>
         {/* menmpilkan card profil */}
-        {teams.map((team) => (
+        {filteredTeams.map((team) => (
           <section
             key={team.id}
             className="w-[208px] mx-auto items-center mt-[61px]"
@@ -76,6 +72,7 @@ const BerandaDev = () => {
           ))}
         </section>
       </main>
+
       <Footer />
     </div>
   );
@@ -87,7 +84,6 @@ const CardLayanan = ({ image, title, link }) => {
     title: PropTypes.string,
     link: PropTypes.string,
   };
-
   return (
     <Link
       to={link}
@@ -99,4 +95,4 @@ const CardLayanan = ({ image, title, link }) => {
   );
 };
 
-export default BerandaDev;
+export default DashboardDev;

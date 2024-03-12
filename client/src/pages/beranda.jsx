@@ -6,6 +6,7 @@ import TeamCard from "../components/Fragments/TeamCard";
 import { getTeams } from "../services/team.service";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import PropTypes from "prop-types";
 
 AOS.init();
 
@@ -175,6 +176,13 @@ const Beranda = () => {
 
 const CardLayanan = (props) => {
   const { title, images, classname } = props;
+
+  CardLayanan.propTypes = {
+    title: PropTypes.string,
+    images: PropTypes.string,
+    classname: PropTypes.string,
+  }
+
   return (
     <div className={`${classname}`}>
       <div className="flex flex-col h-[250px] w-[230px] rounded-2xl mb-8 shadow-md shadow-primary/50 hover:shadow-xl hover:shadow-primary/75 transition-all duration-700">
