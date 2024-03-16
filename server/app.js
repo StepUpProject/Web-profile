@@ -158,7 +158,8 @@ app.get("/", (req, res) => {
 });
 
 app.use('/',require('./routes/auth')) 
-app.use('/developer',require('./routes/developer')) 
+// app.use('/developer',require('./routes/developer')) 
+app.use('/',require('./routes/article')) 
 app.use('/api/konsultasi',require('./routes/konsultasi')) 
 
 app.get('/api/teams', (req, res) => {

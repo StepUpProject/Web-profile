@@ -16,16 +16,17 @@ const FormArticle = () => {
   const editorRef = useRef(null);
   const handleAddArticle = (event) => {
     event.preventDefault();
-    const data = {
-      title: event.target.title.value,
-      content: editorRef.current?.value ?? "",
-      published_at: event.target.published_at.value,
-      image: event.target.image.value,
-    };
+    // const data = {
+    //   title: event.target.title.value,
+    //   content: editorRef.current?.value ?? "",
+    //   published_at: event.target.published_at.value,
+    //   selectedImage: event.target.image.value,
+    // };
+    // console.log(data);
     const formData = new FormData()
-    formData.append('title', data.title)
-    formData.append('content', data.content)
-    formData.append('published_at', data.published_at)
+    formData.append('title', event.target.title.value)
+    formData.append('content', editorRef.current?.value ?? "")
+    formData.append('published_at', event.target.published_at.value)
     formData.append('image', selectedImage)
     article(formData, (status, res) => {
       if (status) {
@@ -35,7 +36,7 @@ const FormArticle = () => {
       }
     })
     // const { name, value } = data.image
-    console.log(data.image);
+    // console.log(data.image);
   };
   const handleImageSelection = (selectedImage) => {
     // Lakukan sesuatu dengan gambar yang dipilih, misalnya mengirimkannya ke server

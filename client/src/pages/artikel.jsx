@@ -1,10 +1,12 @@
 import NavBar from "../components/Fragments/Navbar";
 import Footer from "../components/Fragments/Footer";
 import CardArtikel from "../components/Fragments/CardArtikel";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import Button from "../components/Elements/Button/Button";
 
 const Artikel = () => {
-
+    const [username, setUsername] = useState("")
+    const [userId , setUserId] = useState("")
     // object card articles
     const newArticles = [
         {
@@ -93,7 +95,7 @@ const Artikel = () => {
     ]
 
     useEffect(() => {
-      const userId = localStorage.getItem("id");
+      userId = localStorage.getItem("id");
       
       if(userId){
         setUsername(username)
@@ -106,12 +108,19 @@ const Artikel = () => {
       <>
         <NavBar />
           <main className="px-2 mb-14 box-border">
-            <h1 className="mt-[80px] text-2xl font-bold text-center">Artikel</h1>
+            <h1 className="mt-[80px] text-2xl font-bold text-center">Artikel - {username}</h1>
             <p className="mt-[30px] w-full text-xs font-body leading-4 text-black px-[12px] text-center">
               Jelajahi dunia teknologi terkini dengan artikel kami! 
               Perkembangan terbaru, kecerdasan buatan, 
               dan solusi paling inovatif menunggu untuk ditemukan
-            </p> 
+            </p>
+            
+            <Button
+            type="submit"
+            classname={`w-full my-10 bg-primary rounded-full`}
+            >
+            Buat Artikel
+          </Button>
             <h2 className="mt-[30px] px-[12px] font-bold text-xl text-transparent bg-clip-text bg-gradient-to-b from-primary from-40% to-black/80">Postingan Terbaru</h2>
             { /* memanggil object artikel terbaru */}
             {newArticles.map((newArticle)=>(
