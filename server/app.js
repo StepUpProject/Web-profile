@@ -8,10 +8,11 @@ const mongoose = require('mongoose');
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const User = require('./models/user')
+const cookieParser = require('cookie-parser')
 
 //connect to mongodb
 mongoose
-  .connect("mongodb://127.0.0.1/stepup_db")
+  .connect("mongodb://127.0.0.1/stepup")
   .then((result) => {
     console.log("connection to mongodb");
   })
@@ -126,31 +127,17 @@ app.use(cors({
   origin: "http://localhost:5173",
   credentials: true,
 }))
-app.use(express.urlencoded({extended: true}));
-app.use(session({
-  secret: 'stepup',
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-      httpOnly: true,
-      secure: false,
-      sameSite: 'none',
-      expires: Date.now() + 60 * 60 * 1000,
-      maxAge: 1000 * 60 * 60 * 24 * 7
-  }
-}))
-app.use(flash());
-app.use(passport.initialize());
-app.use(passport.session());
-passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
 
-app.use((req, res, next) => {
-  res.locals.success_msg = req.flash('success_msg');
-  res.locals.error_msg = req.flash('error_msg');
-  next();
-});
+app.use(express.urlencoded({extended: true}));
+app.use(cookieParser())
+app.use(express.json());
+// app.use(flash());
+
+// app.use((req, res, next) => {
+//   res.locals.success_msg = req.flash('success_msg');
+//   res.locals.error_msg = req.flash('error_msg');
+//   next();
+// });
 
 
 app.get("/", (req, res) => {
@@ -168,27 +155,6 @@ app.get('/api/teams', (req, res) => {
 
 app.get("/api/portfolio", (req, res) => {
   res.json(portfolios);
-});
-
-// app.get('/berandaDev', (req, res) => {
-//   return res.redirect('http://localhost:5173/berandaDev')
-// })
-
-
-
-
-app.post("/login_dev", async (req, res) => {
-  try {
-    const check = await Users.findOne({ name: req.body.name });
-
-    if ((check.password = req.body.password)) {
-      res.render("..");
-    } else {
-      res.send("Password yang anda masukkan Salah !!!");
-    }
-  } catch {
-    res.send("Detail kesalahan");
-  }
 });
 
 app.listen(3000, () => {

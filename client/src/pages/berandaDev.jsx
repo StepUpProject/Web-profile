@@ -1,17 +1,48 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 import NavBar from "../components/Fragments/Navbar";
 import Footer from "../components/Fragments/Footer";
 import SectionHead from "../components/Elements/SectionHead";
 import TeamCard from "../components/Fragments/TeamCard";
 import { getTeams } from "../services/team.service";
+import axios from "axios";
 import AOS from "aos";
 import "aos/dist/aos.css";
-
+import Button from "../components/Elements/Button/Button";
 AOS.init();
 
+
 const BerandaDev = () => {
-  const [username, setUsername] = useState('');
+  const navigate = useNavigate();
+  const [cookies, setCookie, removeCookie] = useCookies([]);
+  const [user, setUser] = useState("");
   
+  useEffect(() => {
+    const verifyUser = async () => {
+      if (!cookies.jwt) {
+        navigate("/login");
+      }else{
+        const { data } = await axios.post(
+          `http://localhost:3000/`,
+          {},
+          { withCredentials: true, },
+        );
+        setUser(data.user);
+        if (!data.status) {
+          removeCookie("jwt");
+          navigate("/login");
+        }
+      }
+    }
+    verifyUser()
+  },[cookies, navigate, removeCookie])
+
+  const handleLogout = () => {
+    removeCookie("jwt");
+    navigate("/login");
+  }
+
   const services = [
     {
       title: "Aplikasi Web",
@@ -91,13 +122,19 @@ const BerandaDev = () => {
   return (
     <div className="py-24">
       <NavBar />
+      
       <section className="h-auto">
         <div
           className="flex flex-col ps-4"
           data-aos="fade-up"
           data-aos-duration="4000"
         >
-          <SectionHead>Step Up Project {username}</SectionHead>
+          <form onSubmit={handleLogout} className="mt-10 w-full mx-auto">
+        <Button type="submit" classname="w-full my-10 bg-primary rounded-full">
+          Logout
+        </Button>
+      </form>
+          <SectionHead>Step Up Project - {user}</SectionHead>
           <h3 className="text-2xl font-bold mt-5">Step Up, Code Up</h3>
           <p className="mt-6 pe-11">
             Step Up Project hadir sebagai digitalisasi bisnis, pengembangan dan

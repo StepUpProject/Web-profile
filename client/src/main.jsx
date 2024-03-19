@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import { createBrowserRouter, RouterProvider, useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import axios from "axios";
 import Beranda from './pages/beranda'
 import Tentang from './pages/tentang'
 import Layanan from './pages/layanan'
@@ -15,6 +17,7 @@ import ArticleDev from './pages/artikelDev'
 import ArtikelDetail from './pages/artikelDetail';
 import DashboardDev from './pages/dashbordDev';
 import KonsultasiDev from './pages/konsultasiDev';
+import "react-toastify/dist/ReactToastify.css";
 
 
 const router = createBrowserRouter([
@@ -73,16 +76,34 @@ const router = createBrowserRouter([
 
 ])
 
-const AuthChecking = () => {
-  const whiteListURL = ['/', '/articleDev']
-  const location = window.location.pathname
+const MainRouter = () => {
+  // const navigate = useNavigate();
 
-  return localStorage.getItem("id")  || whiteListURL.includes(location)
-}
+  useEffect(() => {
+    const verifyUser = async () => {
+      try {
+        const response = await axios.post("http://localhost:3000/verifyUser", {}, { withCredentials: true });
+        if (!response.data.loggedIn) {
+          // navigate("/login");
+          window.location.href = "/login";
+        }
+      } catch (error) {
+        console.error("Error verifying user:", error);
+        window.location.href = "/login";
+      }
+    };
+
+    verifyUser();
+  }, []);
+
+  return (
+    <RouterProvider router={router} />
+  );
+};
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    {!AuthChecking() ? (<Login/>) :     <RouterProvider router={router} />
- }
+    <MainRouter/>
   </React.StrictMode>,
 )

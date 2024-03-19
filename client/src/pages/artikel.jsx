@@ -6,7 +6,7 @@ import Button from "../components/Elements/Button/Button";
 
 const Artikel = () => {
     const [username, setUsername] = useState("")
-    const [userId , setUserId] = useState("")
+    // const [userId , setUserId] = useState("")
     // object card articles
     const newArticles = [
         {
@@ -94,15 +94,6 @@ const Artikel = () => {
         },
     ]
 
-    useEffect(() => {
-      userId = localStorage.getItem("id");
-      
-      if(userId){
-        setUsername(username)
-      }else{
-        window.location.href = '/login';
-      }
-    },[])
 
     return (
       <>
