@@ -1,13 +1,8 @@
 const express = require("express");
 const app = express();
-const session = require('express-session')
-const flash = require('connect-flash')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose');
-const passport = require('passport')
-const LocalStrategy = require('passport-local').Strategy
-const User = require('./models/user')
 const cookieParser = require('cookie-parser')
 
 //connect to mongodb
@@ -131,6 +126,7 @@ app.use(cors({
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser())
 app.use(express.json());
+app.use(express.static("assets"));
 // app.use(flash());
 
 // app.use((req, res, next) => {

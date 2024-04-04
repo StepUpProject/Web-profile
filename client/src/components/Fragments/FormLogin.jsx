@@ -35,7 +35,7 @@ const FormLogin = (props) => {
                                 generateError(password)
                             }
                         }else{
-                            window.location.href = "/berandaDev"
+                            window.location.href = "/developer/dashboard"
                         }
                     }
                 } catch (error) {

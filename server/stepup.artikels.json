@@ -1,0 +1,24 @@
+[{
+  "_id": {
+    "$oid": "65fc060f5dff59f646de98dd"
+  },
+  "title": "Mengenal Apa Itu HTML ?",
+  "published_at": {
+    "$date": "2024-03-20T17:00:00.000Z"
+  },
+  "image": "1711015438986_article-image-1.png",
+  "content": "<p><strong style=\"font-size: 18px;\">Apa Itu HTML ?</strong> <br>Buat kamu yang pernah membuat sebuah website pastinya sudah tidak asing lagi dengan yang namanya HTML. Sebenarnya apa sih HTML itu ? Kenapa menggunakan HTML untuk membuat website ?<br> <br><strong><span style=\"font-size: 18px;\">Pengertian</span> <br></strong>HTML merupakan singkatan dari <em>Hyper Text Markup Language</em>, merupakan bahasa markup standard yang digunakan untuk menampilkan dokumen ke Web Browser seperti Google Chrome dan Edge. HTML biasanya digunakan bersama teknologi lainya, seperti <em>Cascading Style Sheets</em> (CSS) dan bahasa scripting. <br></p><p><br>Struktur di dalam HTML terdiri dari serangkaian elemen, elemen tersebut berfungsi untuk memberi informasi kepada Web Browser tentang cara menampilkan konten. Elemen dalam HTML memiliki banyak jenis dan memiliki fungsinya masing-masing, seperti elemen paragraf , input, judul dan lainya. Pada umumnya elemen terdiri dari tag pembuka, konten dan tag penutup, ada juga sebagian elemen yang tidak memiliki tag penutup dan konten. Sedangkan tag itu sendiri ditulis dengan cara diapit tanda kurung sudut dan untuk tag penutup diberi garis miring sebelum nama tagnya, sebagai contoh &lt;p&gt; &lt;/p&gt;. Sedangkan untuk elemen yang hanya menggunakan satu tag, cara penulisanya diberi garis miring setelah nama tag.<br><br><strong><span style=\"font-size: 18px;\">Penutup</span> <br><br></strong>HTML pertama kali dicetus pada tahun 1980 oleh Tim Berners-Lee, pada saat itu dia sedang bekerja di salah satu perusahaan yang bernama CERN (<em>European Organization for Nuclear Research</em>), dia mengusulkan untuk membuat sebuah sistem yang bernama <strong>ENQUIRE</strong> yang berfungsi untuk mengelola dokumen perusahaan.</p>",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "660ef3083f11845495c6250b"
+  },
+  "title": "bebas bang",
+  "published_at": {
+    "$date": "2024-04-04T17:00:00.000Z"
+  },
+  "image": "1712255752601_asta's sword.jpg",
+  "content": "<p><strong>takutttt</strong></p>",
+  "__v": 0
+}]

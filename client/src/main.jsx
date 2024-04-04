@@ -18,6 +18,7 @@ import ArtikelDetail from './pages/artikelDetail';
 import DashboardDev from './pages/dashbordDev';
 import KonsultasiDev from './pages/konsultasiDev';
 import "react-toastify/dist/ReactToastify.css";
+import ArticleEdit from './pages/artikelEdit'
 
 
 const router = createBrowserRouter([
@@ -26,11 +27,11 @@ const router = createBrowserRouter([
     element: <Beranda/>,
   },
   {
-    path:"/tentang",
+    path:"/about",
     element: <Tentang/>,
   },
   {
-    path:"/layanan",
+    path:"/services",
     element: <Layanan/>,
   },
   {
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
     element: <Portfolio/>,
   },
   {
-    path:"/artikel",
+    path:"/article",
     element: <Artikel/>,
   },
   {
@@ -54,56 +55,62 @@ const router = createBrowserRouter([
     element: <Login/>,
   },
   {
-    path:"/berandaDev",
+    path:"/developer/dashboard",
     element: <BerandaDev/>,
   },
   {
-    path:"/articleDev",
+    path:"/developer/article/create",
     element: <ArticleDev/>,
   },
   {
-    path:"/artikel/:id",
+    path:"/article/:id",
     element: <ArtikelDetail/>,
   },
   {
-    path:"/dashboardDev/:id",
+    path:"/developer/article/edit/:id",
+    element: <ArticleEdit/>,
+  },
+  {
+    path:"/developer/dashboard/:id",
     element: <DashboardDev/>,
   },
   {
-    path:"/konsultasiDev",
+    path:"/developer/konsultasi",
     element: <KonsultasiDev/>,
   },
-
 ])
 
-const MainRouter = () => {
-  // const navigate = useNavigate();
-
-  useEffect(() => {
-    const verifyUser = async () => {
-      try {
-        const response = await axios.post("http://localhost:3000/verifyUser", {}, { withCredentials: true });
-        if (!response.data.loggedIn) {
-          // navigate("/login");
-          window.location.href = "/login";
-        }
-      } catch (error) {
-        console.error("Error verifying user:", error);
-        window.location.href = "/login";
-      }
-    };
-
-    verifyUser();
-  }, []);
-
-  return (
-    <RouterProvider router={router} />
-  );
-};
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <MainRouter/>
+   <RouterProvider router={router} />
   </React.StrictMode>,
 )
+
+
+
+// const MainRouter = () => {
+//   // const navigate = useNavigate();
+
+//   useEffect(() => {
+//     const verifyUser = async () => {
+//       try {
+//         const response = await axios.post("http://localhost:3000/verifyUser", {}, { withCredentials: true });
+//         if (!response.data.loggedIn) {
+//           // navigate("/login");
+//           window.location.href = "/login";
+//         }
+//       } catch (error) {
+//         console.error("Error verifying user:", error);
+//         window.location.href = "/login";
+//       }
+//     };
+
+//     verifyUser();
+//   }, []);
+
+//   return (
+//     <RouterProvider router={router} />
+//   );
+// };
