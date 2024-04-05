@@ -33,7 +33,7 @@ const Tentang = () => {
         </div>
         <section className="px-5 pb-10">
           <SectionHead classname="mt-4 mb-8">Step Up Project</SectionHead>
-          <div className="text-sm text-black/80 font-semibold">
+          <div className="text-sm text-black/80 font-normal">
             <p>
               Step Up Project adalah sebuah komunitas yang bergerak untuk
               digitalisasi bisnis dan organisasi melalui pengembangan dan
@@ -49,13 +49,13 @@ const Tentang = () => {
             </p>
           </div>
         </section>
-        <section className="pt-8 pb-10 w-full bg-slate-100 ps-4 pe-12">
+        <section className="pt-8 pb-10 w-full ps-4 pe-12">
           <SectionHead classname="mb-5">Nilai Yang Kami Terapkan</SectionHead>
           {values.map((value, index) => (
             <Value key={index} value={value} />
           ))}
         </section>
-        <section className="mt-14 w-full bg-slate-100 ps-10 pe-12">
+        <section className="mt-14 w-full ps-10 pe-12">
           <SectionHead classname="mb-5">Tim Kami</SectionHead>
         </section>
         <div className="grid grid-cols-2 mx-auto gap-6 gap-y-8 mt-4">
