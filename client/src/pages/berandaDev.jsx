@@ -3,16 +3,21 @@ import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import NavBar from "../components/Fragments/Navbar";
 import Footer from "../components/Fragments/Footer";
+import SectionHead from "../components/Elements/SectionHead";
+import TeamCard from "../components/Fragments/TeamCard";
 import { getTeams } from "../services/team.service";
 import axios from "axios";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Button from "../components/Elements/Button/Button";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 AOS.init();
 
 const BerandaDev = () => {
   const navigate = useNavigate();
   const [cookies, setCookie, removeCookie] = useCookies([]);
+  const [user, setUser] = useState("");
   useEffect(() => {
     const verifyUser = async () => {
       if (!cookies.jwt) {
