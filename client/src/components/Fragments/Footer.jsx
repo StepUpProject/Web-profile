@@ -1,3 +1,4 @@
+import Button from "../Elements/Button/Button";
 const Footer = () => {
   const contacts = [
     {
@@ -33,19 +34,23 @@ const Footer = () => {
             Hubungi dan rancang website anda dengan tim profesional kami.
           </p>
         </div>
+        {/* belum bisa pindah ke halaman konsultasi  */}
+        <Button>Konsultasi</Button>
         <div className="mt-4">
           <div className="flex flex-col">
-            <div className="flex mb-2.5">
+            <div className="flex mb-[5px]">
               <h4 className="text-base font-medium place-items-center">
                 Information
               </h4>
             </div>
+            <img src="../svg/curly-style.svg" alt="curly style gajelas"
+            className="w-8 mb-[9px]" />
             {contacts.map((item) => (
               <div
                 key={item.title}
-                className="flex flex-row gap-2 items-center mb-2"
+                className="flex flex-row items-center mb-2"
               >
-                <div className="flex w-6 h-4 justify-center items-center fill-primary">
+                <div className="flex w-6 h-4 justify-left items-center fill-primary">
                   <img src={item.image} alt={item.title} />
                 </div>
                 <p className="text-xs text-start">{item.content}</p>
