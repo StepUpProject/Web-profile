@@ -12,7 +12,7 @@ const RememberMe = () => {
         type="checkbox"
         name="rememberMe"
         id="rememberMe"
-        className="mr-2"
+        className="ml-1 mr-2 text-xs"
         onChange={handleCheckboxChange}
       />
       <label htmlFor="rememberMe">Remember Me</label>
