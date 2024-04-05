@@ -9,7 +9,7 @@ const CardLayanan = ({ image, title, content }) => {
   };
 
   return (
-    <div className="relative max-w-[267px] h-[290px] mx-auto mt-[43px] rounded-[10px] font-body overflow-hidden shadow-shadowCardLayanan box-border">
+    <div className="relative max-w-[267px] h-[290px] mx-auto mt-[43px] rounded-[10px] font-body overflow-hidden shadow-cardShadow box-border">
       <img src={image} alt="Cards" className="w-[57px] mx-auto mt-[26px]" />
       <h1 className="text-[16px] font-bold text-center mb-5 mt-[14px]">
         {title}
