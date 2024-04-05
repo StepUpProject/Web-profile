@@ -28,11 +28,11 @@ const Tentang = () => {
       <Navbar></Navbar>
       <HeadTitle>Tentang Kami</HeadTitle>
       <div className="flex flex-col justify-center font-body">
-        <div className="flex px-5 justify-center">
+        <div className="w-full flex justify-center items-center box-border ">
           <VideoPlayer></VideoPlayer>
         </div>
         <section className="px-5 pb-10">
-          <SectionHead classname="py-8">Step Up Project</SectionHead>
+          <SectionHead classname="mt-4 mb-8">Step Up Project</SectionHead>
           <div className="text-sm text-black/80 font-semibold">
             <p>
               Step Up Project adalah sebuah komunitas yang bergerak untuk
@@ -55,10 +55,10 @@ const Tentang = () => {
             <Value key={index} value={value} />
           ))}
         </section>
-        <section className="pt-8 pb-10 w-full bg-slate-100 ps-4 pe-12">
+        <section className="mt-14 w-full bg-slate-100 ps-10 pe-12">
           <SectionHead classname="mb-5">Tim Kami</SectionHead>
-          
-        </section><div className="grid grid-cols-2 gap-6 mt-6">
+        </section>
+        <div className="grid grid-cols-2 mx-auto gap-6 gap-y-8 mt-4">
             {teams.map((team, index) => (
               <TeamCard key={index} {...team} />
             ))}

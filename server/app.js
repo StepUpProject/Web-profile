@@ -52,7 +52,7 @@ const teams = [
   },
   {
     id: 6,
-    image: "../images/team-hadi.jpg",
+    image: "../images/team-adit.png",
     name: "Muh Aditya Dwijaya",
     role: "Creative",
   },
