@@ -29,7 +29,9 @@ const Footer = () => {
           <h3 className="text-xl font-bold">Step Up</h3>
         </div>
         <div className="w-[230px] mt-4">
-          <p className="text-xs">Hubungi dan rancang website anda dengan tim profesional kami.</p>
+          <p className="text-xs">
+            Hubungi dan rancang website anda dengan tim profesional kami.
+          </p>
         </div>
         <div className="mt-4">
           <div className="flex flex-col">
@@ -39,7 +41,10 @@ const Footer = () => {
               </h4>
             </div>
             {contacts.map((item) => (
-              <div key={item.title} className="flex flex-row gap-2 items-center mb-2">
+              <div
+                key={item.title}
+                className="flex flex-row gap-2 items-center mb-2"
+              >
                 <div className="flex w-6 h-4 justify-center items-center fill-primary">
                   <img src={item.image} alt={item.title} />
                 </div>
@@ -50,8 +55,16 @@ const Footer = () => {
         </div>
       </section>
       <section className="relative">
-        <img className="absolute right-8" src="images/frame-footer-2.png" alt="frame-footer" />
-        <img className="w-full" src="images/frame-footer.png" alt="frame-footer" />
+        <img
+          className="absolute right-8"
+          src="../images/frame-footer-2.png"
+          alt="frame-footer"
+        />
+        <img
+          className="w-full"
+          src="../images/frame-footer.png"
+          alt="frame-footer"
+        />
       </section>
     </footer>
   );
