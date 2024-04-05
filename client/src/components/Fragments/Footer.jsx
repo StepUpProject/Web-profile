@@ -35,7 +35,7 @@ const Footer = () => {
           </p>
         </div>
         {/* belum bisa pindah ke halaman konsultasi  */}
-        <Button>Konsultasi</Button>
+        <Button classname="py-2 px-5 mt-4 mb-8">Konsultasi</Button>
         <div className="mt-4">
           <div className="flex flex-col">
             <div className="flex mb-[5px]">
@@ -43,13 +43,13 @@ const Footer = () => {
                 Information
               </h4>
             </div>
-            <img src="../svg/curly-style.svg" alt="curly style gajelas"
-            className="w-8 mb-[9px]" />
+            <img
+              src="../svg/curly-style.svg"
+              alt="curly style gajelas"
+              className="w-8 mb-[9px]"
+            />
             {contacts.map((item) => (
-              <div
-                key={item.title}
-                className="flex flex-row items-center mb-2"
-              >
+              <div key={item.title} className="flex flex-row items-center mb-2">
                 <div className="flex w-6 h-4 justify-left items-center fill-primary">
                   <img src={item.image} alt={item.title} />
                 </div>
