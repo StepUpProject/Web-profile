@@ -37,7 +37,7 @@ const FormKonsultasi = () => {
                 name="pertanyaan" 
                 htmlFor="pertanyaan" 
                 label="Pertanyaan"/>
-            <Button type="submit" classname="w-full bg-primary rounded-full">Kirim</Button>
+            <Button type="submit" classname="p-2 mt-6 w-full bg-primary rounded-full">Kirim</Button>
             {konsulFailed && <p className="text-red-500 text-center mt-2">{konsulFailed}</p>}
         </form>
     )

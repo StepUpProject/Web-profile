@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const InputForm = (props) => {
-  const { name, type, htmlFor, label, classname = "",  } = props;
+  const { name, type, htmlFor, label, classname = "" } = props;
   const [value, setValue] = useState("");
   const [focused, setFocused] = useState(false);
 
@@ -35,7 +35,7 @@ const InputForm = (props) => {
           onChange={handleChange}
           onFocus={handleFocus}
           onBlur={handleBlur}
-          className={`text-sm ring-1 ring-dark rounded w-full py-3 px-4 text-slate-800 ${classname} focus:outline-none focus:ring-primary transition duration-500`}
+          className={`text-sm ring-1 ring-gray-200 rounded-lg w-full py-3 px-4 text-slate-800 ${classname} focus:outline-none focus:ring-primary transition duration-500`}
         />
         <span className={floatingLabelStyles}>{label}</span>
       </label>
@@ -43,23 +43,32 @@ const InputForm = (props) => {
   );
 };
 
-export const InputArticle = ({ name, type, value, label, classname = "", setValue}) => {
+export const InputArticle = ({
+  name,
+  type,
+  value,
+  label,
+  classname = "",
+  setValue,
+}) => {
   const handleChange = (newValue) => {
-    setValue(newValue)
-    console.log(newValue)
+    setValue(newValue);
+    console.log(newValue);
   };
   return (
     <>
-    <label htmlFor={name} className="labelArticle">{label}</label>
-      <input 
-        type={type} 
-        name={name} 
+      <label htmlFor={name} className="labelArticle">
+        {label}
+      </label>
+      <input
+        type={type}
+        name={name}
         placeholder={label}
         value={value}
         onChange={(e) => handleChange(e.target.value)}
-        className={`w-full rounded-md border-2 border-slate-300 py-3 px-4 font-semibold ${classname}`} />
+        className={`w-full rounded-lg border-1 border-slate-300 py-3 px-4 font-semibold ${classname}`}
+      />
     </>
-    
   );
 };
 
@@ -72,20 +81,17 @@ export const InputArticle = ({ name, type, value, label, classname = "", setValu
 //   return (
 //     <>
 //     <label htmlFor={name} className="labelArticle">{label}</label>
-//       <input 
-//         type={type} 
-//         name={name} 
+//       <input
+//         type={type}
+//         name={name}
 //         placeholder={label}
 //         value={value}
 //         onChange={(e) => handleChange(e.target.value)}
-//         className={`w-full rounded-md border-2 border-slate-300 py-3 px-4 font-semibold ${classname}`} 
+//         className={`w-full rounded-md border-2 border-slate-300 py-3 px-4 font-semibold ${classname}`}
 //       />
 //     </>
-    
+
 //   );
 // };
-
-
-
 
 export default InputForm;

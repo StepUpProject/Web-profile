@@ -36,7 +36,7 @@ const TextArea = (props) => {
           onChange={handleChange}
           onFocus={handleFocus}
           onBlur={handleBlur}
-          className="text-sm border rounded w-full py-2 px-4 text-slate-800 focus:outline-none focus:ring-1 focus:ring-primary transition duration-500"
+          className="text-sm border rounded-lg w-full py-2 px-4 text-slate-800 focus:outline-none focus:ring-1 focus:ring-primary transition duration-500"
         />
         <span className={floatingLabelStyles}>{label}</span>
       </label>

@@ -10,12 +10,12 @@ const menus = [
     active: false,
   },
   {
-    link: "/tentang",
+    link: "/about",
     name: "Tentang Kami",
     active: false,
   },
   {
-    link: "/layanan",
+    link: "/services",
     name: "Layanan Kami",
     active: false,
   },
@@ -25,7 +25,7 @@ const menus = [
     active: false,
   },
   {
-    link: "/artikel",
+    link: "/article",
     name: "Artikel",
     active: false,
   },

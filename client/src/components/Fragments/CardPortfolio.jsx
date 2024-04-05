@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 const CardPortfolio = ({id, imageCard, title, subtitle, description}) => {
   return (
-    <div className="max-w-[267px] mx-auto mt-[43px] rounded-lg font-body overflow-hidden shadow-lg box-border">
+    <div className="max-w-[267px] mx-auto mt-[43px] font-body overflow-hidden shadow-cardShadow box-border">
       <img src={imageCard} alt="Cards" className="w-full h-auto" />
       <div className="px-[14px] py-3 box-border leading-3">
         <h2 className="text-xs ">{subtitle}</h2>

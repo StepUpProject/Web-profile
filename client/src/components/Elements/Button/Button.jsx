@@ -7,7 +7,7 @@ const Button = (props) => {
     } = props;
     return (
       <button
-        className={`h-10 ${classname ? classname : "bg-primary"} font-semibold text-white`}
+        className={`${classname} text-sm font-normal text-white bg-primary rounded-full transition hover:shadow-lg hover:shadow-primary/50  duration-300`}
         type={type}
         onClick={onClick}
       >
