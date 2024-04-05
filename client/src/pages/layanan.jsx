@@ -15,7 +15,7 @@ const Layanan = () => {
       id:2,
       image:"./images/layanan-artikel.png",
       title:"Artikel",
-      content:"Kami juga menyediakan layanan artikel yang informatif dan berkualitas untuk mendukung keberhasilan online Anda. Dengan tim penulis berpengalaman, kami membantu membangun konten yang relevan dan menarik . Mari bersama, ciptakan kehadiran online yang tak terlupakan dan sukses"
+      content:"Kami juga menyediakan layanan artikel yang informatif dan berkualitas untuk mendukung keberhasilan online Anda. Mari bersama, ciptakan kehadiran online yang tak terlupakan dan sukses"
     },
     {
       id:3,

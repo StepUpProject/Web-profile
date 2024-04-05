@@ -22,39 +22,38 @@ const Footer = () => {
     },
   ];
   return (
-    <div className="flex flex-col justify-center items-center pt-12 pb-16">
-      <div className="w-full h-[112px] ps-4 pt-4 pe-11 bg-primary text-white">
-        <h3 className="text-base font-bold">
-          Ayo bangun website anda sekarang
-        </h3>
-        <div className="pe-11 mt-1.5">
-          <p className="text-sm font-light">
-            Hubungi dan rancang dengan tim profesional kami.
-          </p>
+    <footer className="flex flex-col mt-20 bg-[#1B1D21] text-white font-body">
+      <section className="px-8 py-2 mb-2">
+        <div className="flex flex-row items-center gap-3 mt-6">
+          <img src="images/logo.png" alt="" className="w-[41px] " />
+          <h3 className="text-xl font-bold">Step Up</h3>
         </div>
-      </div>
-      <div className="flex flex-row gap-1 mt-6">
-        <img src="images/logo.png" alt="" className="max-h-[25px]" />
-        <h3 className="text-sm font-bold">Step Up Project</h3>
-      </div>
-      <div className="mt-9">
-        <div className="flex flex-col">
-          <div className="flex justify-center items-center mb-2.5">
-            <h4 className="text-sm font-bold place-items-center">
-              Information
-            </h4>
-          </div>
-          {contacts.map((item) => (
-            <div key={item.title} className="flex flex-row gap-2 items-center mb-2">
-              <div className="flex w-6 h-4 justify-center items-center">
-              <img src={item.image} alt={item.title} />
-              </div>
-              <p className="text-xs text-start">{item.content}</p>
+        <div className="w-[230px] mt-4">
+          <p className="text-xs">Hubungi dan rancang website anda dengan tim profesional kami.</p>
+        </div>
+        <div className="mt-4">
+          <div className="flex flex-col">
+            <div className="flex mb-2.5">
+              <h4 className="text-base font-medium place-items-center">
+                Information
+              </h4>
             </div>
-          ))}
+            {contacts.map((item) => (
+              <div key={item.title} className="flex flex-row gap-2 items-center mb-2">
+                <div className="flex w-6 h-4 justify-center items-center fill-primary">
+                  <img src={item.image} alt={item.title} />
+                </div>
+                <p className="text-xs text-start">{item.content}</p>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-    </div>
+      </section>
+      <section className="relative">
+        <img className="absolute right-8" src="images/frame-footer-2.png" alt="frame-footer" />
+        <img className="w-full" src="images/frame-footer.png" alt="frame-footer" />
+      </section>
+    </footer>
   );
 };
 
