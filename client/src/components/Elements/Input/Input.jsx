@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const InputForm = (props) => {
-  const { name, type, htmlFor, label, classname = "" } = props;
+  const { name, type, htmlFor, label, classname = "",  } = props;
   const [value, setValue] = useState("");
   const [focused, setFocused] = useState(false);
 
@@ -43,11 +43,11 @@ const InputForm = (props) => {
   );
 };
 
-export const InputArticle = (props) => {
-  const { name, type, htmlFor, label, classname = "" } = props;
-  const [value, setValue] = useState("");
-  const [focused, setFocused] = useState(false);
-
+export const InputArticle = ({ name, type, value, label, classname = "", setValue}) => {
+  const handleChange = (newValue) => {
+    setValue(newValue)
+    console.log(newValue)
+  };
   return (
     <>
     <label htmlFor={name} className="labelArticle">{label}</label>
@@ -55,10 +55,37 @@ export const InputArticle = (props) => {
         type={type} 
         name={name} 
         placeholder={label}
-        className="w-full rounded-md border-2 border-slate-300 py-3 px-4 font-semibold" />
+        value={value}
+        onChange={(e) => handleChange(e.target.value)}
+        className={`w-full rounded-md border-2 border-slate-300 py-3 px-4 font-semibold ${classname}`} />
     </>
     
   );
 };
+
+// export const InputEditArticle = ({ name, type, label, classname = "", value, setValue}) => {
+//   // const [value, setValue] = useState("")
+//   const handleChange = (newValue) => {
+//     setValue(newValue)
+//     console.log(newValue)
+//   };
+//   return (
+//     <>
+//     <label htmlFor={name} className="labelArticle">{label}</label>
+//       <input 
+//         type={type} 
+//         name={name} 
+//         placeholder={label}
+//         value={value}
+//         onChange={(e) => handleChange(e.target.value)}
+//         className={`w-full rounded-md border-2 border-slate-300 py-3 px-4 font-semibold ${classname}`} 
+//       />
+//     </>
+    
+//   );
+// };
+
+
+
 
 export default InputForm;

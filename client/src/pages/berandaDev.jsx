@@ -1,48 +1,145 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
-// import TeamCard from "../components/Fragments/TeamCard";
-import Navbar from "../components/Fragments/Navbar";
-// import NavbarDev from "../components/Fragments/NavbarDev";
+import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import NavBar from "../components/Fragments/Navbar";
 import Footer from "../components/Fragments/Footer";
 import { getTeams } from "../services/team.service";
+import axios from "axios";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import Button from "../components/Elements/Button/Button";
+AOS.init();
 
 const BerandaDev = () => {
-  const userId = localStorage.getItem("id");
-
-  const [teams, setTeams] = useState([]);
+  const navigate = useNavigate();
+  const [cookies, setCookie, removeCookie] = useCookies([]);
   useEffect(() => {
-    const fetchTeamsData = async () => {
-      try {
-        const response = await getTeams();
-        const filteredTeams = response.filter((team) => team.id === userId);
-        setTeams(filteredTeams);
-      } catch (error) {
-        console.error("Error fetching teams data:", error);
+    const verifyUser = async () => {
+      if (!cookies.jwt) {
+        navigate("/login");
+      }else{
+        const { data } = await axios.post(
+          `http://localhost:3000/`,
+          {},
+          { withCredentials: true, },
+        );
+        setUser(data.user);
+        if (!data.status) {
+          removeCookie("jwt");
+          navigate("/login");
+        }
       }
-    };
-    fetchTeamsData();
-  }, [userId]);
+    }
+    verifyUser()
+  },[cookies, navigate, removeCookie])
 
-  // object layanan
+  const handleLogout = () => {
+    removeCookie("jwt");
+    navigate("/login");
+  }
+
   const services = [
     {
-      title: "Artikel",
-      image: "../images/dashboardDev-layanan-artikel.png",
-      link: "/articleDev",
+      title: "Aplikasi Web",
+      images: "./images/layanan-appweb.png",
+      classname: "ps-5",
     },
     {
-      title: "Konsultasi",
-      image: "../images/dashboardDev-layanan-konsultasi.png",
-      link: "/konsultasiDev",
+      title: "Artikel",
+      images: "./images/layanan-artikel.png",
+      classname: "ps-20",
+    },
+    {
+      title: "Konten Digital",
+      images: "/images/layanan-sosmed.png",
+      classname: "ps-5",
     },
   ];
+  const portfolios = [
+    {
+      id: 1,
+      title: "E-Commerce",
+      name: "Shopee",
+      image: "./images/mockup-3.png",
+      imgHeight: 153,
+      imgWidth: 74,
+      scale: 150,
+    },
+    {
+      id: 2,
+      title: "E-Commerce",
+      name: "Shopee",
+      image: "./images/mockup-4.png",
+      imgHeight: 122,
+      imgWidth: 200,
+      scale: 125,
+    },
+  ];
+  const customers = [
+    {
+      id: 1,
+      image: "./images/pelanggan-1.png",
+    },
+    {
+      id: 2,
+      image: "./images/pelanggan-1.png",
+    },
+    {
+      id: 3,
+      image: "./images/pelanggan-1.png",
+    },
+    {
+      id: 4,
+      image: "./images/pelanggan-1.png",
+    },
+    {
+      id: 5,
+      image: "./images/pelanggan-1.png",
+    },
+    {
+      id: 6,
+      image: "./images/pelanggan-1.png",
+    },
+    {
+      id: 7,
+      image: "./images/pelanggan-1.png",
+    },
+  ];
+  const [teams, setTeams] = useState([]);
+  useEffect(() => {
+    getTeams((data) => {
+      setTeams(data);
+    });
+  }, []);
+  
+  
 
   return (
-    <div>
-      <Navbar />
-      <main className="mt-16 font-body">
-        <section className="relative text-center pt-10">
+    <div className="py-24">
+      <NavBar />
+      
+      <section className="h-auto">
+        <div
+          className="flex flex-col ps-4"
+          data-aos="fade-up"
+          data-aos-duration="4000"
+        >
+            <form onSubmit={handleLogout} className="mt-10 w-full mx-auto">
+              <Button type="submit" classname="w-full my-10 bg-primary rounded-full">
+                Logout
+              </Button>
+            </form>
+            <SectionHead>Step Up Project - {user}</SectionHead>
+            <h3 className="text-2xl font-bold mt-5">Step Up, Code Up</h3>
+            <p className="mt-6 pe-11">
+              Step Up Project hadir sebagai digitalisasi bisnis, pengembangan dan
+              pengelolaan aplikasi web, dan juga sebagai edukasi seputar dunia IT
+            </p>
+            <button className="w-[148px] h-[40px] text-sm font-normal mt-10 text-white bg-primary rounded-full transition hover:shadow-lg hover:shadow-primary/50 hover:bg-gradient-to-l from-primary to-[#2B3087] duration-300">
+              Konsultasi Sekarang
+            </button>
+        </div>
+        <div className="w-full h-80 mb-[53px] bg-[url('./images/vector-1.png')] bg-no-repeat mt-10">
           <img
             src="../images/atribut-dev.png"
             alt="atribut developer"
@@ -51,6 +148,7 @@ const BerandaDev = () => {
           <h1 className=" inline-block text-2xl font-bold text-center">
             SELAMAT DATANG <br /> DEVELOPER !!
           </h1>
+        </div>
         </section>
         {/* menmpilkan card profil */}
         {teams.map((team) => (
@@ -75,7 +173,6 @@ const BerandaDev = () => {
             <CardLayanan key={service.title} {...service}></CardLayanan>
           ))}
         </section>
-      </main>
       <Footer />
     </div>
   );

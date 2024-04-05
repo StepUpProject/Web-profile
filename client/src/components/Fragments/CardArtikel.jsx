@@ -1,17 +1,57 @@
-import {Link} from 'react-router-dom';
-const CardArtikel = ({ id, imageCard, title, author, shortDescription, date  }) => {
+import { Link } from "react-router-dom";
+import HTMLReactParser from "html-react-parser";
+import { destroyArticle } from "../../services/article.service";
+const CardArtikel = ({
+  id,
+  image,
+  title,
+  author,
+  content,
+  date,
+}) => {
+  const handleDeleteArticle = (event) => {
+    event.preventDefault();
+    destroyArticle(id, (status, res) => {
+      if (status) {
+        console.log(res);
+      } else {
+        console.log(res);
+      }
+    });
+  } 
   return (
-    <Link to={`/artikel/${id}`} className="block max-w-[300px] mx-auto mt-[43px] rounded-xl font-body overflow-hidden shadow-lg box-border">
-        <img src={imageCard} alt="Cards" className="w-full h-auto" />
-        <div className="px-[14px] py-3 box-border leading-3">
-            <h2 className="text-xs ">{author}</h2>
-            <h1 className="text-[16px] font-bold text-left my-[11px]">{title}</h1>
-            <p className="word-wrap my-4 text-left text-xs ">{shortDescription}</p>
-            
-        </div>
-    </Link>
+    <div className="block max-w-[300px] mx-auto mt-[43px] rounded-xl font-body overflow-hidden shadow-lg box-border">
+      <Link to={`/article/${id}`}>
+        <img
+          src={`http://localhost:3000/article/${image}`}
+          alt="Cards"
+          className="w-full h-auto"
+        />
+      </Link>
+      <div className="px-[14px] py-3 box-border leading-3">
+        <Link to={`/article/${id}`}>
+          <h1 className="text-[16px] font-bold text-left my-[11px]">{title}</h1>
+        </Link>
+        <h2 className="text-xs ">{author ? author : "Step-Up"}</h2>
+        <h2 className="text-xs ">{id ? id : "x"}</h2>
+        <p className="word-wrap my-4 text-left text-xs ">
+          {HTMLReactParser(content.slice(0, 200) + "...")}
+        </p>
+      </div>
+      <div className="flex justify-end gap-4 pe-3 pb-3">
+        <Link to={`/developer/article/edit/${id}`}>
+          <img src="svg/edit.png" alt="" />
+        </Link>
+        <form onSubmit={handleDeleteArticle}>
+        <button type="submit">
+          <img src="svg/delete.png" alt="" />
+        </button>
+        </form>
+      </div>
+    </div>
   );
 };
 
-
 export default CardArtikel;
+
+
