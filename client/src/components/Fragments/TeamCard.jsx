@@ -16,7 +16,7 @@ const TeamCard = (props) => {
       <img src={image} alt="" className="w-full h-[122px] object-cover" />
       <div className="flex flex-col items-center justify-center text-center px-4 py-3">
         <div className="min-h-8">
-         <p className="font-bold text-xs">{name.toUpperCase()}</p>
+          <p className="font-bold text-xs">{name.toUpperCase()}</p>
         </div>
         <p className="font-medium text-xs mt-3">{role}</p>
       </div>
