@@ -65,8 +65,10 @@ const Navbar = () => {
         -top-1 z-50 text-dark lg:py-5 px-5 py-4 flex-1 shadow-md shadow-black/50`}
       >
         <div className="flex items-center gap-1 flex-1">
-          <img src="images/logo.png" alt="" className="h-[25px]"/>
-          <span className="font-bold text-lg text-black font-body">Step Up</span>
+          <img src="../../images/logo.png" alt="" className="h-[25px]" />
+          <span className="font-bold text-lg text-black font-body">
+            Step Up
+          </span>
         </div>
         <WideContent />
         <div>{isMenuOpen && <SmallContent />}</div>
@@ -89,13 +91,16 @@ const WideContent = () => {
         <ul className="flex gap-4 mr-16 text-[18px]">
           {menus.map((menu) => (
             <li key={menu.link}>
-              <Link spy="true" smooth="true" to={menu.link}
-                className=
-                {`${
+              <Link
+                spy="true"
+                smooth="true"
+                to={menu.link}
+                className={`${
                   location.pathname === menu.link
                     ? "text-primary border-b border-primary"
                     : "text-dark bg-white"
-                } transition cursor-pointer`}>
+                } transition cursor-pointer`}
+              >
                 {menu.name}
               </Link>
             </li>
