@@ -18,14 +18,14 @@ const InputForm = (props) => {
   };
 
   const floatingLabelStyles = [
-    "text-sm font-semibold mb-2 px-1 mx-3 absolute left-0 top-0.5 transition duration-500",
+    "text-sm font-semibold mb-2 px-1 mx-2 absolute left-0 top-0.5 transition duration-500",
     focused || value
       ? "transform -translate-y-6 text-primary -translate-x-2 bg-white scale-90"
       : "text-slate-700",
   ].join(" ");
 
   return (
-    <div className="mb-3 relative">
+    <div className="w-full relative">
       <label htmlFor={htmlFor} className="relative">
         <input
           type={type}
@@ -35,7 +35,7 @@ const InputForm = (props) => {
           onChange={handleChange}
           onFocus={handleFocus}
           onBlur={handleBlur}
-          className={`text-sm ring-1 ring-dark rounded w-full py-3 px-4 text-slate-800 ${classname} focus:outline-none focus:ring-primary transition duration-500`}
+          className={`text-sm ring-1 ring-gray-200 rounded-lg w-full py-3 px-4 text-slate-800 ${classname} focus:outline-none focus:ring-primary transition duration-500`}
         />
         <span className={floatingLabelStyles}>{label}</span>
       </label>
@@ -43,22 +43,55 @@ const InputForm = (props) => {
   );
 };
 
-export const InputArticle = (props) => {
-  const { name, type, htmlFor, label, classname = "" } = props;
-  const [value, setValue] = useState("");
-  const [focused, setFocused] = useState(false);
-
+export const InputArticle = ({
+  name,
+  type,
+  value,
+  label,
+  classname = "",
+  setValue,
+}) => {
+  const handleChange = (newValue) => {
+    setValue(newValue);
+    console.log(newValue);
+  };
   return (
     <>
-    <label htmlFor={name} className="labelArticle">{label}</label>
-      <input 
-        type={type} 
-        name={name} 
+      <label htmlFor={name} className="labelArticle">
+        {label}
+      </label>
+      <input
+        type={type}
+        name={name}
         placeholder={label}
-        className="w-full rounded-md border-2 border-slate-300 py-3 px-4 font-semibold" />
+        value={value}
+        onChange={(e) => handleChange(e.target.value)}
+        className={`w-full rounded-lg border-1 border-slate-300 py-3 px-4 font-semibold ${classname}`}
+      />
     </>
-    
   );
 };
+
+// export const InputEditArticle = ({ name, type, label, classname = "", value, setValue}) => {
+//   // const [value, setValue] = useState("")
+//   const handleChange = (newValue) => {
+//     setValue(newValue)
+//     console.log(newValue)
+//   };
+//   return (
+//     <>
+//     <label htmlFor={name} className="labelArticle">{label}</label>
+//       <input
+//         type={type}
+//         name={name}
+//         placeholder={label}
+//         value={value}
+//         onChange={(e) => handleChange(e.target.value)}
+//         className={`w-full rounded-md border-2 border-slate-300 py-3 px-4 font-semibold ${classname}`}
+//       />
+//     </>
+
+//   );
+// };
 
 export default InputForm;

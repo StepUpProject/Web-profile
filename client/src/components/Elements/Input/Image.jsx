@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import ImageIcon from "@mui/icons-material/Image";
+import Button from "../Button/Button";
 
-const ImageUploader = ({ labelText, buttonText, onImageChange }) => {
+const ImageUploader = ({ labelText, buttonText, onImageChange, currentImage }) => {
   const [selectedImage, setSelectedImage] = useState(null);
 
   const handleImageChange = (event) => {
@@ -9,14 +10,15 @@ const ImageUploader = ({ labelText, buttonText, onImageChange }) => {
     setSelectedImage(file);
 
     // Additional logic for image upload or processing can be added here
-
-    const imagePath = "./thumbnail";
-
-    // Menyusun path lengkap untuk menyimpan gambar
-    const imagePathWithFileName = `${imagePath}/${file.name}`;
-    // Call the provided callback function with the selected image
     if (onImageChange) {
-      onImageChange(file, imagePathWithFileName);
+      onImageChange(file);
+    }
+  };
+
+  const handleRemoveImage = () => {
+    setSelectedImage(null);
+    if (onImageChange) {
+      onImageChange(null);
     }
   };
 
@@ -25,36 +27,51 @@ const ImageUploader = ({ labelText, buttonText, onImageChange }) => {
       <label htmlFor="content" className="labelArticle text-md">
         {labelText || "Pilih Thumbnail"}
       </label>
-      <ImageUpload
-        buttonText={buttonText}
-        selectedImage={selectedImage}
-        handleImageChange={handleImageChange}
-      />
+      <div className="flex flex-row items-center border-2 py-3 ps-3">
+        
+        <input
+          type="file"
+          accept="image/*"
+          value={currentImage}
+          onChange={handleImageChange}
+          className="hidden"
+          id="imageInput"
+          name="image"
+        />
+
+        <label
+          htmlFor="imageInput"
+          className="cursor-pointer flex-1 flex flex-row-reverse justify-between"
+        >
+          <ImageIcon className="w-6 h-6 mr-2 text-gray-500" />
+          <span className="text-gray-700">
+            {selectedImage ? selectedImage.name : "Select an image"}
+          </span>
+          <span className="text-blue-500">{buttonText || "Browse"}</span>
+        </label>
+      </div>
+      <div>
+        
+      {selectedImage && (
+          <div className="flex items-center justify-center p-2">
+            <img
+              src={URL.createObjectURL(selectedImage)}
+              alt="Selected Image"
+              className="w-[25%] h-full mr-2"
+            />
+            <Button
+              type="button"
+              classname="bg-red-500 text-sm rounded-xl px-5 h-8"
+              onClick={handleRemoveImage}
+            >
+              Remove
+            </Button>
+          </div>
+        )}
+      </div>
     </>
   );
 };
 
-export const ImageUpload = ({ buttonText, selectedImage, handleImageChange }) => {
-  return (
-    <div className="flex flex-row items-center border-2 py-3 ps-3">
-      <input
-        type="file"
-        accept="image/*"
-        onChange={handleImageChange}
-        className="hidden"
-        id="imageInput"
-        name="image"
-      />
-
-      <label htmlFor="imageInput" className="cursor-pointer flex flex-row-reverse justify-between w-full">
-        <ImageIcon className="w-6 h-6 mr-2 text-gray-500" />
-        <span className="text-gray-700">
-          {selectedImage ? selectedImage.name : "Select an image"}
-        </span>
-        <span className="text-blue-500">{buttonText || "Browse"}</span>
-      </label>
-    </div>
-  );
-};
 
 export default ImageUploader;

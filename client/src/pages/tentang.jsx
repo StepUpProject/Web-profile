@@ -6,6 +6,8 @@ import Footer from "../components/Fragments/Footer";
 import Navbar from "../components/Fragments/Navbar";
 import TeamCard from "../components/Fragments/TeamCard";
 import { getTeams } from "../services/team.service";
+import PropTypes from "prop-types";
+
 const Tentang = () => {
   const values = [
     "Mengutamakan kerjasama tim dalam segala proses pengembangan proyek",
@@ -25,13 +27,13 @@ const Tentang = () => {
     <>
       <Navbar></Navbar>
       <HeadTitle>Tentang Kami</HeadTitle>
-      <div className="flex flex-col justify-center">
-        <div className="flex px-5 justify-center">
+      <div className="flex flex-col justify-center font-body">
+        <div className="w-full flex justify-center items-center box-border ">
           <VideoPlayer></VideoPlayer>
         </div>
         <section className="px-5 pb-10">
-          <SectionHead classname="py-8">Step Up Project</SectionHead>
-          <div className="text-sm text-black/80 font-semibold">
+          <SectionHead classname="mt-4 mb-8">Step Up Project</SectionHead>
+          <div className="text-sm text-black/80 font-normal">
             <p>
               Step Up Project adalah sebuah komunitas yang bergerak untuk
               digitalisasi bisnis dan organisasi melalui pengembangan dan
@@ -47,20 +49,20 @@ const Tentang = () => {
             </p>
           </div>
         </section>
-        <section className="pt-8 pb-10 w-full bg-slate-100 ps-4 pe-12">
+        <section className="pt-8 pb-10 w-full ps-4 pe-12">
           <SectionHead classname="mb-5">Nilai Yang Kami Terapkan</SectionHead>
           {values.map((value, index) => (
             <Value key={index} value={value} />
           ))}
         </section>
-        <section className="pt-8 pb-10 w-full bg-slate-100 ps-4 pe-12">
+        <section className="mt-14 w-full ps-10 pe-12">
           <SectionHead classname="mb-5">Tim Kami</SectionHead>
-          <div className="grid grid-cols-2 gap-6 mt-6">
+        </section>
+        <div className="grid grid-cols-2 mx-auto gap-6 gap-y-8 mt-4">
             {teams.map((team, index) => (
               <TeamCard key={index} {...team} />
             ))}
           </div>
-        </section>
       </div>
       <Footer></Footer>
     </>
@@ -68,6 +70,10 @@ const Tentang = () => {
 };
 
 const Value = ({ value }) => {
+  Value.propTypes = {
+    value: PropTypes.string.isRequired,
+  };
+
   return (
     <div className="flex flex-row gap-3 justify-items-start">
       <img src="./svg/tick.svg" alt="" className="" />

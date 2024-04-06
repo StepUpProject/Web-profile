@@ -1,21 +1,73 @@
 const User = require("../models/user");
+const jwt = require("jsonwebtoken");
+
+const createToken = (id) => {
+  return jwt.sign({id},"StepUp Projects",{
+    expiresIn: 3 * 24 * 60 * 60,
+
+  })
+}
+
+const errorHandler = (err) => {
+  let errors = { email: "", password: "" };
+  
+  if(err.message === "Email is not registered"){
+    errors.email = "Email is not registered";
+  }
+
+  if(err.message === "Password is incorrect"){
+    errors.password = "Password is incorrect";
+  }
+
+  if(err.code === 11000) {
+    errors.email = "Email already exists";
+    return errors;
+  }
+  
+  if(err.message.includes("Users validation failed")) {
+    Object.values(err.errors).forEach(({ properties }) => {
+      errors[properties.path] = properties.message;
+    });
+  return errors;
+}
+return errors;
+}
 
 module.exports.register = async (req, res) => {
   try {
-    const { name, email, username, password } = req.body;
-    const user = new User({ name, email, username });
-    await User.register(user, password);
-    console.log(user);
-    res.send(user);
+    const { email, password } = req.body
+    const user = await User.create({ email, password })
+    const token = createToken(user._id)
+
+    res.cookie("jwt", token, {
+      withCredentials: true,
+      httpOnly : false,
+      maxAge: 3 * 24 * 60 * 60 * 1000
+    });
+    res.status(201).json({ user: user._id, created: true });
   } catch (error) {
-    console.log(error);
+    console.log(error)
   }
 };
 
-module.exports.login = async (req, res) => {
-  req.flash("success_msg", "Login Success bang");
-  // const data = req.body;
-  // console.log(data);
+module.exports.login = async (req, res, next) => {
+  try {
+    const { email, password } = req.body
+    const user = await User.login(email, password)
+    const token = createToken(user._id)
+
+    res.cookie("jwt", token, {
+      withCredentials: true,
+      httpOnly : false,
+      maxAge: 3 * 24 * 60 * 60 * 1000
+    });
+    res.status(200).json({ user: user._id, created: true });
+  } catch (error) {
+    const errors = errorHandler(error)
+    console.log(error.message)
+    console.log(errors)
+    res.status(400).json({ errors , created: false });
+  }
 };
 
 module.exports.logout = (req, res) => {

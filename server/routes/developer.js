@@ -4,7 +4,12 @@ const router = express.Router();
 // const AuthController = require('../controllers/auth');
 const wrapAsync = require("../utils/wrapAsync");
 const isAuth = require("../middleware/isAuth");
-
+const multer = require('multer')
+const storage = multer.diskStorage({destination:'./assets/article', filename: (req, file, cb) =>{
+  console.log(file)
+  cb(null, file.originalname)
+}})
+const image = multer({storage})
 router.get(
   "/berandaDev",
   isAuth,
@@ -14,8 +19,9 @@ router.get(
 );
 
 router.post(
-  "/article",
+  "/article", image.single('image'),
   wrapAsync((req, res) => {
+    console.log(req.file)
     const data = req.body;
     res.status(200).json({
       data,

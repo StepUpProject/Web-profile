@@ -10,12 +10,12 @@ const menus = [
     active: false,
   },
   {
-    link: "/tentang",
+    link: "/about",
     name: "Tentang Kami",
     active: false,
   },
   {
-    link: "/layanan",
+    link: "/services",
     name: "Layanan Kami",
     active: false,
   },
@@ -25,7 +25,7 @@ const menus = [
     active: false,
   },
   {
-    link: "/artikel",
+    link: "/article",
     name: "Artikel",
     active: false,
   },
@@ -66,7 +66,7 @@ const Navbar = () => {
       >
         <div className="flex items-center gap-1 flex-1">
           <img src="images/logo.png" alt="" className="h-[25px]"/>
-          <span className="font-bold text-lg text-transparent bg-clip-text bg-gradient-to-b from-primary to-black/50">Step Up</span>
+          <span className="font-bold text-lg text-black font-body">Step Up</span>
         </div>
         <WideContent />
         <div>{isMenuOpen && <SmallContent />}</div>

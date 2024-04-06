@@ -1,6 +1,7 @@
 import NavBar from "../components/Fragments/Navbar";
 import Footer from "../components/Fragments/Footer";
 import CardLayanan from "../components/Fragments/CardLayanan";
+import StylizedFrame from "../components/Elements/StylizedFrame";
 
 const Layanan = () => {
   // object card layanan
@@ -15,7 +16,7 @@ const Layanan = () => {
       id:2,
       image:"./images/layanan-artikel.png",
       title:"Artikel",
-      content:"Kami juga menyediakan layanan artikel yang informatif dan berkualitas untuk mendukung keberhasilan online Anda. Dengan tim penulis berpengalaman, kami membantu membangun konten yang relevan dan menarik . Mari bersama, ciptakan kehadiran online yang tak terlupakan dan sukses"
+      content:"Kami juga menyediakan layanan artikel yang informatif dan berkualitas untuk mendukung keberhasilan online Anda. Mari bersama, ciptakan kehadiran online yang tak terlupakan dan sukses"
     },
     {
       id:3,
@@ -26,17 +27,26 @@ const Layanan = () => {
 
   ]
   return (
-    <div>
+    <div className="relative">
       <NavBar />
+      {/* Style tambahan sesuai desain */}
+      <StylizedFrame
+        urlImage="../images/stylized-frame-1-right.png"
+        classname="absolute right-0 top-[380px]"
+      ></StylizedFrame>
       <h1 className="mt-[80px] text-2xl font-bold text-center">Layanan Kami</h1>
       <p className="mt-[30px] w-full text-xs font-body leading-4 text-black px-[12px] text-center">
         Hadirkan solusi digital untuk mendukung efisiensi dan produktivitas
         bisnis. Sambut era digital bersama <br /> inovasi kami
-      </p> 
+      </p>
       {/* memanggil object services */}
-      {services.map((service)=>(
-        <CardLayanan key={service.id} {...service}/>
+      {services.map((service) => (
+        <CardLayanan key={service.id} {...service} />
       ))}
+      <StylizedFrame
+        urlImage="../images/stylized-frame-1-left.png"
+        classname="absolute left-0 bottom-[700px]"
+      ></StylizedFrame>
       <Footer />
     </div>
   );

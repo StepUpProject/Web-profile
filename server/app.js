@@ -1,17 +1,13 @@
 const express = require("express");
 const app = express();
-const session = require('express-session')
-const flash = require('connect-flash')
-const cors = require('cors')
-const bodyParser = require('body-parser')
-const mongoose = require('mongoose');
-const passport = require('passport')
-const LocalStrategy = require('passport-local').Strategy
-const User = require('./models/user')
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const cookieParser = require("cookie-parser");
 
 //connect to mongodb
 mongoose
-  .connect("mongodb://127.0.0.1/stepup_db")
+  .connect("mongodb://127.0.0.1/stepup")
   .then((result) => {
     console.log("connection to mongodb");
   })
@@ -25,43 +21,50 @@ const teams = [
     image: "../images/team-ikhsan.jpg",
     name: "Al Ikhsan Akbar Fatahillah",
     role: "Project Manager",
+    email: "ikhsanngkalu@gmail.com",
   },
   {
-    id: 2,
+    id: "65ebeefdb9f8ec01da0e9395",
     image: "../images/team-ikhlas.jpg",
     name: "Muhammad Abdanul Ikhlas",
     role: "Frontend Developer",
+    email: "muhabdanulikhlas@gmail.com",
   },
   {
     id: 3,
     image: "../images/team-yoga.jpeg",
     name: "Yoga Agatha Pasaribu",
     role: "Fullstack Developer",
+    email: "yogapasaribu@gmail.com",
   },
   {
     id: 4,
     image: "../images/team-riyadhi.jpg",
     name: "Muhammad Riyadhi",
     role: "Backend Developer",
+    email: "riyadhi@gmail.com",
   },
   {
     id: 5,
     image: "../images/team-hadi.jpg",
     name: "Hadi Hasan Lubis",
     role: "UI/UX Designer",
+    email: "hadihasan@gmail.com",
   },
   {
     id: 6,
-    image: "../images/team-hadi.jpg",
+    image: "../images/team-adit.png",
     name: "Muh Aditya Dwijaya",
     role: "Creative",
+    email: "adityadwijaya@gmail.com",
   },
 ];
 const portfolios = [
   {
     id: 1,
     imageCard: "./images/portfolio-card-1.png",
-    mockup: "../images/portfolio-detail-1.png",
+    mockupLaptop: "../images/portfolio-detail-laptop.png",
+    mockupHP: "../images/portfolio-detail-hp.png",
     title: "Website Arsitek Rumah",
     subtitle: "Bank Central Indonesia",
     backgroundColor: "bg-[#D7F0FF]",
@@ -91,7 +94,8 @@ const portfolios = [
   {
     id: 2,
     imageCard: "./images/portfolio-card-2.png",
-    mockup: "../images/portfolio-detail-2.png",
+    mockupLaptop: "../images/portfolio-detail-laptop.png",
+    mockupHP: "../images/portfolio-detail-hp.png",
     title: "Website Catering",
     subtitle: "Warung Makan Kokoh",
     backgroundColor: "bg-[#D7FFEE]",
@@ -120,75 +124,42 @@ const portfolios = [
   },
 ];
 
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 // const baseUrL = "http://localhost:5173"
-app.use(cors({
-  origin: "http://localhost:5173",
-  credentials: true,
-}))
-app.use(express.urlencoded({extended: true}));
-app.use(session({
-  secret: 'stepup',
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-      httpOnly: true,
-      secure: false,
-      sameSite: 'none',
-      expires: Date.now() + 60 * 60 * 1000,
-      maxAge: 1000 * 60 * 60 * 24 * 7
-  }
-}))
-app.use(flash());
-app.use(passport.initialize());
-app.use(passport.session());
-passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 
-app.use((req, res, next) => {
-  res.locals.success_msg = req.flash('success_msg');
-  res.locals.error_msg = req.flash('error_msg');
-  next();
-});
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(express.json());
+app.use(express.static("assets"));
+// app.use(flash());
 
+// app.use((req, res, next) => {
+//   res.locals.success_msg = req.flash('success_msg');
+//   res.locals.error_msg = req.flash('error_msg');
+//   next();
+// });
 
 app.get("/", (req, res) => {
   console.log("Berhasil");
 });
 
-app.use('/',require('./routes/auth')) 
-app.use('/developer',require('./routes/developer')) 
-app.use('/api/konsultasi',require('./routes/konsultasi')) 
+app.use("/", require("./routes/auth"));
+// app.use('/developer',require('./routes/developer'))
+app.use("/", require("./routes/article"));
+app.use("/api/konsultasi", require("./routes/konsultasi"));
 
-
-app.get('/api/teams', (req, res) => {
-  res.json(teams)
-})
+app.get("/api/teams", (req, res) => {
+  res.json(teams);
+});
 
 app.get("/api/portfolio", (req, res) => {
   res.json(portfolios);
-});
-
-// app.get('/berandaDev', (req, res) => {
-//   return res.redirect('http://localhost:5173/berandaDev')
-// })
-
-
-
-
-app.post("/login_dev", async (req, res) => {
-  try {
-    const check = await Users.findOne({ name: req.body.name });
-
-    if ((check.password = req.body.password)) {
-      res.render("..");
-    } else {
-      res.send("Password yang anda masukkan Salah !!!");
-    }
-  } catch {
-    res.send("Detail kesalahan");
-  }
 });
 
 app.listen(3000, () => {

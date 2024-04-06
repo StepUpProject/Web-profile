@@ -1,13 +1,13 @@
 const Button = (props) => {
     const {
       children,
-      classname = "bg-primary",
+      classname,
       onClick = () => {},
       type = "button",
     } = props;
     return (
       <button
-        className={`h-10 ${classname} font-semibold text-white`}
+        className={`${classname} text-sm font-normal text-white bg-primary rounded-full transition hover:shadow-lg hover:shadow-primary/50  duration-300`}
         type={type}
         onClick={onClick}
       >
