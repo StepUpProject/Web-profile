@@ -18,14 +18,14 @@ const InputForm = (props) => {
   };
 
   const floatingLabelStyles = [
-    "text-sm font-semibold mb-2 px-1 mx-3 absolute left-0 top-0.5 transition duration-500",
+    "text-sm font-semibold mb-2 px-1 mx-2 absolute left-0 top-0.5 transition duration-500",
     focused || value
       ? "transform -translate-y-6 text-primary -translate-x-2 bg-white scale-90"
       : "text-slate-700",
   ].join(" ");
 
   return (
-    <div className="mb-3 relative">
+    <div className="w-full relative">
       <label htmlFor={htmlFor} className="relative">
         <input
           type={type}
