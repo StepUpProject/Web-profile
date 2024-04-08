@@ -3,7 +3,7 @@ import NavBar from "../components/Fragments/Navbar";
 import Footer from "../components/Fragments/Footer";
 import SectionHead from "../components/Elements/SectionHead";
 import TeamCard from "../components/Fragments/TeamCard";
-import { getTeams } from "../services/team.service";
+import { teamLists } from "../data/teams.js";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import PropTypes from "prop-types";
@@ -79,10 +79,10 @@ const Beranda = () => {
     },
   ];
   const [teams, setTeams] = useState([]);
+  
   useEffect(() => {
-    getTeams((data) => {
-      setTeams(data);
-    });
+      // console.log(teamLists);
+      setTeams(teamLists);
   }, [teams]);
 
   return (

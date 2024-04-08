@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import HTMLReactParser from "html-react-parser";
 import { destroyArticle } from "../../services/article.service";
+import { useCookies } from "react-cookie";
+import { useEffect, useState } from "react";
 const CardArtikel = ({
   id,
   image,
@@ -9,6 +11,25 @@ const CardArtikel = ({
   content,
   date,
 }) => {
+  const [cookies, setCookie, removeCookie] = useCookies([]);
+  const [user, setUser] = useState("");
+  useEffect(() => {
+    const verifyUser = async () => {
+      if (cookies.jwt) {
+        const { data } = await axios.post(
+          `http://localhost:3000/`,
+          {},
+          { withCredentials: true }
+        );
+        setUser(data.user);
+        // if (!data.status) {
+        //   removeCookie("jwt");
+        //   navigate("/login");
+        // }
+      }
+    };
+    verifyUser();
+  }, [cookies, removeCookie]);
   const handleDeleteArticle = (event) => {
     event.preventDefault();
     destroyArticle(id, (status, res) => {
@@ -33,12 +54,13 @@ const CardArtikel = ({
           <h1 className="text-[16px] font-bold text-left my-[11px]">{title}</h1>
         </Link>
         <h2 className="text-xs ">{author ? author : "Step-Up"}</h2>
-        <h2 className="text-xs ">{id ? id : "x"}</h2>
+        {/* <h2 className="text-xs ">{id ? id : "x"}</h2> */}
         <p className="word-wrap my-4 text-left text-xs ">
           {HTMLReactParser(content.slice(0, 200) + "...")}
         </p>
       </div>
-      <div className="flex justify-end gap-4 pe-3 pb-3">
+      {user ? (
+        <div className="flex justify-end gap-4 pe-3 pb-3">
         <Link to={`/developer/article/edit/${id}`}>
           <img src="svg/edit.png" alt="" />
         </Link>
@@ -48,6 +70,7 @@ const CardArtikel = ({
         </button>
         </form>
       </div>
+      ) : <></>}
     </div>
   );
 };
