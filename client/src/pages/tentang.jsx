@@ -31,11 +31,11 @@ const Tentang = () => {
         {/* perintilan tambahan untuk tampilan dekstop */}
         <StylizedFrame
           urlImage="../images/stylized-frame-3-left.png"
-          classname="absolute left-0 top-[1120px] w-[60px]"
+          classname="hidden md:block absolute left-0 md:top-[930px] lg:top-[1120px] w-[60px]"
         ></StylizedFrame>
         <StylizedFrame
           urlImage="../images/stylized-frame-2-right.png"
-          classname="hidden md:block absolute right-[190px] bottom-[470px] w-[110px]"
+          classname="hidden md:block absolute md:right-[110px] md:bottom-[220px] md:w-[90px] lg:right-[170px] lg:bottom-[470px] lg:w-[110px]"
         ></StylizedFrame>
         <section className="md:px-20">
           <div className="md:mt-[125px]">
@@ -50,7 +50,6 @@ const Tentang = () => {
             <VideoPlayer></VideoPlayer>
           </div>
         </section>
-
         <div className="flex flex-col justify-center font-body">
           <article className="md:bg-[#F8F8F8] md:px-20 md:mt-8 md:pb-8 lg:pb-28">
             <SectionHead classname="mt-4 mb-8 md:mt-8">
