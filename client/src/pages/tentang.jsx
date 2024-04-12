@@ -25,7 +25,7 @@ const Tentang = () => {
     });
   });
   return (
-    <div className="relative pb-[550px] md:pb-[350px]">
+    <div className="relative pb-[550px] md:pb-[350px] lg:pb-[400px]">
       <Navbar></Navbar>
       <main className="font-body md:relative">
         {/* perintilan tambahan untuk tampilan dekstop */}
