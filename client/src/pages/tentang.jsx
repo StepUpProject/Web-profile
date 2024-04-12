@@ -28,6 +28,15 @@ const Tentang = () => {
     <>
       <Navbar></Navbar>
       <main className="font-body md:relative">
+        {/* perintilan tambahan untuk tampilan dekstop */}
+        <StylizedFrame
+          urlImage="../images/stylized-frame-3-left.png"
+          classname="absolute left-0 top-[1120px] w-[60px]"
+        ></StylizedFrame>
+        <StylizedFrame
+          urlImage="../images/stylized-frame-2-right.png"
+          classname="hidden md:block absolute right-[190px] bottom-[470px] w-[110px]"
+        ></StylizedFrame>
         <section className="md:px-20">
           <div className="md:mt-[125px]">
             <HeadTitle>Tentang Kami</HeadTitle>
@@ -47,8 +56,8 @@ const Tentang = () => {
             <SectionHead classname="mt-4 mb-8 md:mt-8">
               Step Up Project
             </SectionHead>
-            <section className=" lg:flex lg:gap-4">
-              <section className="px-5 pb-10  lg:w-[50%] lg:pb-0">
+            <section className=" lg:flex lg:gap-12">
+              <section className="px-5 pb-10  lg:w-[50%] lg:pb-0 lg:pe-14">
                 <h3 className="hidden font-bold text-xl text-black font-body mb-2 lg:block lg:text-left">
                   Tentang Kami
                 </h3>
