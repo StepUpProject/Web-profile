@@ -25,7 +25,7 @@ const Tentang = () => {
     });
   });
   return (
-    <>
+    <div className="relative pb-[550px] md:pb-[350px]">
       <Navbar></Navbar>
       <main className="font-body md:relative">
         {/* perintilan tambahan untuk tampilan dekstop */}
@@ -107,7 +107,7 @@ const Tentang = () => {
         </div>
       </main>
       <Footer></Footer>
-    </>
+    </div>
   );
 };
 
