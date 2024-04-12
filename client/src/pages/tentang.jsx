@@ -7,6 +7,7 @@ import Navbar from "../components/Fragments/Navbar";
 import TeamCard from "../components/Fragments/TeamCard";
 import { getTeams } from "../services/team.service";
 import PropTypes from "prop-types";
+import StylizedFrame from "../components/Elements/StylizedFrame";
 
 const Tentang = () => {
   const values = [
@@ -26,44 +27,77 @@ const Tentang = () => {
   return (
     <>
       <Navbar></Navbar>
-      <HeadTitle>Tentang Kami</HeadTitle>
-      <div className="flex flex-col justify-center font-body">
-        <div className="w-full flex justify-center items-center box-border ">
-          <VideoPlayer></VideoPlayer>
-        </div>
-        <section className="px-5 pb-10">
-          <SectionHead classname="mt-4 mb-8">Step Up Project</SectionHead>
-          <div className="text-sm text-black/80 font-normal">
-            <p>
-              Step Up Project adalah sebuah komunitas yang bergerak untuk
-              digitalisasi bisnis dan organisasi melalui pengembangan dan
-              pengelolaan aplikasi web yang professional dan terpercaya. Step Up
-              Project juga hadir sebagai edukasi seputar dunia IT dengan
-              informasi terupdate yang disajikan dalam artikel dan konten
-              digital kami.
-            </p>
-            <p className="mt-4">
-              Semua itu kami capai dengan menggunakan teknologi dan proses
-              terbaik seuai dengan perkembangan dunia IT. Hal ini memastikan
-              layanan yang kami berikan adalah solusi terbaik untuk anda.
-            </p>
+      <main className="font-body md:relative">
+        <section className="md:px-20">
+          <div className="md:mt-[125px]">
+            <HeadTitle>Tentang Kami</HeadTitle>
+          </div>
+          {/* perintilan tambahan untuk tampilan dekstop */}
+          <StylizedFrame
+            urlImage="../images/stylized-frame-2-right.png"
+            classname="hidden md:block absolute right-20 top-[-20px] w-[110px]"
+          ></StylizedFrame>
+          <div className="w-full flex justify-center items-center box-border ">
+            <VideoPlayer></VideoPlayer>
           </div>
         </section>
-        <section className="pt-8 pb-10 w-full ps-4 pe-12">
-          <SectionHead classname="mb-5">Nilai Yang Kami Terapkan</SectionHead>
-          {values.map((value, index) => (
-            <Value key={index} value={value} />
-          ))}
-        </section>
-        <section className="mt-14 w-full ps-10 pe-12">
-          <SectionHead classname="mb-5">Tim Kami</SectionHead>
-        </section>
-        <div className="grid grid-cols-2 mx-auto gap-6 gap-y-8 mt-4">
+
+        <div className="flex flex-col justify-center font-body">
+          <article className="md:bg-[#F8F8F8] md:px-20 md:mt-8 md:pb-8 lg:pb-28">
+            <SectionHead classname="mt-4 mb-8 md:mt-8">
+              Step Up Project
+            </SectionHead>
+            <section className=" lg:flex lg:gap-4">
+              <section className="px-5 pb-10  lg:w-[50%] lg:pb-0">
+                <h3 className="hidden font-bold text-xl text-black font-body mb-2 lg:block lg:text-left">
+                  Tentang Kami
+                </h3>
+                <div className="text-sm text-black/80 font-normal">
+                  <p>
+                    Step Up Project adalah sebuah komunitas yang bergerak untuk
+                    digitalisasi bisnis dan organisasi melalui pengembangan dan
+                    pengelolaan aplikasi web yang professional dan terpercaya.
+                    Step Up Project juga hadir sebagai edukasi seputar dunia IT
+                    dengan informasi terupdate yang disajikan dalam artikel dan
+                    konten digital kami.
+                  </p>
+                  <p className="mt-4">
+                    Semua itu kami capai dengan menggunakan teknologi dan proses
+                    terbaik seuai dengan perkembangan dunia IT. Hal ini
+                    memastikan layanan yang kami berikan adalah solusi terbaik
+                    untuk anda.
+                  </p>
+                </div>
+              </section>
+              <section className="pt-8 pb-10 w-full ps-4 pe-12  lg:w-[50%] lg:pt-0 lg:pe-28 lg:pb-0">
+                <h3
+                  className="font-bold text-xl text-black text-center font-body mb-5 
+                md:ps-11 lg:text-left lg:mb-2 lg:ps-0"
+                >
+                  Nilai Yang Kami Terapkan
+                </h3>
+                {values.map((value, index) => (
+                  <div key={index} className="lg:mb-2">
+                    <Value value={value} />
+                    {index !== values.length - 1}
+                  </div>
+                ))}
+              </section>
+            </section>
+          </article>
+          <section className="mt-14 w-full ps-10 pe-12 md:px-20">
+            <SectionHead classname="mb-5">Tim Kami</SectionHead>
+          </section>
+          <div
+            className="grid grid-cols-2 mx-auto gap-6 gap-y-8 mt-4 md:grid-cols-3 md:mx-auto md:gap-8 md:gap-y-12 md:px-20
+          lg:gap-20"
+          >
             {teams.map((team, index) => (
               <TeamCard key={index} {...team} />
             ))}
           </div>
-      </div>
+        </div>
+      </main>
       <Footer></Footer>
     </>
   );

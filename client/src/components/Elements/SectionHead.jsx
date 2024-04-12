@@ -7,7 +7,7 @@ const SectionHead = (props) => {
       classname: PropTypes.string
     }
     return (
-      <h1 className={`font-bold text-xl text-black text-center font-body ${classname}`}>
+      <h1 className={`font-bold text-xl text-black text-center font-body lg:text-[34px] ${classname}`}>
         {children}
       </h1>
     );
