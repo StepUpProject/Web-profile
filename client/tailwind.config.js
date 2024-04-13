@@ -28,6 +28,9 @@ export default {
       borderRadius: {
         customRounded: "52% 48% 48% 52% / 50% 54% 46% 50% ",
       },
+      width: {
+        round: "calc(100% - 160px)",
+      },
     },
   },
   plugins: [],
