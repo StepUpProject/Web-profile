@@ -57,7 +57,7 @@ const Footer = () => {
         <div>
           <div className="flex flex-row items-center gap-3 mt-6">
             <img
-              src="images/logo.png"
+              src="../../../images/logo.png"
               alt=""
               className="w-[41px] lg:w-[62px]"
             />
