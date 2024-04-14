@@ -58,7 +58,7 @@ const BerandaDev = () => {
   ];
 
   return (
-    <div className="relative mt-24">
+    <div className="relative mt-24 pb-[550px] md:pb-[350px] lg:pb-[400px] border border-black">
       <NavBar />
       <section className="h-auto">
         <div className="w-full text-center mt-10">
