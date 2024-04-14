@@ -46,16 +46,26 @@ const FormLogin = (props) => {
   };
   return (
     <>
-      <div className="flex flex-col justify-center items-center w-[268px] backdrop-blur-md bg-white/25 rounded-xl shadow-[5px_5px_10px_rgba(0,0,0,0.4)]">
-        <div className="w-full gap-2 flex justify-center items-center mt-6 ">
+      <div
+        className="font-body flex flex-col justify-center items-center w-[268px] backdrop-blur-md bg-white/25 rounded-xl shadow-[5px_5px_10px_rgba(0,0,0,0.4)]
+      md:absolute md:right-10 md:top-16 md:w-[504px] md:px-16 md:pb-8 md:pt-4 
+      lg:w-[824px] lg:right-24 lg:top-24 lg:px-14 lg:pb-12 lg:pt-6"
+      >
+        <div className="w-full gap-2 flex justify-center items-center mt-6 md:justify-end lg:mr-10">
           <img
             src="../images/logo.png"
             alt="Logo Step Up"
-            className="w-[28px]"
+            className="w-[28px] lg:w-[60px]"
           />
-          <h3 className="font-bold text-lg text-center">Step Up</h3>
+          <h3 className="font-bold text-lg text-center lg:text-2xl">Step Up</h3>
         </div>
-        <form onSubmit={handleLogin} className="px-5 w-full">
+        {/* title yang tampil ketika mode dekstop dan tablet saja */}
+        <div className="w-full flex justify-start items-center sm:hidden md:block lg:px-20 ">
+          <h1 className="hidden font-bold text-xl mt-6 text-left md:block md:ps-4 lg:mt-10 lg:mb-2 lg:text-2xl">
+            Halaman Login
+          </h1>
+        </div>
+        <form onSubmit={handleLogin} className="px-5 w-full lg:px-24">
           <InputForm
             name="email"
             type="email"
