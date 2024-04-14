@@ -11,11 +11,11 @@ const AuthLayout = ({ children }) => {
       {/* syle ketika tampilan tablet dan dekstop */}
       <StylizedFrame
         urlImage="../images/bg-login-big-1.png"
-        classname="hidden absolute left-0 top-0 md:block md:w-[440px] lg:w-[1009px] lg:h-auto"
+        classname="hidden absolute left-0 top-0 md:block md:w-[460px] lg:w-[1009px] lg:h-auto"
       ></StylizedFrame>
       <StylizedFrame
         urlImage="../images/bg-login-big-2.png"
-        classname="hidden absolute right-0 bottom-[40px] md:block md:w-[200px] lg:w-[320px]"
+        classname="hidden absolute right-0 top-[320px] md:block md:w-[200px] lg:w-[320px] lg:top-[260px]"
       ></StylizedFrame>
       {/* syle ketika tampilan mobile */}
       <StylizedFrame
