@@ -58,7 +58,7 @@ const PortfolioDetail = () => {
               <img
                 src={portfolio.mockupLaptop}
                 alt={portfolio.mockupLaptop}
-                className="mx-auto w-[226px] md:w-[340px] lg:w-[742px]"
+                className="mx-auto w-[226px]  md:w-[340px] lg:w-[742px]"
               />
               <img
                 src={portfolio.mockupHP}
@@ -100,7 +100,7 @@ const PortfolioDetail = () => {
                   <img
                     src={tech.image}
                     alt={tech.title}
-                    className="lg:w-[68px]"
+                    className="w-[28px] lg:w-[68px]"
                   />
                 </div>
               ))}
