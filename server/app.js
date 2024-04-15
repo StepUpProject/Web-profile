@@ -67,7 +67,7 @@ const portfolios = [
     mockupHP: "../images/portfolio-detail-hp.png",
     title: "Website Arsitek Rumah",
     subtitle: "Bank Central Indonesia",
-    backgroundColor: "bg-[#D7F0FF]",
+    backgroundColor: "D7F0FF",
     description:
       "Terinspirasi oleh estetika dan fungsionalitas, portofolio arsitektur kami mencerminkan keahlian dalam merancang rumah impian",
     descriptionDetail:
@@ -98,7 +98,7 @@ const portfolios = [
     mockupHP: "../images/portfolio-detail-hp.png",
     title: "Website Catering",
     subtitle: "Warung Makan Kokoh",
-    backgroundColor: "bg-[#D7FFEE]",
+    backgroundColor: "D7FFEE",
     description:
       "Terinspirasi oleh estetika dan fungsionalitas, portofolio arsitektur kami mencerminkan keahlian dalam merancang rumah impian",
     descriptionDetail:
@@ -129,7 +129,7 @@ const portfolios = [
     mockupHP: "../images/portfolio-detail-hp.png",
     title: "Website Arsitek Rumah",
     subtitle: "Bank Central Indonesia",
-    backgroundColor: "bg-[#D7F0FF]",
+    backgroundColor: "D7F0FF",
     description:
       "Terinspirasi oleh estetika dan fungsionalitas, portofolio arsitektur kami mencerminkan keahlian dalam merancang rumah impian",
     descriptionDetail:
@@ -160,7 +160,7 @@ const portfolios = [
     mockupHP: "../images/portfolio-detail-hp.png",
     title: "Website Catering",
     subtitle: "Warung Makan Kokoh",
-    backgroundColor: "bg-[#D7FFEE]",
+    backgroundColor: "D7FFEE",
     description:
       "Terinspirasi oleh estetika dan fungsionalitas, portofolio arsitektur kami mencerminkan keahlian dalam merancang rumah impian",
     descriptionDetail:
@@ -191,7 +191,7 @@ const portfolios = [
     mockupHP: "../images/portfolio-detail-hp.png",
     title: "Website Arsitek Rumah",
     subtitle: "Bank Central Indonesia",
-    backgroundColor: "bg-[#D7F0FF]",
+    backgroundColor: "D7F0FF",
     description:
       "Terinspirasi oleh estetika dan fungsionalitas, portofolio arsitektur kami mencerminkan keahlian dalam merancang rumah impian",
     descriptionDetail:
@@ -222,7 +222,7 @@ const portfolios = [
     mockupHP: "../images/portfolio-detail-hp.png",
     title: "Website Catering",
     subtitle: "Warung Makan Kokoh",
-    backgroundColor: "bg-[#D7FFEE]",
+    backgroundColor: "D7FFEE",
     description:
       "Terinspirasi oleh estetika dan fungsionalitas, portofolio arsitektur kami mencerminkan keahlian dalam merancang rumah impian",
     descriptionDetail:

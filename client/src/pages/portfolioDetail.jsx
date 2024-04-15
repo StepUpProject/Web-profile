@@ -47,7 +47,7 @@ const PortfolioDetail = () => {
             {/* kenpaa harus di pancing bg manual dlu, ahhhh */}
 
             <div
-              className={` h-[220px] w-full ${portfolio.backgroundColor} md:h-[312px] lg:h-[579px]`}
+              className={` h-[220px] w-full bg-[#${portfolio.backgroundColor}] md:h-[312px] lg:h-[579px]`}
             >
               {/* <div className="hidden w-full h-[220px] bg-[#D7F0FF]"></div> */}
               {/* {portfolio.backgroundColor} */}
