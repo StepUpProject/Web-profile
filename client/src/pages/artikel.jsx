@@ -5,14 +5,20 @@ import NavBar from "../components/Fragments/Navbar";
 import Footer from "../components/Fragments/Footer";
 import CardArtikel from "../components/Fragments/CardArtikel";
 import Button from "../components/Elements/Button/Button";
+import LatestCardArticle from "../components/Fragments/LatestCardArticle";
 import axios from "axios";
-import { getArticles, destroyArticle } from "../services/article.service";
+import {
+  getArticles,
+  destroyArticle,
+  getLatestArticle,
+} from "../services/article.service";
 
 const Artikel = () => {
   const [articles, setArticles] = useState([]);
   const [ids, setIds] = useState([]);
   const [user, setUser] = useState("");
   const [cookies, setCookie, removeCookie] = useCookies([]);
+  const [latestArticle, setLatestArticle] = useState([]);
 
   // const verifyUser =
   useEffect(() => {
@@ -44,6 +50,16 @@ const Artikel = () => {
     });
   }, [articles]);
 
+  useEffect(() => {
+    getLatestArticle((res) => {
+      if (res) {
+        setLatestArticle(res.articles);
+      } else {
+        console.log(res);
+      }
+    });
+  }, []);
+
   return (
     <>
       <NavBar />
@@ -55,10 +71,10 @@ const Artikel = () => {
           ditemukan
         </p>
         {user ? (
-          <Link to="/developer/article/create">
+          <Link to="/developer/article/create" className="md:flex md:w-full md:justify-center">
             <Button
               type="submit"
-              classname={`w-full my-10 bg-primary rounded-full`}
+              classname={`w-full md:w-[50%] my-10 py-3 bg-primary rounded-full shadow-lg shadow-slate-500 hover:shadow-md hover:shadow-dark transition duration-300 `}
             >
               Buat Artikel
             </Button>
@@ -67,16 +83,34 @@ const Artikel = () => {
           <></>
         )}
         {/* <img src={`${image}`} alt="" /> */}
-        {/* <h2 className="mt-[30px] px-[12px] font-bold text-xl text-transparent bg-clip-text bg-gradient-to-b from-primary from-40% to-black/80">Postingan Terbaru</h2> */}
-        {/* memanggil object semua artikel */}
-        {articles.map((article, index) => (
-          <CardArtikel
+        <h2 className="mt-[30px] px-[12px] font-bold text-xl text-center">
+          Postingan Terbaru
+        </h2>
+        {/* <LatestCardArticle /> */}
+        <div className="w-full">
+        {latestArticle.map((article, index) => (
+          <LatestCardArticle
             key={ids[index]}
             id={ids[index]}
             {...article}
             // handleDeleteArticle={handleDeleteArticle(ids[index])}
           />
         ))}
+        </div>
+        {/* memanggil object semua artikel */}
+        <h2 className="mt-[30px] px-[12px] font-bold text-xl text-center ">
+          Postingan Lainnya
+        </h2>
+        <div className="md:grid md:grid-cols-3 md:gap-4">
+          {articles.map((article, index) => (
+            <CardArtikel
+              key={ids[index]}
+              id={ids[index]}
+              {...article}
+              // handleDeleteArticle={handleDeleteArticle(ids[index])}
+            />
+          ))}
+        </div>
       </main>
       <Footer />
     </>

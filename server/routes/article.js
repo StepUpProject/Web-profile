@@ -77,6 +77,17 @@ router.get("/article", async (req, res) => {
   }
 })
 
+router.get("/article/latest", async (req, res) => {
+  try {
+    const articles = await Article.find().sort({ published_at: -1 }).limit(1);
+    return res.status(200).json({
+      articles: articles,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+})
+
 router.get("/article/:id", async (req, res) => {
   try {
     const { id } = req.params;

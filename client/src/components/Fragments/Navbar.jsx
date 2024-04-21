@@ -61,10 +61,10 @@ const Navbar = () => {
   return (
     <nav className="top-0">
       <div
-        className={`h-[60px] flex justify-between w-full fixed bg-white
-        -top-1 z-50 text-dark lg:py-5 px-5 py-4 flex-1 shadow-md shadow-black/50`}
+        className={`h-[60px] flex md:justify-around md:items-center w-full fixed bg-white
+        -top-1 z-50 text-dark lg:py-5 px-5 py-4 mt-3 shadow-md shadow-black/50 md:shadow-none`}
       >
-        <div className="flex items-center gap-1 flex-1">
+        <div className="flex items-center gap-1">
           <img src="images/logo.png" alt="" className="h-[25px]"/>
           <span className="font-bold text-lg text-black font-body">Step Up</span>
         </div>
@@ -84,7 +84,7 @@ const Navbar = () => {
 const WideContent = () => {
   const location = useLocation();
   return (
-    <div className="lg:flex md:flex lg:flex-1 items-center justify-end font-normal hidden">
+    <div className="md:flex items-center justify-end md:justify-center font-normal hidden">
       <div className="flex-10">
         <ul className="flex gap-4 mr-16 text-[18px]">
           {menus.map((menu) => (

@@ -20,6 +20,14 @@ export const getArticles = async (callback) => {
             console.log(err)
         })
 }
+export const getLatestArticle = async (callback) => {
+    await axios.get(`${URL_API}/latest`)
+        .then(res => {
+            callback(res.data)
+        }).catch(err => {
+            console.log(err)
+        })
+}
 export const getArticle = async (id, callback) => {
     try {
         const responseArticle = await axios.get(`${URL_API}/${id}`);

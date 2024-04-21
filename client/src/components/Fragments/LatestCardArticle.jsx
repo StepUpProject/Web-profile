@@ -1,17 +1,20 @@
 import { Link } from "react-router-dom";
 import HTMLReactParser from "html-react-parser";
-import { destroyArticle } from "../../services/article.service";
+import {
+  destroyArticle,
+  getLatestArticle,
+} from "../../services/article.service";
 import { useCookies } from "react-cookie";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { DateConverter } from "../Elements/DateConverter";
-const CardArtikel = ({
+const LatestCardArticle = ({
   id,
   image,
   title,
   author,
   content,
-  published_at
+  published_at,
 }) => {
   const [cookies, setCookie, removeCookie] = useCookies([]);
   const [user, setUser] = useState("");
@@ -42,17 +45,17 @@ const CardArtikel = ({
         console.log(res);
       }
     });
-  } 
+  };
   return (
-    <div className="block max-w-[300px] md:max-w-[409px] mx-auto mt-[43px] rounded-xl font-body overflow-hidden shadow-lg box-border">
-      <Link to={`/article/${id}`}>
+    <div className="block md:flex md:flex-wrap max-w-[300px] md:max-w-[1200px] mx-auto mt-[43px] rounded-xl font-body overflow-hidden shadow-lg box-border">
+      <Link to={`/article/${id}`} className="md:flex-1">
         <img
           src={`http://localhost:3000/article/${image}`}
           alt="Cards"
-          className="w-full h-auto"
+          className="w-full h-auto md:h-full"
         />
       </Link>
-      <div className="px-[14px] py-3 box-border leading-3">
+      <div className="px-[14px] py-3 box-border leading-3 md:flex-1" >
         <Link to={`/article/${id}`}>
           <h1 className="text-[16px] font-bold text-left my-[11px]">{title}</h1>
         </Link>
@@ -61,27 +64,24 @@ const CardArtikel = ({
         <p className="word-wrap my-4 text-left text-xs ">
           {HTMLReactParser(content.slice(0, 200) + "...")}
         </p>
-        <DateConverter date={published_at} />;
-        {/* <p>{published_at}</p> */}
+        <DateConverter date={published_at} />
       </div>
       {user ? (
-        <div className="flex justify-end gap-4 pe-3 pb-3">
-        <Link to={`/developer/article/edit/${id}`}>
-          <img src="svg/edit.png" alt="" />
-        </Link>
-        <form onSubmit={handleDeleteArticle}>
-        <button type="submit">
-          <img src="svg/delete.png" alt="" />
-        </button>
-        </form>
-      </div>
-      ) : <></>}
+        <div className="flex md:w-full justify-end gap-4 pe-3 pb-3 ">
+          <Link to={`/developer/article/edit/${id}`}>
+            <img src="svg/edit.png" alt="" />
+          </Link>
+          <form onSubmit={handleDeleteArticle}>
+            <button type="submit">
+              <img src="svg/delete.png" alt="" />
+            </button>
+          </form>
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
 
-
-
-export default CardArtikel;
-
-
+export default LatestCardArticle;

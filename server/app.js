@@ -45,13 +45,13 @@ app.use("/", require("./routes/auth"));
 app.use("/", require("./routes/article"));
 app.use("/api/konsultasi", require("./routes/konsultasi"));
 
-app.get("/api/teams", (req, res) => {
-  res.json(teams);
-});
+// app.get("/api/teams", (req, res) => {
+//   res.json(teams);
+// });
 
-app.get("/api/portfolio", (req, res) => {
-  res.json(portfolios);
-});
+// app.get("/api/portfolio", (req, res) => {
+//   res.json(portfolios);
+// });
 
 app.listen(3000, () => {
   console.log("server is listening on http://localhost:3000");
