@@ -7,10 +7,10 @@ import Navbar from "../components/Fragments/Navbar";
 import axios from "axios";
 import Button from "../components/Elements/Button/Button";
 
-
 const ArticleDev = () => {
   const navigate = useNavigate();
   const [cookies, setCookie, removeCookie] = useCookies([]);
+  const [headers, setHeaders] = useState();
   const [user, setUser] = useState("");
 
   useEffect(() => {
@@ -24,6 +24,8 @@ const ArticleDev = () => {
           { withCredentials: true }
         );
         setUser(data.user);
+        setHeaders(cookies.jwt)
+        // console.log(cookies);
         if (!data.status) {
           removeCookie("jwt");
           navigate("/login");
@@ -46,7 +48,8 @@ const ArticleDev = () => {
       </form>
       <Navbar></Navbar>
       <HeadTitle>Buat Artikel - {user}</HeadTitle>
-      <FormArticle></FormArticle>
+      <p>{headers}</p>
+      <FormArticle headers={headers}></FormArticle>
     </div>
   );
 };

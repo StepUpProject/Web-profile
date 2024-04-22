@@ -4,7 +4,9 @@ const wrapAsync = require("../utils/wrapAsync");
 const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
+const jwt = require("jsonwebtoken");
 const Article = require("../models/artikel");
+const isAuthorization = require("../middleware/isAuthorization");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -16,14 +18,19 @@ const storage = multer.diskStorage({
 });
 const image = multer({ storage });
 
-router.put("/article/:id",  image.single("image"), async (req, res) => {
+router.put("/article/:id", image.single("image"), async (req, res) => {
   try {
     const { id } = req.params;
     const { title, content, published_at } = req.body;
     const article = await Article.findById(id);
 
     // delete the previous image
-    const filePath = path.join(__dirname, "..", "assets/article", article.image);
+    const filePath = path.join(
+      __dirname,
+      "..",
+      "assets/article",
+      article.image
+    );
     if (fs.existsSync(filePath)) {
       fs.unlinkSync(filePath);
     }
@@ -42,28 +49,30 @@ router.put("/article/:id",  image.single("image"), async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-})
+});
 
-router.post("/article", image.single("image"), async (req, res) => {
-  try {
-    console.log(req.file);
-    const { title, content, published_at } = req.body;
-    const image = req.file.filename;
-    const newArticle = await Article.create({
-      title: title,
-      published_at: published_at,
-      image: image,
-      content: content,
-    });
-    return res.status(200).json({
-      data: {
-        newArticle,
-        message: "Data received successfully",
-      },
-    });
-  } catch (error) {
-    console.log(error);
-  }
+router.post("/article", image.single("image"), isAuthorization , async (req, res) => {
+    try {
+      const { title, content, published_at } = req.body;
+      const image = req.file.filename;
+
+      const newArticle = new Article({
+        title: title,
+        published_at: published_at,
+        image: image,
+        content: content,
+        author: userId,
+      });
+      await newArticle.save();
+      return res.status(200).json({
+        data: {
+          newArticle,
+          message: "Data received successfully",
+        },
+      });
+    } catch (error) {
+      return res.status(200).json({ message: "Article failed to create" });
+    }
 });
 
 router.get("/article", async (req, res) => {
@@ -75,7 +84,7 @@ router.get("/article", async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-})
+});
 
 router.get("/article/latest", async (req, res) => {
   try {
@@ -86,22 +95,22 @@ router.get("/article/latest", async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-})
+});
 
 router.get("/article/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const article = await Article.findById(id);
     const imageName = article.image;
-    article.image = `http://localhost:3000/article/${article.image}`
+    article.image = `http://localhost:3000/article/${article.image}`;
     return res.status(200).json({
       article,
-      imageName
+      imageName,
     });
   } catch (error) {
     console.log(error);
   }
-})
+});
 
 router.get("/article/:id/image", async (req, res) => {
   try {
@@ -110,22 +119,33 @@ router.get("/article/:id/image", async (req, res) => {
 
     if (!article || !article.image) {
       return res.status(404).json({
-        message: 'Article not found or no image available'
+        message: "Article not found or no image available",
       });
     }
-    const filePath = path.join(__dirname, '..', 'assets', 'article', article.image);
-    
+    const filePath = path.join(
+      __dirname,
+      "..",
+      "assets",
+      "article",
+      article.image
+    );
+
     res.sendFile(path.resolve(filePath));
   } catch (error) {
     console.log(error);
   }
-})
+});
 
-router.delete("/article/:id",  async (req, res) => {
+router.delete("/article/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const article = await Article.findById(id);
-    const filePath = path.join(__dirname, "..", "assets/article", article.image);
+    const filePath = path.join(
+      __dirname,
+      "..",
+      "assets/article",
+      article.image
+    );
     if (fs.existsSync(filePath)) {
       fs.unlinkSync(filePath);
     }
@@ -137,8 +157,6 @@ router.delete("/article/:id",  async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-})
-
-
+});
 
 module.exports = router;
