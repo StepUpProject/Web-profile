@@ -7,6 +7,7 @@ const fs = require("fs");
 const jwt = require("jsonwebtoken");
 const Article = require("../models/artikel");
 const isAuthorization = require("../middleware/isAuthorization");
+const isAuthorArticle = require("../middleware/isAuthorArticle");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -18,7 +19,7 @@ const storage = multer.diskStorage({
 });
 const image = multer({ storage });
 
-router.put("/article/:id", image.single("image"), async (req, res) => {
+router.put("/article/:id", isAuthorization, isAuthorArticle, image.single("image"), async (req, res) => {
   try {
     const { id } = req.params;
     const { title, content, published_at } = req.body;
@@ -51,28 +52,27 @@ router.put("/article/:id", image.single("image"), async (req, res) => {
   }
 });
 
-router.post("/article", image.single("image"), isAuthorization , async (req, res) => {
-    try {
-      const { title, content, published_at } = req.body;
-      const image = req.file.filename;
-
-      const newArticle = new Article({
-        title: title,
-        published_at: published_at,
-        image: image,
-        content: content,
-        author: userId,
-      });
-      await newArticle.save();
-      return res.status(200).json({
-        data: {
-          newArticle,
-          message: "Data received successfully",
-        },
-      });
-    } catch (error) {
-      return res.status(200).json({ message: "Article failed to create" });
-    }
+router.post("/article", isAuthorization, image.single("image"), async (req, res) => {
+  try {
+    const { title, content, published_at } = req.body;
+    const image = req.file.filename;
+    const newArticle = new Article({
+      title: title,
+      published_at: published_at,
+      image: image,
+      content: content,
+      author: req.userId._id, // <-- this is the Fix
+    });
+    await newArticle.save();
+    return res.status(200).json({
+      data: {
+        newArticle,
+        message: "Data received successfully",
+      },
+    });
+  } catch (error) {
+    return res.status(200).json({ error: error });
+  }
 });
 
 router.get("/article", async (req, res) => {

@@ -61,7 +61,7 @@ module.exports.login = async (req, res, next) => {
       httpOnly : false,
       maxAge: 3 * 24 * 60 * 60 * 1000
     });
-    res.status(200).json({ user: user._id, created: true });
+    res.status(200).json({ user: user._id, created: true, token: token });
   } catch (error) {
     const errors = errorHandler(error)
     console.log(error.message)
