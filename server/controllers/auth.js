@@ -35,7 +35,7 @@ return errors;
 
 module.exports.register = async (req, res) => {
   try {
-    const { email, password } = req.body
+    const { email, password } = req.body;
     const user = await User.create({ email, password })
     const token = createToken(user._id)
 
@@ -44,8 +44,9 @@ module.exports.register = async (req, res) => {
       httpOnly : false,
       maxAge: 3 * 24 * 60 * 60 * 1000
     });
-    res.status(201).json({ user: user._id, created: true });
+    res.status(201).json({ user: user._id, created: true, token: token });
   } catch (error) {
+    res.status(400).json({ error, created: false });
     console.log(error)
   }
 };
@@ -64,8 +65,6 @@ module.exports.login = async (req, res, next) => {
     res.status(200).json({ user: user._id, created: true, token: token });
   } catch (error) {
     const errors = errorHandler(error)
-    console.log(error.message)
-    console.log(errors)
     res.status(400).json({ errors , created: false });
   }
 };

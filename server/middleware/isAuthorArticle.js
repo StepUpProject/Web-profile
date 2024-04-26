@@ -6,7 +6,7 @@ const isAuthorArticle = async (req, res, next) => {
   const { id } = req.params;
   let currentArticle = await Artikel.findById(id);
 
-  if(!currentArticle.author.equals(req.userId._id)){
+  if(!currentArticle.author.equals(req.user.id)){
     return res.status(401).json({message: 'Unauthorized'});
   }
   next();

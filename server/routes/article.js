@@ -8,6 +8,7 @@ const jwt = require("jsonwebtoken");
 const Article = require("../models/artikel");
 const isAuthorization = require("../middleware/isAuthorization");
 const isAuthorArticle = require("../middleware/isAuthorArticle");
+const isValidObjectId = require("../middleware/isValidObjectId");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -56,12 +57,13 @@ router.post("/article", isAuthorization, image.single("image"), async (req, res)
   try {
     const { title, content, published_at } = req.body;
     const image = req.file.filename;
+    // console.log(req.user.id);
     const newArticle = new Article({
       title: title,
       published_at: published_at,
       image: image,
       content: content,
-      author: req.userId._id, // <-- this is the Fix
+      author: req.user.id, // <-- this is the Fix
     });
     await newArticle.save();
     return res.status(200).json({
@@ -71,7 +73,7 @@ router.post("/article", isAuthorization, image.single("image"), async (req, res)
       },
     });
   } catch (error) {
-    return res.status(200).json({ error: error });
+    return res.status(400).json({ error: error });
   }
 });
 
@@ -97,7 +99,7 @@ router.get("/article/latest", async (req, res) => {
   }
 });
 
-router.get("/article/:id", async (req, res) => {
+router.get("/article/:id", isValidObjectId, async (req, res) => {
   try {
     const { id } = req.params;
     const article = await Article.findById(id);

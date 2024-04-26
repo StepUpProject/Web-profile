@@ -8,8 +8,8 @@ const isAuthorization = async (req, res, next) => {
   }
   try {
     const decoded = jwt.verify(token, 'StepUp Projects');
-    req.userId = decoded;
-    const user = await User.findById(req.userId.id);
+    req.user = decoded;
+    const user = await User.findById(req.user.id);
     if(!user) {
       return res.status(401).json({ error : "Unauthorized" });
     }

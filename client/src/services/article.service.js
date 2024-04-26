@@ -63,7 +63,7 @@ export const getArticle = async (id, callback) => {
 
 export const updateArticle = async (id, data, callback) => {
   await axios
-    .put(`${URL_API}/${id}`, data)
+    .put(`${URL_API}/${id}`, data, { withCredentials: true })
     .then((res) => {
       callback(true, res.data);
     })
