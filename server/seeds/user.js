@@ -20,8 +20,8 @@ async function seedUsers(){
     const users = [
         {
             "name"      : "Al Ikhsan Akbar Fatahillah",
+            "email"     : "ikhsanngkalu@gmail.com",
             "password"  : "stepupcode",
-            "email"     : "ikhsanngkalu@gmail.com"
         },
         {
             "name"      : "Muhammad Abdanul Ikhlas",

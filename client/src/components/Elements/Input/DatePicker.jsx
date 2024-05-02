@@ -22,7 +22,7 @@ export const DatePickerComponent = ({ name, label }) => {
   return (
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DemoContainer components={["DatePicker", "DatePicker"]}>
-          <div className="flex flex-col font-bold">
+          <div className="flex flex-col font-bold w-full md:w-[525px]">
             <DatePicker
               name={name}
               value={value}

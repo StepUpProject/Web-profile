@@ -10,9 +10,6 @@ import FormEditArticle from "../components/Fragments/FormEditArticle";
 
 
 const ArticleEdit = () => {
-
-
-
 //   const navigate = useNavigate();
 //   const [cookies, setCookie, removeCookie] = useCookies([]);
 //   const [user, setUser] = useState("");

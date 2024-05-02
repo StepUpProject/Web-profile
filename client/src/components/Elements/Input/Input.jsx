@@ -53,7 +53,6 @@ export const InputArticle = ({
 }) => {
   const handleChange = (newValue) => {
     setValue(newValue);
-    console.log(newValue);
   };
   return (
     <>
@@ -66,7 +65,7 @@ export const InputArticle = ({
         placeholder={label}
         value={value}
         onChange={(e) => handleChange(e.target.value)}
-        className={`w-full rounded-lg border-1 border-slate-300 py-3 px-4 font-semibold ${classname}`}
+        className={`w-full md:w-[525px] rounded-lg border-2 border-slate-300 py-3 px-4 font-semibold ${classname}`}
       />
     </>
   );

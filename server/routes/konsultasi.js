@@ -24,11 +24,11 @@ router.post("/", async (req, res) => {
       // Save to MongoDB
       await newkonsul.save();
   
-      res.status(201).json({ success: true, message: "Data berhasil disimpan" });
+      res.status(201).json({ success: true, message: "Konsultasi Berhasil" });
       console.log(newkonsul);
     } catch (error) {
       console.error(error);
-      res.status(500).json({ success: false, message: "Internal Server Error" });
+      res.status(500).json({ success: false, message: "Konsultasi Gagal, Mohon coba lagi" });
     }
   });
 

@@ -72,14 +72,14 @@ const devMenus = [
     name: "Beranda",
     active: false,
   },
-  // {
-  //   link: "/artikelDev",
-  //   name: "ArtikelDev",
-  //   active: false,
-  // },
+  {
+    link: "/article",
+    name: "Artikel",
+    active: false,
+  },
 ];
 
-const Navbar = () => {
+const NavbarDev = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolling, setScrolling] = useState(false);
 
@@ -110,7 +110,7 @@ const Navbar = () => {
       >
         <div className="flex items-center gap-1 flex-1">
           <img src="images/logo.png" alt="" className="h-[25px]" />
-          <span className="font-bold text-lg text-transparent bg-clip-text bg-gradient-to-b from-primary to-black/50">
+          <span className="font-bold text-lg text-black font-body">
             Step Up
           </span>
         </div>
@@ -233,4 +233,4 @@ const SmallContent = () => {
 //   );
 // }
 
-export default Navbar;
+export default NavbarDev;

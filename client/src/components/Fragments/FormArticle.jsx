@@ -7,30 +7,35 @@ import DateInput from "../Elements/Input/DatePicker";
 import Button from "../Elements/Button/Button";
 import Editor from "../Elements/Input/Editor";
 import { article } from "../../services/article.service";
+import { useCookies } from "react-cookie";
 
-const FormArticle = () => {
+const FormArticle = ({ headers }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [selectedImage, setSelectedImage] = useState("");
+  const [cookies, setCookie, removeCookie] = useCookies([]);
 
   const editorRef = useRef(null);
   const handleAddArticle = (event) => {
     event.preventDefault();
-    const formData = new FormData()
-    formData.append('title', event.target.title.value)
-    formData.append('content', editorRef.current?.value ?? "")
-    formData.append('published_at', event.target.published_at.value)
-    formData.append('image', selectedImage)
-    article(formData, (status, res) => {
-      if (status) {
-        console.log(res);
-      }else {
-        console.log(res);
-      }
-    })
+    if (cookies.jwt) {
+      console.log(cookies.jwt);
+      const formData = new FormData();
+      formData.append("title", event.target.title.value);
+      formData.append("content", editorRef.current?.value ?? "");
+      formData.append("published_at", event.target.published_at.value);
+      formData.append("image", selectedImage);
+      article(formData, (status, res) => {
+        if (status) {
+          console.log(res);
+        } else {
+          console.log(res);
+        }
+      });
+    }
   };
   const handleImageSelection = (selectedImage) => {
-    setSelectedImage(selectedImage)
+    setSelectedImage(selectedImage);
     console.log("Gambar yang dipilih:", selectedImage);
   };
 
@@ -39,16 +44,14 @@ const FormArticle = () => {
       <form onSubmit={handleAddArticle}>
         <div className="ps-4">
           <div className="pe-24 flex flex-col">
-          <InputArticle
+            <InputArticle
               name="title"
               type="text"
               value={title}
               label="Judul Artikel"
               setValue={setTitle}
             />
-            <DateInput 
-              name="published_at"
-              />
+            <DateInput name="published_at" />
             <ImageUploader
               labelText="Pilih Gambar"
               buttonText="Telusuri"
@@ -64,9 +67,9 @@ const FormArticle = () => {
         <div className="px-6">
           <Button
             type="submit"
-            classname="w-full my-10 bg-primary rounded-full"
+            classname="w-full md:w-[621px] my-10 py-2 bg-primary rounded-full"
           >
-            Kirim
+            Upload
           </Button>
         </div>
       </form>

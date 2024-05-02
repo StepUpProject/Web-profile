@@ -10,33 +10,21 @@ import "aos/dist/aos.css";
 import Button from "../components/Elements/Button/Button";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import useVerifyUser from "../hooks/useVerifyUser";
 import StylizedFrame from "../components/Elements/StylizedFrame";
 AOS.init();
 
 const BerandaDev = () => {
+  const user = useVerifyUser();
   const navigate = useNavigate();
   const [cookies, setCookie, removeCookie] = useCookies([]);
-  const [user, setUser] = useState("");
-  useEffect(() => {
-    const verifyUser = async () => {
-      if (!cookies.jwt) {
-        navigate("/login");
-      } else {
-        const { data } = await axios.post(
-          `http://localhost:3000/`,
-          {},
-          { withCredentials: true }
-        );
-        setUser(data.user);
-        if (!data.status) {
-          removeCookie("jwt");
-          navigate("/login");
-        }
-      }
-    };
-    verifyUser();
-  }, [cookies, navigate, removeCookie]);
 
+
+  useEffect(() => {
+    if (!cookies.jwt) {
+      navigate("/login");
+    }
+  })
   const handleLogout = () => {
     removeCookie("jwt");
     navigate("/login");

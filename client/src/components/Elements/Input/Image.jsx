@@ -27,7 +27,7 @@ const ImageUploader = ({ labelText, buttonText, onImageChange, currentImage }) =
       <label htmlFor="content" className="labelArticle text-md">
         {labelText || "Pilih Thumbnail"}
       </label>
-      <div className="flex flex-row items-center border-2 py-3 ps-3">
+      <div className="flex flex-row items-center border-2 py-3 ps-3 w-full md:w-[525px]">
         
         <input
           type="file"
