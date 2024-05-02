@@ -91,9 +91,11 @@ const Navbar = ({ user }) => {
         className={`h-[60px] flex justify-between md:justify-around md:items-center w-full fixed bg-white
         -top-1 z-50 text-dark lg:py-5 px-5 py-4 mt-3 shadow-md shadow-black/50 md:shadow-none`}
       >
-        <div className="flex items-center gap-1">
-          <img src="images/logo.png" alt="" className="h-[25px]"/>
-          <span className="font-bold text-lg text-black font-body">Step Up</span>
+        <div className="flex items-center gap-1 flex-1">
+          <img src="../../images/logo.png" alt="" className="h-[25px]" />
+          <span className="font-bold text-lg text-black font-body">
+            Step Up
+          </span>
         </div>
         <WideContent user={user}/>
         <div>{isMenuOpen && <SmallContent user={user}/>}</div>
