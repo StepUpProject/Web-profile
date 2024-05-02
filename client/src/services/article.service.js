@@ -43,7 +43,6 @@ export const getArticle = async (id, callback) => {
     if (!article) {
       throw new Error("Article not found or no image available");
     }
-
     const responseImage = await axios.get(`${URL_API}/${id}/image`, {
       responseType: "arraybuffer", // To get the image as a binary buffer
     });
@@ -53,7 +52,6 @@ export const getArticle = async (id, callback) => {
       image: imageBlob,
     };
   } catch (error) {
-    console.log(error);
     return {
       article: null,
       image: null,

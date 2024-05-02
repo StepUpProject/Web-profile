@@ -79,9 +79,12 @@ router.post("/article", isAuthorization, image.single("image"), async (req, res)
 
 router.get("/article", async (req, res) => {
   try {
-    const articles = await Article.find();
+    const articles = await Article.find().populate("author", "email"); // <-- populate('author', 'email')
     return res.status(200).json({
-      articles: articles,
+      articles: articles.map((article) => ({ // <-- map
+        ...article._doc,
+        author: article.author && article.author.email, // <-- article.author && article.author.email
+      })),
     });
   } catch (error) {
     console.log(error);
@@ -99,7 +102,7 @@ router.get("/article/latest", async (req, res) => {
   }
 });
 
-router.get("/article/:id", isValidObjectId, async (req, res) => {
+router.get("/article/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const article = await Article.findById(id);

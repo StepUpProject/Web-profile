@@ -1,16 +1,16 @@
 import { useState, useRef, useEffect } from "react";
 import { InputArticle } from "../Elements/Input/Input";
+import { useParams } from "react-router-dom";
 import "react-date-picker/dist/DatePicker.css";
 import "react-calendar/dist/Calendar.css";
+import { article, getArticle, updateArticle } from "../../services/article.service";
 import ImageUploader from "../Elements/Input/Image";
 import DateInput from "../Elements/Input/DatePicker";
 import Button from "../Elements/Button/Button";
 import Editor from "../Elements/Input/Editor";
-import { article, getArticle, updateArticle } from "../../services/article.service";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 
-const FormEditArticle = (props) => {
+const FormEditArticle = ({  }) => {
     const [articleData, setArticleData] = useState([]);
     const [content, setContent] = useState("");
     const [title, setTitle] = useState("");
@@ -39,8 +39,6 @@ const FormEditArticle = (props) => {
     formData.append("content", editorRef.current?.value ?? "");
     formData.append("published_at", event.target.published_at.value);
     formData.append("image", selectedImage);
-    // console.log(id);
-    console.log(formData)
     updateArticle(id, formData, (status, res) => {
       if (status) {
         console.log(res);

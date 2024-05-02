@@ -60,10 +60,9 @@ const LatestCardArticle = ({
           <h1 className="text-[16px] font-bold text-left my-[11px]">{title}</h1>
         </Link>
         <h2 className="text-xs ">By {author ? author : "Step-Up"}</h2>
-        {/* <h2 className="text-xs ">{id ? id : "x"}</h2> */}
-        <p className="word-wrap my-4 text-left text-xs ">
+        <div className="word-wrap my-4 text-left text-xs ">
           {HTMLReactParser(content.slice(0, 200) + "...")}
-        </p>
+        </div>
         <DateConverter date={published_at} />
       </div>
       {user ? (

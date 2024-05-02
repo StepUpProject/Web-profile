@@ -12,36 +12,20 @@ import {
   destroyArticle,
   getLatestArticle,
 } from "../services/article.service";
+import NavbarDev from "../components/Fragments/NavbarDev";
+import Navbar from "../components/Fragments/Navbar";
+import useVerifyUser from "../hooks/useVerifyUser";
 
 const Artikel = () => {
   const [articles, setArticles] = useState([]);
   const [ids, setIds] = useState([]);
-  const [user, setUser] = useState("");
   const [cookies, setCookie, removeCookie] = useCookies([]);
   const [latestArticle, setLatestArticle] = useState([]);
-
-  // const verifyUser =
-  useEffect(() => {
-    const verifyUser = async () => {
-      if (cookies.jwt) {
-        const { data } = await axios.post(
-          `http://localhost:3000/`,
-          {},
-          { withCredentials: true }
-        );
-        setUser(data.user);
-        // if (!data.status) {
-        //   removeCookie("jwt");
-        //   navigate("/login");
-        // }
-      }
-    };
-    verifyUser();
-  }, [cookies, removeCookie]);
-
+  const user = useVerifyUser();
+  
   useEffect(() => {
     getArticles((res) => {
-      if (res) {
+      if (res){
         setArticles(res.articles);
         setIds(res.articles.map((article) => article._id));
       } else {
@@ -62,7 +46,8 @@ const Artikel = () => {
 
   return (
     <>
-      <NavBar />
+      {/* {user ? <NavbarDev /> : <NavBar />} */}
+      <Navbar user={user}/>
       <main className="px-2 mb-14 box-border">
         <h1 className="mt-[80px] text-2xl font-bold text-center">Artikel</h1>
         <p className="mt-[30px] w-full text-xs font-body leading-4 text-black px-[12px] text-center">
@@ -90,10 +75,9 @@ const Artikel = () => {
         <div className="w-full">
         {latestArticle.map((article, index) => (
           <LatestCardArticle
-            key={ids[index]}
+            key={ids}
             id={ids[index]}
             {...article}
-            // handleDeleteArticle={handleDeleteArticle(ids[index])}
           />
         ))}
         </div>
@@ -107,7 +91,6 @@ const Artikel = () => {
               key={ids[index]}
               id={ids[index]}
               {...article}
-              // handleDeleteArticle={handleDeleteArticle(ids[index])}
             />
           ))}
         </div>

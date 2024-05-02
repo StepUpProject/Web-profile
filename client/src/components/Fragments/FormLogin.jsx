@@ -25,8 +25,6 @@ const FormLogin = (props) => {
     login(data, async (success, res) => {
       try {
         if (success) {
-          console.log(success);
-          console.log(res);
           if (res.response && res.response.data.errors) {
             const { email, password } = res.response.data.errors;
             if (email) {
@@ -39,8 +37,7 @@ const FormLogin = (props) => {
           }
         }
       } catch (error) {
-        console.log(error);
-        console.log(res);
+        throw new Error(error);
       }
     });
   };

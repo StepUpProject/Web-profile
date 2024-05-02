@@ -35,7 +35,34 @@ const menus = [
     active: false,
   },
 ];
-const Navbar = () => {
+const devMenus = [
+  {
+    link: "/developer/dashboard",
+    name: "Beranda",
+    active: false,
+  },
+  {
+    link: "/article",
+    name: "Artikel",
+    active: false,
+  },
+  {
+    link: "/developer/konsultasi",
+    name: "Konsultasi",
+    active: false,
+  },
+  {
+    link: "/login",
+    name: "Logout",
+    active: false,
+  },
+  // {
+  //   link: "/artikelDev",
+  //   name: "ArtikelDev",
+  //   active: false,
+  // },
+];
+const Navbar = ({ user }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolling, setScrolling] = useState(false);
 
@@ -61,15 +88,15 @@ const Navbar = () => {
   return (
     <nav className="top-0">
       <div
-        className={`h-[60px] flex md:justify-around md:items-center w-full fixed bg-white
+        className={`h-[60px] flex justify-between md:justify-around md:items-center w-full fixed bg-white
         -top-1 z-50 text-dark lg:py-5 px-5 py-4 mt-3 shadow-md shadow-black/50 md:shadow-none`}
       >
         <div className="flex items-center gap-1">
           <img src="images/logo.png" alt="" className="h-[25px]"/>
           <span className="font-bold text-lg text-black font-body">Step Up</span>
         </div>
-        <WideContent />
-        <div>{isMenuOpen && <SmallContent />}</div>
+        <WideContent user={user}/>
+        <div>{isMenuOpen && <SmallContent user={user}/>}</div>
         <button
           className="block md:hidden transition"
           onClick={handleIsMenuOpen}
@@ -81,38 +108,62 @@ const Navbar = () => {
   );
 };
 
-const WideContent = () => {
+const WideContent = ({ user }) => {
   const location = useLocation();
   return (
     <div className="md:flex items-center justify-end md:justify-center font-normal hidden">
       <div className="flex-10">
         <ul className="flex gap-4 mr-16 text-[18px]">
-          {menus.map((menu) => (
-            <li key={menu.link}>
-              <Link spy="true" smooth="true" to={menu.link}
-                className=
-                {`${
-                  location.pathname === menu.link
-                    ? "text-primary border-b border-primary"
-                    : "text-dark bg-white"
-                } transition cursor-pointer`}>
-                {menu.name}
-              </Link>
-            </li>
-          ))}
+          {
+            user ? (
+              <>
+              {devMenus.map((menu) => (
+                <li key={menu.link}>
+                  <Link spy="true" smooth="true" to={menu.link}
+                    className=
+                    {`${
+                      location.pathname === menu.link
+                        ? "text-primary border-b border-primary"
+                        : "text-dark bg-white"
+                    } transition cursor-pointer`}>
+                    {menu.name}
+                  </Link>
+                  </li>
+              ))}
+              </>
+            ) : (
+              <>
+              {menus.map((menu) => (
+                <li key={menu.link}>
+                  <Link spy="true" smooth="true" to={menu.link}
+                    className=
+                    {`${
+                      location.pathname === menu.link
+                        ? "text-primary border-b border-primary"
+                        : "text-dark bg-white"
+                    } transition cursor-pointer`}>
+                    {menu.name}
+                  </Link>
+                  </li>
+              ))}
+              </>
+            )
+          }
         </ul>
       </div>
     </div>
   );
 };
 
-const SmallContent = () => {
+const SmallContent = ({ user }) => {
   const location = useLocation();
   return (
     <>
       <div className="lg:hidden block absolute top-[60px] w-full left-0 right-0 bg-white transition">
         <ul className="text-center text-xl mb-2 px-3">
-          {menus.map((menu) => (
+          { user ? (
+            <>
+            {devMenus.map((menu) => (
             <Link key={menu.link} spy="true" smooth="true" to={menu.link}>
               <li
                 className={`my-4 py-3 hover:bg-primary hover:text-white rounded-md cursor-pointer ${
@@ -125,29 +176,28 @@ const SmallContent = () => {
               </li>
             </Link>
           ))}
+            </>
+          ) : (
+            <>
+            {devMenus.map((menu) => (
+            <Link key={menu.link} spy="true" smooth="true" to={menu.link}>
+              <li
+                className={`my-4 py-3 hover:bg-primary hover:text-white rounded-md cursor-pointer ${
+                  location.pathname === menu.link
+                    ? "text-white bg-primary"
+                    : "text-dark bg-white"
+                }`}
+              >
+                {menu.name}
+              </li>
+            </Link>
+          ))}
+            </>
+          )}
         </ul>
       </div>
     </>
   );
 };
-// const SmallContent = () =>{
-//     const [isActive, setIsActive] = useState(false);
-//     const handleIsActive = () =>{
-//         setIsActive(!isActive)
-//     }
-//     return (
-//     <>
-//       <div className="lg:hidden block absolute top-[60px] w-full left-0 right-0 bg-white transition">
-//         <ul className="text-center text-xl mb-2 px-3">
-//         {menus.map((menu) => (
-//           <Link spy={true} smooth={true} to={menu.link}>
-//             <li className={`${isActive ? "text-primary bg-primary" : "text-dark bg-white"} my-4 py-3  hover:bg-primary hover:text-white rounded-md cursor-pointer`} onClick={handleIsActive}>{menu.name}</li>
-//           </Link>
-//         ))}
-//         </ul>
-//       </div>
-//     </>
-//   );
-// }
 
 export default Navbar;

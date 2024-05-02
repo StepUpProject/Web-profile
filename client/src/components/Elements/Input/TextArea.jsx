@@ -18,9 +18,9 @@ const TextArea = (props) => {
   };
 
   const floatingLabelStyles = [
-    "text-sm font-semibold mb-2 px-1 mx-3 absolute left-0 -top-8 transition duration-500",
+    "text-sm font-semibold mb-2 px-1 mx-3 absolute left-0 -top-72 transition duration-500",
     focused || value
-      ? "transform -translate-y-5 text-primary -translate-x-2 bg-white scale-90"
+      ? "transform -translate-y-6 -left-1 text-primary -translate-x-2 bg-white scale-90"
       : "text-slate-700",
   ].join(" ");
 
@@ -29,7 +29,7 @@ const TextArea = (props) => {
       <label htmlFor={htmlFor} className="relative">
         <textarea
           cols="30"
-          rows="auto"
+          rows="15"
           id={name}
           name={name}
           value={value}

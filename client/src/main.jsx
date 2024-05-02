@@ -87,30 +87,3 @@ ReactDOM.createRoot(document.getElementById('root')).render(
    <RouterProvider router={router} />
   </React.StrictMode>,
 )
-
-
-
-// const MainRouter = () => {
-//   // const navigate = useNavigate();
-
-//   useEffect(() => {
-//     const verifyUser = async () => {
-//       try {
-//         const response = await axios.post("http://localhost:3000/verifyUser", {}, { withCredentials: true });
-//         if (!response.data.loggedIn) {
-//           // navigate("/login");
-//           window.location.href = "/login";
-//         }
-//       } catch (error) {
-//         console.error("Error verifying user:", error);
-//         window.location.href = "/login";
-//       }
-//     };
-
-//     verifyUser();
-//   }, []);
-
-//   return (
-//     <RouterProvider router={router} />
-//   );
-// };

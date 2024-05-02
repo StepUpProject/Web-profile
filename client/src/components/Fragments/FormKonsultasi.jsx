@@ -3,6 +3,8 @@ import Button from "../Elements/Button/Button";
 import InputForm from "../Elements/Input/Input";
 import TextArea from "../Elements/Input/TextArea";
 import { konsultasi } from "../../services/konsultasi.service";
+import { ToastContainer, toast } from "react-toastify";
+
 
 const FormKonsultasi = () => {
   const [konsulFailed, setKonsulFailed] = useState("");
@@ -15,13 +17,24 @@ const FormKonsultasi = () => {
     };
     konsultasi(data, (status, res) => {
       if (status) {
-        console.log(res);
+        generateSuccess(res.message);
       } else {
-        setKonsulFailed(res.response.data);
+        generateError(res.message);
       }
     });
   };
+  const generateError = (error) => {
+    toast.error(error, {
+      position: "bottom-right",
+    });
+  };
+  const generateSuccess = (success) => {
+    toast.success(success, {
+      position: "bottom-right",
+    });
+  }
   return (
+    <>
     <form onSubmit={handleAddQuestion}>
       <div className="mb-6">
         <InputForm name="fullname" type="text" label="Nama Lengkap" />
@@ -33,10 +46,10 @@ const FormKonsultasi = () => {
       <Button type="submit" classname="p-2 mt-6 w-full bg-primary rounded-full">
         Kirim
       </Button>
-      {konsulFailed && (
-        <p className="text-red-500 text-center mt-2">{konsulFailed}</p>
-      )}
     </form>
+    <ToastContainer />
+    </>
+
   );
 };
 
