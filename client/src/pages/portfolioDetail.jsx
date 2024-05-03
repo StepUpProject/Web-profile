@@ -30,7 +30,7 @@ const PortfolioDetail = () => {
   );
 
   return (
-    <div className="relative z-10 pb-[550px] md:pb-[250px] lg:pb-[300px]">
+    <div className="flex flex-col min-h-screen">
       <NavBar />
       <StylizedFrame
         urlImage="../images/stylized-frame-2-right.png"

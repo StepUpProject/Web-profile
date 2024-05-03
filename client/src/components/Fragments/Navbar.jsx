@@ -119,7 +119,7 @@ const WideContent = ({ user }) => {
           {
             user ? (
               <>
-              {devMenus.map((menu) => (
+              {menus.map((menu) => (
                 <li key={menu.link}>
                   <Link spy="true" smooth="true" to={menu.link}
                     className=
@@ -165,7 +165,7 @@ const SmallContent = ({ user }) => {
         <ul className="text-center text-xl mb-2 px-3">
           { user ? (
             <>
-            {devMenus.map((menu) => (
+            {menus.map((menu) => (
             <Link key={menu.link} spy="true" smooth="true" to={menu.link}>
               <li
                 className={`my-4 py-3 hover:bg-primary hover:text-white rounded-md cursor-pointer ${
@@ -181,7 +181,7 @@ const SmallContent = ({ user }) => {
             </>
           ) : (
             <>
-            {devMenus.map((menu) => (
+            {menus.map((menu) => (
             <Link key={menu.link} spy="true" smooth="true" to={menu.link}>
               <li
                 className={`my-4 py-3 hover:bg-primary hover:text-white rounded-md cursor-pointer ${

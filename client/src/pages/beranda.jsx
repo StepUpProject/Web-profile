@@ -95,7 +95,7 @@ const Beranda = () => {
   }, [teams]);
 
   return (
-    <div className="py-24">
+    <div className="flex flex-col min-h-screen mt-24">
       <NavBar />
       <section className="h-auto md">
         <div className="md:flex md:flex-row md:ps-32 md:h-screen">
@@ -247,18 +247,33 @@ const ReviewCard = () => {
     drop-shadow-[2px_17px_10px_rgba(0,172,193,0.4)] "
     >
       <div className="flex flex-row items-center w-full h-full py-4">
-      <img src="./images/testimoni/pp-1.png" alt="" className="h-20 w-20 md:h-40 md:w-40" />
-      <div className="flex flex-col">
-        <p className="md:h-[50%] pe-1 md:pe-5 ps-7 text-xs md:text-sm text-pale mb-3">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur similique non vel. Lorem ipsum dolor sit,
-          <span className="hidden md:block">
-          amet consectetur adipisicing elit. Quas eligendi sunt recusandae est, doloribus laborum fugit, quia quod tempore error facere animi dolorem libero alias ducimus quisquam accusantium accusamus repellendus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur exercitationem debitis vero explicabo tempora dolores in iste quod enim. Fuga voluptatum sunt optio quaerat rerum expedita tenetur quam consequuntur commodi laudantium, officiis voluptatem odit. Facere magnam repudiandae dicta suscipit aspernatur voluptatem, dolores cum, necessitatibus incidunt, ut doloremque ullam laborum nostrum!
-          </span>
-        </p>
-        <div className="flex flex-row items-center min-h-7 max-h-7 h-full absolute bottom-4">
-          <p className="text-sm font-bold">Al Ikhsan</p>
+        <img
+          src="./images/testimoni/pp-1.png"
+          alt=""
+          className="h-20 w-20 md:h-40 md:w-40"
+        />
+        <div className="flex flex-col">
+          <p className="md:h-[50%] pe-1 md:pe-5 ps-7 text-xs md:text-sm text-pale mb-3">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit Lorem ipsum
+            dolor sit amet consectetur adipisicing elit. Pariatur similique non
+            vel. Lorem ipsum dolor sit,
+            <span className="hidden md:block">
+              amet consectetur adipisicing elit. Quas eligendi sunt recusandae
+              est, doloribus laborum fugit, quia quod tempore error facere animi
+              dolorem libero alias ducimus quisquam accusantium accusamus
+              repellendus! Lorem ipsum dolor sit amet consectetur adipisicing
+              elit. Aspernatur exercitationem debitis vero explicabo tempora
+              dolores in iste quod enim. Fuga voluptatum sunt optio quaerat
+              rerum expedita tenetur quam consequuntur commodi laudantium,
+              officiis voluptatem odit. Facere magnam repudiandae dicta suscipit
+              aspernatur voluptatem, dolores cum, necessitatibus incidunt, ut
+              doloremque ullam laborum nostrum!
+            </span>
+          </p>
+          <div className="flex flex-row items-center min-h-7 max-h-7 h-full absolute bottom-4">
+            <p className="text-sm font-bold">Al Ikhsan</p>
+          </div>
         </div>
-      </div>
       </div>
     </div>
   );
