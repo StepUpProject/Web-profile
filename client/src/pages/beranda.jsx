@@ -7,6 +7,7 @@ import { teamLists } from "../data/teams.js";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import PropTypes from "prop-types";
+import { portfolioData } from "../data/portfolio";
 
 AOS.init();
 
@@ -14,7 +15,7 @@ const Beranda = () => {
   const services = [
     {
       title: "Aplikasi Web",
-      images: "./images/layanan-aplikasi-web.png",
+      images: "./images/layanan-website.png",
       value: "pembuatan dan pengelolaan aplikasi website",
       // classname: "ps-5",
     },
@@ -31,32 +32,7 @@ const Beranda = () => {
       // classname: "ps-5",
     },
   ];
-  const portfolios = [
-    {
-      id: 1,
-      client: "Bank Central Indonesia",
-      title: "Website Arstitek Rumah",
-      image: "./images/portfolio-card-1.png",
-    },
-    {
-      id: 2,
-      client: "Warung Makan Kokoh",
-      title: "Website Catering",
-      image: "./images/portfolio-card-2.png",
-    },
-    {
-      id: 3,
-      client: "Bank Central Indonesia",
-      title: "Website Arstitek Rumah",
-      image: "./images/portfolio-card-1.png",
-    },
-    {
-      id: 4,
-      client: "Warung Makan Kokoh",
-      title: "Website Catering",
-      image: "./images/portfolio-card-2.png",
-    },
-  ];
+
   const customers = [
     {
       id: 1,
@@ -93,6 +69,11 @@ const Beranda = () => {
     // console.log(teamLists);
     setTeams(teamLists);
   }, [teams]);
+
+  const [portfolios, setPortfolios] = useState([]);
+  useEffect(() => {
+    setPortfolios(portfolioData);
+  }, [portfolios]);
 
   return (
     <div className="flex flex-col min-h-screen mt-24">
@@ -182,9 +163,12 @@ const Beranda = () => {
       </section>
 
       <section className="h-auto">
-        <div className="w-full ps-4 pt-14 pb-12 bg-white">
+        <div className="w-full pt-14 pb-12 bg-white ">
           <SectionHead>Tim Kami</SectionHead>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mt-6">
+          <div
+            className="grid grid-cols-2 justify-items-center mx-auto gap-6 gap-y-8 mt-4 md:grid-cols-3 md:mx-auto md:gap-8 md:gap-y-12 md:px-20
+          lg:gap-20"
+          >
             {teams.map((item) => (
               <TeamCard key={item.id} {...item}></TeamCard>
             ))}
@@ -217,14 +201,14 @@ const CardLayanan = (props) => {
 };
 
 const Portfolio = (props) => {
-  const { client, title, image } = props;
+  const { subtitle, title, imageCard } = props;
   return (
     <div className="flex flex-col px-5 pt-4 relative shadow-lg shadow-slate-400 h-[216px] md:scale-110 rounded-lg">
-      <h2 className="text-sm font-semibold">{client}</h2>
+      <h2 className="text-sm font-semibold">{subtitle}</h2>
       <h1 className="text-lg font-bold">{title}</h1>
       <div className="relative bottom-0 px-5 w-[267px] h-[182px]">
         <img
-          src={image}
+          src={imageCard}
           alt="mockup"
           className="w-full absolute -right-0.5 top-4"
         />
