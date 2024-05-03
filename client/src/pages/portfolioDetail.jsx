@@ -1,12 +1,10 @@
 import NavBar from "../components/Fragments/Navbar";
 import Footer from "../components/Fragments/Footer";
 import { useParams } from "react-router-dom";
-// import CardPortfolio from "../components/Fragments/CardPortfolio";
-import { getPortfolios } from "../services/portfolio.service";
 import { useEffect, useState } from "react";
-import isEqual from "lodash.isequal";
 import PropTypes from "prop-types";
 import StylizedFrame from "../components/Elements/StylizedFrame";
+import { portfolioData } from "../data/portfolio";
 
 const PortfolioDetail = () => {
   PortfolioDetail.propTypes = {
@@ -17,11 +15,7 @@ const PortfolioDetail = () => {
   // object card portfolio
   const [portfolios, setPortfolios] = useState([]);
   useEffect(() => {
-    getPortfolios((data) => {
-      if (!isEqual(data, portfolios)) {
-        setPortfolios(data);
-      }
-    });
+    setPortfolios(portfolioData);
   }, [portfolios]);
 
   // Filter portofolio berdasarkan id yang sesuai
