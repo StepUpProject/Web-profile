@@ -29,7 +29,7 @@ const Layanan = () => {
     },
   ];
   return (
-    <div className="relative pb-[550px] md:pb-[350px] lg:pb-[400px]">
+    <div className="flex flex-col min-h-screen">
       <NavBar />
       {/* Style tambahan sesuai desain */}
       <StylizedFrame

@@ -7,6 +7,7 @@ import { teamLists } from "../data/teams.js";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import PropTypes from "prop-types";
+import { portfolioData } from "../data/portfolio";
 
 AOS.init();
 
@@ -14,7 +15,7 @@ const Beranda = () => {
   const services = [
     {
       title: "Aplikasi Web",
-      images: "./images/layanan-aplikasi-web.png",
+      images: "./images/layanan-website.png",
       value: "pembuatan dan pengelolaan aplikasi website",
       // classname: "ps-5",
     },
@@ -31,32 +32,7 @@ const Beranda = () => {
       // classname: "ps-5",
     },
   ];
-  const portfolios = [
-    {
-      id: 1,
-      client: "Bank Central Indonesia",
-      title: "Website Arstitek Rumah",
-      image: "./images/portfolio-card-1.png",
-    },
-    {
-      id: 2,
-      client: "Warung Makan Kokoh",
-      title: "Website Catering",
-      image: "./images/portfolio-card-2.png",
-    },
-    {
-      id: 3,
-      client: "Bank Central Indonesia",
-      title: "Website Arstitek Rumah",
-      image: "./images/portfolio-card-1.png",
-    },
-    {
-      id: 4,
-      client: "Warung Makan Kokoh",
-      title: "Website Catering",
-      image: "./images/portfolio-card-2.png",
-    },
-  ];
+
   const customers = [
     {
       id: 1,
@@ -94,8 +70,13 @@ const Beranda = () => {
     setTeams(teamLists);
   }, [teams]);
 
+  const [portfolios, setPortfolios] = useState([]);
+  useEffect(() => {
+    setPortfolios(portfolioData);
+  }, [portfolios]);
+
   return (
-    <div className="py-24">
+    <div className="flex flex-col min-h-screen mt-24">
       <NavBar />
       <section className="h-auto md">
         <div className="md:flex md:flex-row md:ps-32 md:h-screen">
@@ -182,9 +163,12 @@ const Beranda = () => {
       </section>
 
       <section className="h-auto">
-        <div className="w-full ps-4 pt-14 pb-12 bg-white">
+        <div className="w-full pt-14 pb-12 bg-white ">
           <SectionHead>Tim Kami</SectionHead>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mt-6">
+          <div
+            className="grid grid-cols-2 justify-items-center mx-auto gap-6 gap-y-8 mt-4 md:grid-cols-3 md:mx-auto md:gap-8 md:gap-y-12 md:px-20
+          lg:gap-20"
+          >
             {teams.map((item) => (
               <TeamCard key={item.id} {...item}></TeamCard>
             ))}
@@ -217,14 +201,14 @@ const CardLayanan = (props) => {
 };
 
 const Portfolio = (props) => {
-  const { client, title, image } = props;
+  const { subtitle, title, imageCard } = props;
   return (
     <div className="flex flex-col px-5 pt-4 relative shadow-lg shadow-slate-400 h-[216px] md:scale-110 rounded-lg">
-      <h2 className="text-sm font-semibold">{client}</h2>
+      <h2 className="text-sm font-semibold">{subtitle}</h2>
       <h1 className="text-lg font-bold">{title}</h1>
       <div className="relative bottom-0 px-5 w-[267px] h-[182px]">
         <img
-          src={image}
+          src={imageCard}
           alt="mockup"
           className="w-full absolute -right-0.5 top-4"
         />
@@ -247,18 +231,33 @@ const ReviewCard = () => {
     drop-shadow-[2px_17px_10px_rgba(0,172,193,0.4)] "
     >
       <div className="flex flex-row items-center w-full h-full py-4">
-      <img src="./images/testimoni/pp-1.png" alt="" className="h-20 w-20 md:h-40 md:w-40" />
-      <div className="flex flex-col">
-        <p className="md:h-[50%] pe-1 md:pe-5 ps-7 text-xs md:text-sm text-pale mb-3">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur similique non vel. Lorem ipsum dolor sit,
-          <span className="hidden md:block">
-          amet consectetur adipisicing elit. Quas eligendi sunt recusandae est, doloribus laborum fugit, quia quod tempore error facere animi dolorem libero alias ducimus quisquam accusantium accusamus repellendus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur exercitationem debitis vero explicabo tempora dolores in iste quod enim. Fuga voluptatum sunt optio quaerat rerum expedita tenetur quam consequuntur commodi laudantium, officiis voluptatem odit. Facere magnam repudiandae dicta suscipit aspernatur voluptatem, dolores cum, necessitatibus incidunt, ut doloremque ullam laborum nostrum!
-          </span>
-        </p>
-        <div className="flex flex-row items-center min-h-7 max-h-7 h-full absolute bottom-4">
-          <p className="text-sm font-bold">Al Ikhsan</p>
+        <img
+          src="./images/testimoni/pp-1.png"
+          alt=""
+          className="h-20 w-20 md:h-40 md:w-40"
+        />
+        <div className="flex flex-col">
+          <p className="md:h-[50%] pe-1 md:pe-5 ps-7 text-xs md:text-sm text-pale mb-3">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit Lorem ipsum
+            dolor sit amet consectetur adipisicing elit. Pariatur similique non
+            vel. Lorem ipsum dolor sit,
+            <span className="hidden md:block">
+              amet consectetur adipisicing elit. Quas eligendi sunt recusandae
+              est, doloribus laborum fugit, quia quod tempore error facere animi
+              dolorem libero alias ducimus quisquam accusantium accusamus
+              repellendus! Lorem ipsum dolor sit amet consectetur adipisicing
+              elit. Aspernatur exercitationem debitis vero explicabo tempora
+              dolores in iste quod enim. Fuga voluptatum sunt optio quaerat
+              rerum expedita tenetur quam consequuntur commodi laudantium,
+              officiis voluptatem odit. Facere magnam repudiandae dicta suscipit
+              aspernatur voluptatem, dolores cum, necessitatibus incidunt, ut
+              doloremque ullam laborum nostrum!
+            </span>
+          </p>
+          <div className="flex flex-row items-center min-h-7 max-h-7 h-full absolute bottom-4">
+            <p className="text-sm font-bold">Al Ikhsan</p>
+          </div>
         </div>
-      </div>
       </div>
     </div>
   );

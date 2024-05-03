@@ -5,7 +5,7 @@ import VideoPlayer from "../components/Elements/VideoPlayer";
 import Footer from "../components/Fragments/Footer";
 import Navbar from "../components/Fragments/Navbar";
 import TeamCard from "../components/Fragments/TeamCard";
-import { getTeams } from "../services/team.service";
+import { teamLists } from "../data/teams.js";
 import PropTypes from "prop-types";
 import StylizedFrame from "../components/Elements/StylizedFrame";
 
@@ -19,13 +19,12 @@ const Tentang = () => {
     "Memastikan tim berorientasi pada proses & hasil",
   ];
   const [teams, setTeams] = useState([]);
+
   useEffect(() => {
-    getTeams((data) => {
-      setTeams(data);
-    });
-  });
+    setTeams(teamLists);
+  }, [teams]);
   return (
-    <div className="relative pb-[550px] md:pb-[350px] lg:pb-[400px]">
+    <div className="flex flex-col min-h-screen">
       <Navbar></Navbar>
       <main className="font-body md:relative">
         {/* perintilan tambahan untuk tampilan dekstop */}

@@ -15,7 +15,7 @@ export const teamLists = [
     },
     {
       id: 3,
-      image: "../images/team-yoga.jpeg",
+      image: "../images/team-yoga.jpg",
       name: "Yoga Agatha Pasaribu",
       role: "Fullstack Developer",
       email: "yogapasaribu@gmail.com",
@@ -36,7 +36,7 @@ export const teamLists = [
     },
     {
       id: 6,
-      image: "../images/team-adit.png",
+      image: "../images/team-adit.jpg",
       name: "Muh Aditya Dwijaya",
       role: "Creative",
       email: "adityadwijaya@gmail.com",

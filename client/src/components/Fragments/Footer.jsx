@@ -51,7 +51,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="absolute w-full bottom-0 left-0 flex flex-col mt-20 bg-[#1B1D21] text-white font-body ">
+    <footer className="w-full flex flex-col mt-20 bg-[#1B1D21] text-white font-body ">
       <section className="px-8 py-2 mb-2 md:px-20 md:flex md:justify-between lg:px-36">
         {/* Bagian logo ddan button konsultasi */}
         <div>

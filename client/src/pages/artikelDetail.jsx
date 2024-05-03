@@ -27,17 +27,23 @@ const ArtikelDetail = () => {
   return (
     <>
       <Navbar user={user} />
-      <main key={article.id} className="px-4 mb-14 box-border font-body">
+      <main
+        key={article.id}
+        className="flex flex-col min-h-screen px-4 mb-14 box-border font-body"
+      >
         <h1 className="mt-[80px] text-2xl font-bold text-center">Artikel</h1>
         <div className="w-full flex justify-center">
-        <img src={article.image} className="w-[75%] " alt="" />
+          <img src={article.image} className="w-[75%] " alt="" />
         </div>
         <h2 className="mt-[30px] text-[18px] font-bold">{article.title}</h2>
         <section className="flex gap-6 mt-3">
           <p className="text-xs text-[#616161] mb-3">
             By {article.author ? article.author : "Step-Up"}
           </p>
-        <DateConverter className="text-xs text-[#616161]" date={article.published_at} />
+          <DateConverter
+            className="text-xs text-[#616161]"
+            date={article.published_at}
+          />
         </section>
         <div>{HTMLReactParser(content)}</div>
         <section>
