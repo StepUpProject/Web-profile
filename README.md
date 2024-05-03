@@ -1,22 +1,25 @@
-# Web-profile
-Web Profile Step Up Project
-
-### Konfigurasi client side (FE)
-1. Clone repository ini
-2. masuk folder client
-3. konfigurasi environment (di terminal) -> npm i
-4. running -> npm run dev
 
 
-### Konfigurasi Server side (BE)
-1. Clone repository ini
-2. masuk folder server
-3. konfigurasi environment (di terminal) -> npm i
+<div align="center">
+  <h1>Web-profile</h1>
+  <p>Step Up Project adalah sebuah komunitas yang bergerak untuk digitalisasi bisnis dan organisasi melalui pengembangan dan pengelolaan aplikasi web yang professional dan terpercaya. Step Up Project juga hadir sebagai edukasi seputar dunia IT dengan informasi terupdate yang disajikan dalam artikel dan konten digital kami.
+</p>
+  <p>Semua itu kami capai dengan menggunakan teknologi dan proses terbaik seuai dengan perkembangan dunia IT. Hal ini memastikan layanan yang kami berikan adalah solusi terbaik untuk anda.</p>
+  
+</div>
 
-### Sinkronisasi kode
-1. Pindah ke main (git checkout main)
-2. Git fetch dan git pull
-3. git branch -d nama_branch_lama
-4. git remote prune origin
-5. buat branch baru(git checkout -b nama_branch_baru)
-6. git push -u origin nama_branch_baru
+<div align="center" style="display: flex; justify-content: center;">
+  <h1>Tampilan</h1>
+</div>
+
+
+<div align="center">
+
+  <img src="./docs/docs1.png" alt="docs1" width="720"><br>
+  <img src="./docs/docs2.png" alt="docs2" width="720"><br>
+  <img src="./docs/docs3.png" alt="docs3" width="720"><br>
+  <img src="./docs/docs4.png" alt="docs4" width="720"><br>
+</div>
+
+
+<br>
