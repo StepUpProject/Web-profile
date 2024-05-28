@@ -6,7 +6,6 @@ const { checkUser } = require('../middleware/isAuth');
 router.post('/', checkUser)
 router.post('/register', AuthController.register)
 router.post('/login', AuthController.login)
-// router.route('/logout')
-//     .get(AuthController.logout)
+router.post('/logout', AuthController.logout)
 
 module.exports = router

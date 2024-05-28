@@ -17,7 +17,7 @@ AOS.init();
 const BerandaDev = () => {
   const user = useVerifyUser();
   const navigate = useNavigate();
-  const [cookies, setCookie, removeCookie] = useCookies([]);
+  const [cookies, setCookie, removeCookie] = useCookies();
 
 
   useEffect(() => {
@@ -26,8 +26,10 @@ const BerandaDev = () => {
     }
   })
   const handleLogout = () => {
-    removeCookie("jwt");
-    navigate("/login");
+    useEffect(() => {
+      removeCookie("jwt");
+      navigate("/login");
+    },[removeCookie]);
   };
 
   // Ngambil data team card
@@ -57,8 +59,9 @@ const BerandaDev = () => {
   ];
 
   return (
-    <div className="font-body flex flex-col min-h-screen mt-24 md:mt-0">
-      <NavBar />
+      <>
+      <NavBar user={user}/>
+    <div className="font-body relative mt-24 pb-[550px] md:pb-[350px] lg:pb-[400px] md:mt-0">
       <StylizedFrame
         urlImage="../images/stylized-frame-2-right.png"
         classname="hidden absolute right-[90px] top-[-60px] md:block md:w-[100px] lg:w-[159px] lg:right-[120px]"
@@ -116,6 +119,7 @@ const BerandaDev = () => {
       ></StylizedFrame>
       <Footer />
     </div>
+    </>
   );
 };
 

@@ -2,9 +2,10 @@ import NavBar from "../components/Fragments/Navbar";
 import Footer from "../components/Fragments/Footer";
 import CardLayanan from "../components/Fragments/CardLayanan";
 import StylizedFrame from "../components/Elements/StylizedFrame";
+import useVerifyUser from "../hooks/useVerifyUser";
 
 const Layanan = () => {
-  // object card layanan
+  const user = useVerifyUser();
   const services = [
     {
       id: 1,
@@ -30,7 +31,7 @@ const Layanan = () => {
   ];
   return (
     <div className="flex flex-col min-h-screen">
-      <NavBar />
+      <NavBar user={user}/>
       {/* Style tambahan sesuai desain */}
       <StylizedFrame
         urlImage="../images/stylized-frame-1-right.png"

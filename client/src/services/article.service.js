@@ -7,7 +7,6 @@ export const article = async (data, callback) => {
     .post(URL_API, data, { withCredentials: true })
     .then((res) => {
       callback(true, res);
-    //   callback(true, res.data.data);
     })
     .catch((err) => {
       console.log(headers);

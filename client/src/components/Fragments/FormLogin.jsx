@@ -59,7 +59,7 @@ const FormLogin = (props) => {
         {/* title yang tampil ketika mode dekstop dan tablet saja */}
         <div className="w-full flex justify-start items-center sm:hidden md:block lg:px-20 ">
           <h1 className="hidden font-bold text-xl mt-6 text-left md:block md:ps-4 lg:mt-10 lg:mb-2 lg:text-2xl">
-            Halaman Login
+            Login
           </h1>
         </div>
         <form onSubmit={handleLogin} className="px-5 w-full lg:px-24">

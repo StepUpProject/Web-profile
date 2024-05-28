@@ -68,9 +68,19 @@ module.exports.login = async (req, res, next) => {
     res.status(400).json({ errors , created: false });
   }
 };
+module.exports.logout = async (req, res) => {
+  const token = req.cookies.jwt;
+  console.log(token);
+  try {
+    if (token) {
+      res.clearCookie("jwt", {
+      });
+      return res.status(200).json({ loggedOut: true });
+    } else {
+      return res.status(200).json({ loggedOut: false });
+    }
+  } catch (error) {
+    return res.status(400).json({ error: error.message, loggedOut: false });
+  }
+};
 
-module.exports.logout = (req, res) => {
-  req.logout();
-  req.flash("success_msg", "Logout Success");
-  res.redirect("/login");
-}

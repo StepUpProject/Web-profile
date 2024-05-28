@@ -3,17 +3,18 @@ import NavBar from "../components/Fragments/Navbar";
 import Footer from "../components/Fragments/Footer";
 import CardPortfolio from "../components/Fragments/CardPortfolio";
 import StylizedFrame from "../components/Elements/StylizedFrame";
+import useVerifyUser from "../hooks/useVerifyUser";
 import { portfolioData } from "../data/portfolio";
 
 const Portfolio = () => {
-  // object card portfolio
+  const user = useVerifyUser();
   const [portfolios, setPortfolios] = useState([]);
   useEffect(() => {
     setPortfolios(portfolioData);
   }, [portfolios]);
   return (
     <div className="flex flex-col min-h-screen">
-      <NavBar />
+      <NavBar user={user}/>
       {/* Style tambahan sesuai desain */}
       <StylizedFrame
         urlImage="../images/stylized-frame-2-right.png"

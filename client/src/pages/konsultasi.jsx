@@ -3,11 +3,13 @@ import HeadTitle from "../components/Elements/HeadTitle";
 import FormKonsultasi from "../components/Fragments/FormKonsultasi";
 import Footer from "../components/Fragments/Footer";
 import StylizedFrame from "../components/Elements/StylizedFrame";
+import useVerifyUser from "../hooks/useVerifyUser";
 
 const Konsultasi = () => {
+  const user = useVerifyUser();
   return (
     <div className="flex flex-col min-h-screen">
-      <Navbar />
+      <Navbar user={user} />
       <StylizedFrame
         urlImage="../images/stylized-frame-2-right.png"
         classname="hidden absolute right-[90px] top-[80px] md:block md:w-[100px] lg:w-[139px]"
@@ -24,14 +26,19 @@ const Konsultasi = () => {
           <div className="w-full p-2 lg:px-28">
             <FormKonsultasi></FormKonsultasi>
           </div>
-        </div>
-      </main>
-      <StylizedFrame
-        urlImage="../images/stylized-frame-3-left.png"
-        classname="hidden absolute left-0 bottom-[380px] md:block md:w-[50px] lg:w-[210px]"
-      ></StylizedFrame>
-      <Footer></Footer>
-    </div>
+          <div className="flex justify-center w-full px-4">
+            <div className="w-full p-2 lg:px-28">
+              <FormKonsultasi></FormKonsultasi>
+            </div>
+          </div>
+        </main>
+        <StylizedFrame
+          urlImage="../images/stylized-frame-3-left.png"
+          classname="hidden absolute left-0 bottom-[380px] md:block md:w-[50px] lg:w-[210px]"
+        ></StylizedFrame>
+        <Footer></Footer>
+      </div>
+    </>
   );
 };
 

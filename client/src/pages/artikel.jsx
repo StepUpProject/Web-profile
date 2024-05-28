@@ -1,20 +1,14 @@
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { Link } from "react-router-dom";
-import NavBar from "../components/Fragments/Navbar";
 import Footer from "../components/Fragments/Footer";
 import CardArtikel from "../components/Fragments/CardArtikel";
 import Button from "../components/Elements/Button/Button";
 import LatestCardArticle from "../components/Fragments/LatestCardArticle";
 import axios from "axios";
-import {
-  getArticles,
-  destroyArticle,
-  getLatestArticle,
-} from "../services/article.service";
-import NavbarDev from "../components/Fragments/NavbarDev";
 import Navbar from "../components/Fragments/Navbar";
 import useVerifyUser from "../hooks/useVerifyUser";
+import { getArticles, destroyArticle, getLatestArticle } from "../services/article.service";
 
 const Artikel = () => {
   const [articles, setArticles] = useState([]);

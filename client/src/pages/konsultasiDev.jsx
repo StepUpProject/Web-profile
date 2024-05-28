@@ -5,10 +5,22 @@ import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { getConsultations } from "../services/konsultasi.service";
 import StylizedFrame from "../components/Elements/StylizedFrame";
+import useVerifyUser from "../hooks/useVerifyUser";
+import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 const KonsultasiDev = () => {
   // memanggil object konsultasi
   const [consultations, setConsultations] = useState([]);
+  const user = useVerifyUser();
+  const navigate = useNavigate();
+  const [cookies, setCookie, removeCookie] = useCookies();
+
+  useEffect(() => {
+    if (!cookies.jwt) {
+      navigate("/login");
+    }
+  })
   useEffect(() => {
     getConsultations((data) => {
       setConsultations(data);
@@ -17,7 +29,7 @@ const KonsultasiDev = () => {
 
   return (
     <div className="font-body flex flex-col min-h-screen">
-      <Navbar />
+      <Navbar user={user} />
       <StylizedFrame
         urlImage="../images/stylized-frame-2-right.png"
         classname="hidden absolute right-[90px] top-[60px] lg:block md:w-[100px] lg:w-[159px] lg:right-[120px]"
@@ -53,6 +65,7 @@ const KonsultasiDev = () => {
       </main>
       <Footer />
     </div>
+    </>
   );
 };
 

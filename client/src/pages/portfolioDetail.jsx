@@ -4,9 +4,11 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import StylizedFrame from "../components/Elements/StylizedFrame";
+import useVerifyUser from "../hooks/useVerifyUser";
 import { portfolioData } from "../data/portfolio";
 
 const PortfolioDetail = () => {
+  const user = useVerifyUser();
   PortfolioDetail.propTypes = {
     backgroundColor: PropTypes.string,
   };
@@ -25,7 +27,7 @@ const PortfolioDetail = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <NavBar />
+      <NavBar user={user}/>
       <StylizedFrame
         urlImage="../images/stylized-frame-2-right.png"
         classname="hidden absolute z-[100] right-[90px] bottom-[320px] md:block md:w-[80px] lg:w-[120px] lg:bottom-[500px]"

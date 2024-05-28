@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
 import { IoIosMenu } from "react-icons/io";
+import { useCookies } from "react-cookie";
+import { logout } from "../../services/auth.service";
 
 const menus = [
   {
@@ -42,6 +44,11 @@ const devMenus = [
     active: false,
   },
   {
+    link: "/portfolio",
+    name: "Portfolio",
+    active: false,
+  },
+  {
     link: "/article",
     name: "Artikel",
     active: false,
@@ -52,20 +59,30 @@ const devMenus = [
     active: false,
   },
   {
-    link: "/login",
+    link: "/logout",
     name: "Logout",
     active: false,
   },
-  // {
-  //   link: "/artikelDev",
-  //   name: "ArtikelDev",
-  //   active: false,
-  // },
 ];
 const Navbar = ({ user }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolling, setScrolling] = useState(false);
+  const [cookies, setCookie, removeCookie] = useCookies(['jwt']);
+  const navigate = useNavigate();
 
+  const handleLogout = async () => {
+    console.log(cookies.jwt);
+    if (cookies.jwt) {
+      await logout((isSuccess, res) => {
+        if(isSuccess) {
+          // navigate("/");
+      } else {
+        console.log(res);
+      }
+    });
+  }
+  };
+  
   const handleIsMenuOpen = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -91,16 +108,16 @@ const Navbar = ({ user }) => {
         className={`h-[60px] flex justify-between md:justify-around md:items-center w-full fixed bg-white
         -top-1 z-50 text-dark lg:py-5 px-5 py-4 shadow-md shadow-black/50 md:shadow-none`}
       >
-        <div className="flex items-center gap-1 flex-1">
-          <img src="../../images/logo.png" alt="" className="h-[25px]" />
-          <span className="font-bold text-lg text-black font-body">
+        <div className="flex items-center justify-center lg:justify-around gap-1">
+          <img src="../../images/logo.png" alt="" className="h-[50px]" />
+          <span className="font-bold text-xl text-black font-body">
             Step Up
           </span>
         </div>
-        <WideContent user={user}/>
-        <div>{isMenuOpen && <SmallContent user={user}/>}</div>
+        <WideContent user={user} handleLogout={handleLogout}/>
+        <div>{isMenuOpen && <SmallContent user={user} handleLogout={handleLogout} />}</div>
         <button
-          className="block md:hidden transition"
+          className="block lg:hidden transition"
           onClick={handleIsMenuOpen}
         >
           {isMenuOpen ? <IoClose size={30} /> : <IoIosMenu size={30} />}
@@ -110,26 +127,34 @@ const Navbar = ({ user }) => {
   );
 };
 
-const WideContent = ({ user }) => {
+const WideContent = ({ user, handleLogout }) => {
   const location = useLocation();
   return (
-    <div className="md:flex items-center justify-end md:justify-center font-normal hidden">
+    <div className="lg:flex items-center justify-end md:justify-center ms-20 font-[450] hidden">
       <div className="flex-10">
-        <ul className="flex gap-4 mr-16 text-[18px]">
+        <ul className="flex gap-6 mr-16 text-[18px]">
           {
             user ? (
               <>
               {menus.map((menu) => (
                 <li key={menu.link}>
-                  <Link spy="true" smooth="true" to={menu.link}
-                    className=
-                    {`${
-                      location.pathname === menu.link
-                        ? "text-primary border-b border-primary"
-                        : "text-dark bg-white"
-                    } transition cursor-pointer`}>
-                    {menu.name}
-                  </Link>
+                  {
+                    menu.link === "/logout" ? (
+                      <button onClick={handleLogout} className="text-dark bg-white transition cursor-pointer">
+                        {menu.name}
+                      </button>
+                    ) : (
+                      <Link spy="true" smooth="true" to={menu.link}
+                        className=
+                        {`${
+                          location.pathname === menu.link
+                            ? "text-dark border-b-[3px] border-primary"
+                            : "text-dark bg-white"
+                        } transition cursor-pointer`}>
+                        {menu.name}
+                      </Link>
+                    )
+                  }
                   </li>
               ))}
               </>
@@ -141,7 +166,7 @@ const WideContent = ({ user }) => {
                     className=
                     {`${
                       location.pathname === menu.link
-                        ? "text-primary border-b border-primary"
+                        ? "text-dark border-b-[3px] border-primary"
                         : "text-dark bg-white"
                     } transition cursor-pointer`}>
                     {menu.name}
@@ -157,7 +182,7 @@ const WideContent = ({ user }) => {
   );
 };
 
-const SmallContent = ({ user }) => {
+const SmallContent = ({ user, handleLogout }) => {
   const location = useLocation();
   return (
     <>
@@ -203,3 +228,4 @@ const SmallContent = ({ user }) => {
 };
 
 export default Navbar;
+
