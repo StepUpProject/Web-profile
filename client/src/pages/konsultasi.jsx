@@ -8,20 +8,23 @@ import useVerifyUser from "../hooks/useVerifyUser";
 const Konsultasi = () => {
   const user = useVerifyUser();
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <Navbar user={user} />
-      <div className="relative pb-[550px] md:pb-[350px] lg:pb-[400px]">
-        <StylizedFrame
-          urlImage="../images/stylized-frame-2-right.png"
-          classname="hidden absolute right-[90px] top-[80px] md:block md:w-[100px] lg:w-[139px]"
-        ></StylizedFrame>
-        <main className="w-full md:px-20 md:pt-6 lg:px-64">
-          <HeadTitle>Konsultasi</HeadTitle>
-          <div className="flex px-4 mb-8 justify-center items-center">
-            <p className="text-sm text-slate-950 text-center lg:text-lg lg:px-16">
-              Wujudkan ide brilian Anda dengan bantuan tim kami. kontak kami
-              sekarang untuk memulai pencapaian sukses aplikasi Anda! 🚀
-            </p>
+      <StylizedFrame
+        urlImage="../images/stylized-frame-2-right.png"
+        classname="hidden absolute right-[90px] top-[80px] md:block md:w-[100px] lg:w-[139px]"
+      ></StylizedFrame>
+      <main className="w-full md:px-20 md:pt-6 lg:px-64">
+        <HeadTitle>Konsultasi</HeadTitle>
+        <div className="flex px-4 mb-8 justify-center items-center">
+          <p className="text-sm text-slate-950 text-center lg:text-lg lg:px-16">
+            Wujudkan ide brilian Anda dengan bantuan tim kami. kontak kami
+            sekarang untuk memulai pencapaian sukses aplikasi Anda! 🚀
+          </p>
+        </div>
+        <div className="flex justify-center w-full px-4">
+          <div className="w-full p-2 lg:px-28">
+            <FormKonsultasi></FormKonsultasi>
           </div>
           <div className="flex justify-center w-full px-4">
             <div className="w-full p-2 lg:px-28">

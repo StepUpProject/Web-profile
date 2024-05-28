@@ -28,9 +28,8 @@ const KonsultasiDev = () => {
   }, []);
 
   return (
-      <>
+    <div className="font-body flex flex-col min-h-screen">
       <Navbar user={user} />
-    <div className="font-body relative pb-[550px] md:pb-[350px] lg:pb-[400px]">
       <StylizedFrame
         urlImage="../images/stylized-frame-2-right.png"
         classname="hidden absolute right-[90px] top-[60px] lg:block md:w-[100px] lg:w-[159px] lg:right-[120px]"

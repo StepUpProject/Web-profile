@@ -5,7 +5,7 @@ import VideoPlayer from "../components/Elements/VideoPlayer";
 import Footer from "../components/Fragments/Footer";
 import Navbar from "../components/Fragments/Navbar";
 import TeamCard from "../components/Fragments/TeamCard";
-import { getTeams } from "../services/team.service";
+import { teamLists } from "../data/teams.js";
 import PropTypes from "prop-types";
 import StylizedFrame from "../components/Elements/StylizedFrame";
 import useVerifyUser from "../hooks/useVerifyUser";
@@ -26,11 +26,28 @@ const Tentang = () => {
     "Mengembangkan skill individu & tim",
     "Memastikan tim berorientasi pada proses & hasil",
   ];
+  const [teams, setTeams] = useState([]);
+
+  useEffect(() => {
+    setTeams(teamLists);
+  }, [teams]);
   return (
-    <>
-      <Navbar user={user} />
-      <div className="relative pb-[550px] md:pb-[350px] lg:pb-[400px]">
-        <main className="font-body md:relative">
+    <div className="flex flex-col min-h-screen">
+      <Navbar user={user}></Navbar>
+      <main className="font-body md:relative">
+        {/* perintilan tambahan untuk tampilan dekstop */}
+        <StylizedFrame
+          urlImage="../images/stylized-frame-3-left.png"
+          classname="hidden md:block absolute left-0 md:top-[930px] lg:top-[1120px] w-[60px]"
+        ></StylizedFrame>
+        <StylizedFrame
+          urlImage="../images/stylized-frame-2-right.png"
+          classname="hidden md:block absolute md:right-[110px] md:bottom-[220px] md:w-[90px] lg:right-[170px] lg:bottom-[470px] lg:w-[110px]"
+        ></StylizedFrame>
+        <section className="md:px-20">
+          <div className="md:mt-[125px]">
+            <HeadTitle>Tentang Kami</HeadTitle>
+          </div>
           {/* perintilan tambahan untuk tampilan dekstop */}
           <StylizedFrame
             urlImage="../images/stylized-frame-3-left.png"

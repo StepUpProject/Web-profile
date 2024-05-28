@@ -1,13 +1,11 @@
 import NavBar from "../components/Fragments/Navbar";
 import Footer from "../components/Fragments/Footer";
 import { useParams } from "react-router-dom";
-// import CardPortfolio from "../components/Fragments/CardPortfolio";
-import { getPortfolios } from "../services/portfolio.service";
 import { useEffect, useState } from "react";
-import isEqual from "lodash.isequal";
 import PropTypes from "prop-types";
 import StylizedFrame from "../components/Elements/StylizedFrame";
 import useVerifyUser from "../hooks/useVerifyUser";
+import { portfolioData } from "../data/portfolio";
 
 const PortfolioDetail = () => {
   const user = useVerifyUser();
@@ -19,11 +17,7 @@ const PortfolioDetail = () => {
   // object card portfolio
   const [portfolios, setPortfolios] = useState([]);
   useEffect(() => {
-    getPortfolios((data) => {
-      if (!isEqual(data, portfolios)) {
-        setPortfolios(data);
-      }
-    });
+    setPortfolios(portfolioData);
   }, [portfolios]);
 
   // Filter portofolio berdasarkan id yang sesuai
@@ -32,7 +26,7 @@ const PortfolioDetail = () => {
   );
 
   return (
-    <div className="relative z-10 pb-[550px] md:pb-[250px] lg:pb-[300px]">
+    <div className="flex flex-col min-h-screen">
       <NavBar user={user}/>
       <StylizedFrame
         urlImage="../images/stylized-frame-2-right.png"
