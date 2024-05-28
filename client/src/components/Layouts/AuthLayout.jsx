@@ -32,7 +32,7 @@ const AuthLayout = ({ children }) => {
       ></StylizedFrame>
       <div className="flex justify-center pt-14 md:pt-0">
         <h1 className="font-bold text-3xl z-10 mb-6 md:hidden">
-          Halaman Login
+          Login
         </h1>
       </div>
       <div className="flex flex-col items-center p-28 min-h-screen bg-white z-10">

@@ -1,20 +1,14 @@
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { Link } from "react-router-dom";
-import NavBar from "../components/Fragments/Navbar";
 import Footer from "../components/Fragments/Footer";
 import CardArtikel from "../components/Fragments/CardArtikel";
 import Button from "../components/Elements/Button/Button";
 import LatestCardArticle from "../components/Fragments/LatestCardArticle";
 import axios from "axios";
-import {
-  getArticles,
-  destroyArticle,
-  getLatestArticle,
-} from "../services/article.service";
-import NavbarDev from "../components/Fragments/NavbarDev";
 import Navbar from "../components/Fragments/Navbar";
 import useVerifyUser from "../hooks/useVerifyUser";
+import { getArticles, destroyArticle, getLatestArticle } from "../services/article.service";
 
 const Artikel = () => {
   const [articles, setArticles] = useState([]);
@@ -48,7 +42,7 @@ const Artikel = () => {
     <>
       {/* {user ? <NavbarDev /> : <NavBar />} */}
       <Navbar user={user}/>
-      <main className="px-2 mb-14 box-border">
+      <main className="px-2 box-border">
         <h1 className="mt-[80px] text-2xl font-bold text-center">Artikel</h1>
         <p className="mt-[30px] w-full text-xs font-body leading-4 text-black px-[12px] text-center">
           Jelajahi dunia teknologi terkini dengan artikel kami! Perkembangan

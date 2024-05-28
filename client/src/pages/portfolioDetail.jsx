@@ -7,8 +7,10 @@ import { useEffect, useState } from "react";
 import isEqual from "lodash.isequal";
 import PropTypes from "prop-types";
 import StylizedFrame from "../components/Elements/StylizedFrame";
+import useVerifyUser from "../hooks/useVerifyUser";
 
 const PortfolioDetail = () => {
+  const user = useVerifyUser();
   PortfolioDetail.propTypes = {
     backgroundColor: PropTypes.string,
   };
@@ -31,7 +33,7 @@ const PortfolioDetail = () => {
 
   return (
     <div className="relative z-10 pb-[550px] md:pb-[250px] lg:pb-[300px]">
-      <NavBar />
+      <NavBar user={user}/>
       <StylizedFrame
         urlImage="../images/stylized-frame-2-right.png"
         classname="hidden absolute z-[100] right-[90px] bottom-[320px] md:block md:w-[80px] lg:w-[120px] lg:bottom-[500px]"

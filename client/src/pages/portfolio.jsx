@@ -5,9 +5,10 @@ import CardPortfolio from "../components/Fragments/CardPortfolio";
 import { getPortfolios } from "../services/portfolio.service";
 import isEqual from "lodash.isequal";
 import StylizedFrame from "../components/Elements/StylizedFrame";
+import useVerifyUser from "../hooks/useVerifyUser";
 
 const Portfolio = () => {
-  // object card portfolio
+  const user = useVerifyUser();
   const [portfolios, setPortfolios] = useState([]);
   useEffect(() => {
     getPortfolios((data) => {
@@ -18,8 +19,7 @@ const Portfolio = () => {
   }, [portfolios]);
   return (
     <div className="relative pb-[550px] md:pb-[350px] lg:pb-[400px]">
-      <NavBar />
-      {/* Style tambahan sesuai desain */}
+      <NavBar user={user}/>
       <StylizedFrame
         urlImage="../images/stylized-frame-2-right.png"
         classname="hidden absolute right-[90px] top-[0px] md:block md:w-[100px] lg:w-[159px] lg:right-[120px]"

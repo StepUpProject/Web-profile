@@ -7,32 +7,20 @@ import Navbar from "../components/Fragments/Navbar";
 import axios from "axios";
 import Button from "../components/Elements/Button/Button";
 import FormEditArticle from "../components/Fragments/FormEditArticle";
+import useVerifyUser from "../hooks/useVerifyUser";
 
 
 const ArticleEdit = () => {
-//   const navigate = useNavigate();
-//   const [cookies, setCookie, removeCookie] = useCookies([]);
-//   const [user, setUser] = useState("");
+  const user = useVerifyUser();
+  const navigate = useNavigate();
+  const [cookies, setCookie, removeCookie] = useCookies();
 
-//   useEffect(() => {
-//     const verifyUser = async () => {
-//       if (!cookies.jwt) {
-//         navigate("/login");
-//       } else {
-//         const { data } = await axios.post(
-//           `http://localhost:3000/`,
-//           {},
-//           { withCredentials: true }
-//         );
-//         setUser(data.user);
-//         if (!data.status) {
-//           removeCookie("jwt");
-//           navigate("/login");
-//         }
-//       }
-//     };
-//     verifyUser();
-//   }, [cookies, navigate, removeCookie]);
+
+  useEffect(() => {
+    if (!cookies.jwt) {
+      navigate("/login");
+    }
+  })
 
   const handleLogout = () => {
     removeCookie("jwt");
@@ -40,12 +28,7 @@ const ArticleEdit = () => {
   };
   return (
     <div>
-      <form onSubmit={handleLogout} className="mt-10 w-full mx-auto">
-        <Button type="submit" classname="w-full my-10 bg-primary rounded-full">
-          Logout
-        </Button>
-      </form>
-      <Navbar></Navbar>
+      <Navbar user={user}></Navbar>
       <HeadTitle>Buat Artikel-</HeadTitle>
       <FormEditArticle
       ></FormEditArticle>

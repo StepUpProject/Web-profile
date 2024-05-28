@@ -9,13 +9,12 @@ router.get("/", async (req, res) => {
       const konsul = await Konsul.find();
       res.status(200).json(konsul);
     } catch (error) {
-      res.status(500).send(error);
+      res.status(401).send(error);
     }
   });
 router.post("/", async (req, res) => {
     try {
       const { name, email, question } = await req.body;
-      // Create a new Konsultasi instance
       const newkonsul = new Konsul({
         name,
         email,
@@ -25,10 +24,8 @@ router.post("/", async (req, res) => {
       await newkonsul.save();
   
       res.status(201).json({ success: true, message: "Konsultasi Berhasil" });
-      console.log(newkonsul);
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ success: false, message: "Konsultasi Gagal, Mohon coba lagi" });
+      res.status(401).json({ success: false, message: "Konsultasi Gagal, Mohon coba lagi" });
     }
   });
 

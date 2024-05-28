@@ -49,7 +49,7 @@ const CardArtikel = ({
         <img
           src={`http://localhost:3000/article/${image}`}
           alt="Cards"
-          className="w-full h-auto"
+          className="w-full h-[254px] object-cover"
         />
       </Link>
       <div className="px-[14px] py-3 box-border leading-3">
